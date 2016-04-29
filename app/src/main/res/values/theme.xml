@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Thèmes -->
+    <style name="AppTheme" parent="android:Theme.Black.NoTitleBar">
+        <item name="android:background">@color/mousse</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:alertDialogStyle">@style/AlertDialog</item>
+    </style>
+
+    <style name="AlertDialog">
+        <item name="android:fullDark">@null</item>
+        <item name="android:fullBright">@null</item>
+        <item name="android:topDark">@color/mousse</item>
+        <item name="android:topBright">@null</item>
+        <item name="android:centerBright">@null</item>
+        <item name="android:centerDark">@color/mousse</item>
+        <item name="android:centerMedium">@null</item>
+        <item name="android:bottomDark">@null</item>
+        <item name="android:bottomBright">@null</item>
+        <item name="android:bottomMedium">@color/mousse</item>
+    </style>
+
+</resources>

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="5dp"
+    android:fillViewport="false">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_profile"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <Button
+                style="@style/GrosBouton"
+                android:id="@+id/button_back"
+                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" />
+
+            <TextView
+                style="@style/Titre"
+                android:id="@+id/textView_title_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/button_back"
+                android:text="Your profile"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_gender"
+            android:layout_below="@+id/title_profile"
+            android:padding="5dp"
+            >
+
+
+            <View
+                android:id="@+id/view_sep"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep"
+                android:id="@+id/right_profile_gender"
+                android:padding="@dimen/paddingLayout">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/gender"
+                    android:text="N/A"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_gender"
+                android:id="@+id/left_profile_gender"
+                >
+
+                <Button
+                    style="@style/BoutonCarre"
+                    android:id="@+id/button_Chg_Gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48px"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_gender"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Gender"
+                    android:layout_toRightOf="@+id/button_Chg_Gender"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_age"
+            android:layout_below="@+id/profile_gender"
+            android:padding="5dp"
+            >
+
+
+            <View
+                android:id="@+id/view_sep1"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep1"
+                android:id="@+id/right_profile_age"
+                android:padding="@dimen/paddingLayout">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/age"
+                    android:text="N/A"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_age"
+                android:id="@+id/left_profile_age"
+                >
+
+                <Button
+                    style="@style/BoutonCarre"
+                    android:id="@+id/button_Chg_Age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48px"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_age"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Age"
+                    android:layout_toRightOf="@+id/button_Chg_Age"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_hair"
+            android:layout_below="@+id/profile_age"
+            android:padding="5dp"
+            >
+
+
+            <View
+                android:id="@+id/view_sep2"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep2"
+                android:id="@+id/right_profile_hair"
+                android:padding="@dimen/paddingLayout">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/hair"
+                    android:text="N/A"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_hair"
+                android:id="@+id/left_profile_hair"
+                >
+
+                <Button
+                    style="@style/BoutonCarre"
+                    android:id="@+id/button_Chg_Hair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48px"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_hair"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Hair"
+                    android:layout_toRightOf="@+id/button_Chg_Hair"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_eyes"
+            android:layout_below="@+id/profile_hair"
+            android:padding="5dp"
+            >
+
+
+            <View
+                android:id="@+id/view_sep3"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep3"
+                android:id="@+id/right_profile_eyes"
+                android:padding="@dimen/paddingLayout">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/eyes"
+                    android:text="N/A"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_eyes"
+                android:id="@+id/left_profile_eyes"
+                >
+
+                <Button
+                    style="@style/BoutonCarre"
+                    android:id="@+id/button_Chg_Eyes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48px"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_eyes"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Eyes"
+                    android:layout_toRightOf="@+id/button_Chg_Eyes"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_location"
+            android:layout_below="@+id/profile_eyes"
+            android:padding="5dp"
+            >
+
+
+            <View
+                android:id="@+id/view_sep4"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep4"
+                android:id="@+id/right_profile_location"
+                android:padding="@dimen/paddingLayout">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/location"
+                    android:text="N/A"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_location"
+                android:id="@+id/left_profile_location"
+                >
+
+                <Button
+                    style="@style/BoutonCarre"
+                    android:id="@+id/button_Chg_Location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48px"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_location"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Location"
+                    android:layout_toRightOf="@+id/button_Chg_Location"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_inclination"
+            android:layout_below="@+id/profile_location"
+            android:padding="5dp"
+            >
+
+
+            <View
+                android:id="@+id/view_sep5"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep5"
+                android:id="@+id/right_profile_inclination"
+                android:padding="@dimen/paddingLayout">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/inclination"
+                    android:text="N/A"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_inclination"
+                android:id="@+id/left_profile_inclination"
+                >
+
+                <Button
+                    style="@style/BoutonCarre"
+                    android:id="@+id/button_Chg_Inclination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48px"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_inclination"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Inclination"
+                    android:layout_toRightOf="@+id/button_Chg_Inclination"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_inclination"
+            android:id="@+id/profile_picture">
+            <Button
+                style="@style/BoutonCarre"
+                android:layout_width="wrap_content"
+                android:layout_height="48px"
+                android:id="@+id/button_Chg_Picture"
+                android:layout_toLeftOf="@+id/textView_picture"/>
+            <TextView
+                style="@style/SimpleTexte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_picture"
+                android:text="Picture"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_profile"
+            android:src="@mipmap/ic_launcher"
+            android:adjustViewBounds="true"
+            android:layout_below="@id/profile_picture"
+            android:layout_centerHorizontal="true"
+
+            />
+
+
+    </RelativeLayout>
+
+</ScrollView>
