@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:padding="5dp">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/title_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <TextView
+                android:id="@+id/textView_title_profile"
+                style="@style/Titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/texte_inscription" />
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView_picture_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title_register"
+            android:adjustViewBounds="true"
+            android:paddingBottom="30px"
+            android:paddingLeft="90dp"
+            android:paddingRight="90dp"
+            android:paddingTop="30dp"
+            android:src="@mipmap/ic_login" />
+
+        <RelativeLayout
+            android:id="@+id/connexion_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView_picture_register"
+            android:paddingLeft="10px"
+            android:paddingRight="10px">
+
+
+            <TextView
+                android:id="@+id/textView_username"
+                style="@style/SimpleTexte"
+                android:text="@string/texte_login" />
+
+            <EditText
+                android:id="@+id/login_field"
+                style="@style/ChampsUneLigne"
+                android:layout_below="@id/textView_username"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:hint="@string/hint_login"
+                android:inputType="textVisiblePassword|textNoSuggestions" />
+
+            <TextView
+                android:id="@+id/textView_password"
+                style="@style/SimpleTexte"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/login_field"
+                android:layout_marginTop="10dp"
+                android:text="@string/texte_mdp" />
+
+            <EditText
+                android:id="@+id/password_field"
+                style="@style/ChampsUneLigne"
+                android:layout_below="@id/textView_password"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:hint="@string/hint_mdp"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/btn_Inscription"
+                style="@style/GrosBouton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password_field"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/btn_SInscrire" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/title_register"
+            android:background="@android:color/darker_gray" />
+    </RelativeLayout>
+
+</ScrollView>

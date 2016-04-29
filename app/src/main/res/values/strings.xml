@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="app_name">UCLove</string>
+
+    <!-- Tritre des activités -->
+    <string name="title_activity_login">Connexion</string>
+    <string name="title_activity_accueil">Accueil</string>
+    <string name="title_activity_inscription">Inscription</string>
+    <string name="title_activity_menu_p">Menu Principal</string>
+    <string name="title_activity_collection">Votre collection</string>
+    <string name="title_activity_profil">Votre profil</string>
+    <string name="title_activity_scan">Scan</string>
+    <string name="title_activity_bon_plan">Les Bons Plans</string>
+    <string name="title_activity_profil_biere">Profil d\'une bière</string>
+    <string name="title_activity_profil_ami">Profil d\'un ami</string>
+
+    <!-- Textes Connexion - Inscription -->
+    <string name="texte_mdp">Password : </string>
+    <string name="texte_login">Username : </string>
+    <string name="hint_mdp">Password</string>
+    <string name="hint_login">Username</string>
+    <string name="texte_connexion">I am already registered!</string>
+    <string name="btn_seConnecter">Log in</string>
+    <string name="btn_SInscrire">Sign up</string>
+    <string name="texte_inscription">Sign up!</string>
+
+    <string name="texte_PasDeCompte">Not already registered?</string>
+    <string name="texte_description">Description :</string>
+
+</resources>

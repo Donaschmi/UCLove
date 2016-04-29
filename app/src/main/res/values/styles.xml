@@ -1,0 +1,134 @@
+<resources>
+    <!-- Styles -->
+
+    <!-- Style Textes - boutton -->
+    <style name="Titre">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/titreSize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="SimpleTexte">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/texteSize</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/ambre</item>
+    </style>
+
+    <style name="LittleSimpleTexte">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/littleTexteSize</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/blond</item>
+    </style>
+
+    <style name="ChampsUneLigne">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GrosBouton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:clickable">true</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/texteSize</item>
+
+    </style>
+
+    <style name="SimpleBouton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">@dimen/littleTexteSize</item>
+
+    </style>
+
+    <style name="BoutonCarre">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:minHeight">5dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">@dimen/littleTexteSize</item>
+
+    </style>
+
+    <style name="TitreMenu">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:background">@color/mousse</item>
+        <item name="android:paddingLeft">1dip</item>
+    </style>
+
+    <style name="DescrMenu">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ambre</item>
+        <item name="android:paddingLeft">20dip</item>
+        <item name="android:background">@color/mousse</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="ImageMenu">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@color/mousse</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+
+    <!-- Dialog -->
+    <style name="MyAlertDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:textAppearanceMedium">@style/SimpleTexte</item>
+        <item name="android:borderlessButtonStyle">@style/GrosBouton</item>
+        <item name="android:buttonBarStyle">@style/TitreDialog</item>
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/ambre</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/ambre</item>
+
+        <!-- Used for the background -->
+        <item name="android:background">@color/mousse</item>
+        <item name="android:gravity">center</item>
+        <item name="android:windowTitleStyle">@style/TitreDialog</item>
+        <item name="android:buttonStyle">@style/SimpleBouton</item>
+    </style>
+
+    <style name="windTitreDialog">
+        <item name="android:textAppearance">@style/TitreDialog</item>
+    </style>
+
+    <style name="TitreDialog">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/darkAmbre</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
