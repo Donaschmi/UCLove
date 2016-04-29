@@ -22,7 +22,7 @@
     <string name="texte_connexion">I am already registered!</string>
     <string name="btn_seConnecter">Log in</string>
     <string name="btn_SInscrire">Sign up</string>
-    <string name="texte_inscription">Sign up!</string>
+    <string name="texte_inscription">Sign up</string>
 
     <string name="texte_PasDeCompte">Not already registered?</string>
     <string name="texte_description">Description :</string>
