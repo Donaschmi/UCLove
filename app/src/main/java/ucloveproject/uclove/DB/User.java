@@ -1,6 +1,7 @@
 package ucloveproject.uclove.DB;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Céline on 28-04-16.
@@ -22,7 +23,6 @@ public class User {
     ArrayList<User> favoris;
 
     public User(int id, String login, String mdp, String nom, int age, String genre, String orientation, String style, String yeux, String ville) {
-        super();//Virer ?
         this.id = id;
         this.login = login;
         this.mdp = mdp;
@@ -33,14 +33,22 @@ public class User {
         this.couleurYeux = yeux;
         this.villeResidence = ville;
         this.orientationSexuelle = orientation;
+        //Fetch les amis, les dispos, comment retrouver les favs
     }
 
     public void addFriend(User user){
-        //TODO, envoyer la demande
+        DatabaseHandler db = new DatabaseHandler(this);
+        Date today = new Date();//Se crée au moment courant
+        Requete toSend = new Requete(0, this.getId(), user.getId(), today);
+        db.ajouterRequete(toSend);
     }
 
-    public void addtoFriendList(User user){
-        amis.add(user);
+    public void acceptRequest(Requete requete){
+        DatabaseHandler db = new DatabaseHandler(this);
+        User toAdd = db.getUser(requete.getExpediteur());//Récupérer l'utilisateur qui a envoyé la requete
+        requete.setStatut(true);//Passer le statut de la requête à true
+        db.modifierRequete(requete);//Enregistrer dans la base de donnée
+        amis.add(toAdd);//Ajouter à la liste d'amis
     }
 
     public void addFav(User user){
@@ -52,17 +60,39 @@ public class User {
         favoris.remove(user);
     }
 
+    /**
+     * Update les infos d'un utilisateur
+     *
+     * @param infos contient MDP, nom, genre, age, styleCapillaire, couleurYeux, villeResidence,
+     *              orientationSexuelle, dans cette ordre
+     */
     public void setInfos(String[] infos){
-        //TODO : Décider du format de infos, pouv voir comment utiliser les get et set puis appeler "modifierUser" de databaseHandler
+        DatabaseHandler db = new DatabaseHandler(this);
+        if(infos.length != 8){
+            //Un problème, le gérer
+        }
+        else{
+            this.setMdp(infos[0]);
+            this.setNom(infos[1]);
+            this.setGenre(infos[2]);
+            this.setAge(Integer.parseInt(infos[3]));
+            this.setCheveux(infos[4]);
+            this.setYeux(infos[5]);
+            this.setVille(infos[6]);
+            this.setOrientation(infos[7]);
+            db.modifierUser(this);
+        }
     }
 
     public void setPrivate(String[] infos){
-        //TODO : Idem
+        //TODO : Trouver comment différencier ça dans la db
     }
 
-    public int connect(String login, String mdp){
-        //TODO Log in
-        return 0;
+    public boolean connect(String mdp){
+        if(mdp == this.getMdp()){
+            return true;
+        }
+        return false;
     }
 
     public boolean match(String info){//On ne matcherait pas plutôt un User ?

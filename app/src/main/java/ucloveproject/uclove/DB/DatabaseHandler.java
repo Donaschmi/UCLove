@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  * Created by Céline on 28-04-16.
@@ -148,6 +149,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return found;
     }
 
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> result = new ArrayList<User>();
+        String selectAll = "SELECT * FROM" + TABLE_USERS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectAll, null);
+        if (cursor.moveToFirst()) {
+            do {
+                User toAdd = new User(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                        Integer.parseInt(cursor.getString(4)),cursor.getString(5), cursor.getString(6),
+                        cursor.getString(7), cursor.getString(8), cursor.getString(9));
+                result.add(toAdd);//Ajouter à l'arraylist
+            } while (cursor.moveToNext());
+        }
+        return result;
+    }
+
     /**
      * @param idToDelete, l'id de l'utilisateur qu'on veut supprimer (peut se faire via l'objet également, à voir)
      */
@@ -255,7 +273,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    //Un update de Requete ne me semble pas, non plus, nécessaire
+    public int modifierRequete(Requete toAlter){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(R_EXP, toAlter.getExpediteur());
+        value.put(R_DEST, toAlter.getDestinataire());
+        value.put(STATUT, toAlter.getStatut());
+        value.put(R_DATE, String.valueOf(toAlter.getDate()));
+
+        // Mettre à jour
+        return db.update(TABLE_REQUETES, value, R_KEY + " = ?",
+                new String[] { String.valueOf(toAlter.getId()) });
+    }
 
     //CRUD table DISPOS
     public void ajouterDispo(Disponibilite d){
@@ -291,7 +320,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    //Idem
+    public int modifierDispo(Disponibilite toAlter){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(PROP, toAlter.getProprietaire());
+        value.put(STATUT, toAlter.getStatut());
+        value.put(D_DATE, String.valueOf(toAlter.getDate()));
+
+        // Mettre à jour
+        return db.update(TABLE_DISPOS, value, D_KEY + " = ?",
+                new String[] { String.valueOf(toAlter.getId()) });
+    }
 
 }
-
