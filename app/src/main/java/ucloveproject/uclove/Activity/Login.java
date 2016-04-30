@@ -1,11 +1,14 @@
 package ucloveproject.uclove.Activity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
@@ -13,9 +16,10 @@ import ucloveproject.uclove.R;
  */
 public class Login extends MyActivity implements View.OnClickListener {
 
-    private Button btnInscr=null;
-    private Button btnConnecter=null;
-    private String username =null;
+    private Button btnInscr = null;
+    private Button btnConnecter = null;
+    private String username = null;
+    private String password= null;
 
     @Override
     protected void  onCreate(Bundle savedInstanceState){
@@ -40,6 +44,12 @@ public class Login extends MyActivity implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.btn_Connextion:
+                User toConnect= db.getUser(username);
+                boolean isValid = toConnect.connect(password);
+                if(isValid){
+                    //On est connecté, sauver l'user et passer à la suite
+                }
+                else {
                 this.launchConnexion();
         }
     }
@@ -49,8 +59,11 @@ public class Login extends MyActivity implements View.OnClickListener {
         EditText editUser  = (EditText)findViewById(R.id.login_field);
         EditText editPassword   = (EditText)findViewById(R.id.password_field);
 
-        username = new String(editUser.getText().toString());
-    //TODO connexion avec la DB
+        username = editUser.getText().toString();
+        password = editPassword.getText().toString();
+        DatabaseHandler db = new DatabaseHandler(this);
+            //Demander de recommencer
+        }
     }
 
 
