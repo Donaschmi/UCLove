@@ -60,7 +60,7 @@ public class Login extends MyActivity implements View.OnClickListener {
         if(toConnect != null) {
             boolean isValid = toConnect.connect(password);
             if (isValid) {
-                Intent i = new Intent(this, User.class);//Le nom User pour l'activity est redondant avec la db et peut-être pas trop approprié
+                Intent i = new Intent(this, UserProfil.class);//Le nom User pour l'activity est redondant avec la db et peut-être pas trop approprié
                 i.putExtra("username", username);
             } else {
                 //Mauvais password, demander de recommencer

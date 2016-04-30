@@ -33,6 +33,7 @@ public class User {
         this.couleurYeux = yeux;
         this.villeResidence = ville;
         this.orientationSexuelle = orientation;
+        this.preference = new String[3];
         //Fetch les amis, les dispos, comment retrouver les favs
     }
 
@@ -95,9 +96,43 @@ public class User {
         return false;
     }
 
-    public boolean match(String info){//On ne matcherait pas plutôt un User ?
-        //TODO : match selon les préférences
-        return false;
+    public boolean match(User toMatch){//Faire une sélection qui évite les requêtes déjà acceptées ou refusées
+        switch (this.getOrientation()){
+            case "Hétérosexuel" :
+                if(toMatch.getGenre().equals("Homme")){
+                    return false;
+                }
+                break;
+            case "Homosexuel" :
+                if(!toMatch.getGenre().equals("Homme")){
+                    return false;
+                }
+                break;
+            case "Hétérosexuelle" :
+                if(!toMatch.getGenre().equals("Homme")){
+                    return false;
+                }
+                break;
+            case "Homosexuelle" :
+                if(toMatch.getGenre().equals("Homme")){
+                    return false;
+                }
+                break;
+            default://Gère les deux cas bisexuel, où les deux genre sont bons
+                break;
+        }
+
+        String[] prefs = this.getPreference();
+        if(!prefs[0].equals("") && toMatch.getAge()>Integer.parseInt(prefs[0])){//Trop agé
+            return false;
+        }
+        if(!prefs[0].equals("") && !toMatch.getCheveux().equals(prefs[1])){//Cheveux
+            return false;
+        }
+        if(!prefs[0].equals("") && !toMatch.getYeux().equals(prefs[2])){//Yeux
+            return false;
+        }
+        return true;
     }
 
     public int getId() {
@@ -178,6 +213,25 @@ public class User {
 
     public String getPhoto() {
         return photo[0];
+    }
+
+    public String[] getPreference(){
+        return preference;
+    }
+
+    /**
+     * Update les infos d'un utilisateur
+     *
+     * @param pref contient age, styleCapillaire, couleurYeux dans cette ordre
+     */
+    public void setPreference(String[] pref){
+        DatabaseHandler db = new DatabaseHandler(this);
+        if(pref.length != 3){
+            //Un problème, le gérer
+        }
+        else{
+            this.preference=pref;
+        }
     }
 
     public void addPhoto(String photo){

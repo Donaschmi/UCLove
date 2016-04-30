@@ -16,7 +16,7 @@ import ucloveproject.uclove.R;
  * Classe User, cette activité permet de montrer le profil d'un utilisateur
  * Created by Donatien on 25/04/2016.
  */
-public class User extends MyActivity implements View.OnClickListener {
+public class UserProfil extends MyActivity implements View.OnClickListener {
 
     private Button chgGender;
     private Button chgAge;
@@ -31,7 +31,6 @@ public class User extends MyActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
-
         this.addListener();
 
 
@@ -210,7 +209,7 @@ public class User extends MyActivity implements View.OnClickListener {
         if(extras != null) {
             String username = extras.getString("username");
             DatabaseHandler db = new DatabaseHandler(this);
-            ucloveproject.uclove.DB.User current = db.getUser(username);//Le nom ambigu force ça
+            User current = db.getUser(username);//Le nom ambigu force ça
             //Utiliser les get current pour l'affichage
         }
         //A compléter
