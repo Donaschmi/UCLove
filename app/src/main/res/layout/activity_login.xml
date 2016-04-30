@@ -83,7 +83,7 @@
                 android:inputType="textPassword" />
 
             <Button
-                android:id="@+id/btn_Connextion"
+                android:id="@+id/btn_Connexion"
                 style="@style/GrosBouton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 style="@style/SimpleTexte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_Connextion"
+                android:layout_below="@+id/btn_Connexion"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
