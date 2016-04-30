@@ -62,6 +62,12 @@ public class Login extends MyActivity implements View.OnClickListener {
         username = editUser.getText().toString();
         password = editPassword.getText().toString();
         DatabaseHandler db = new DatabaseHandler(this);
+        User toConnect= db.getUser(username);
+        boolean isValid = toConnect.connect(password);
+        if(isValid){
+            //On est connecté, sauver l'user et passer à la suite
+        }
+        else {
             //Demander de recommencer
         }
     }
