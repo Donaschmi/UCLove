@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 
@@ -204,6 +206,13 @@ public class User extends MyActivity implements View.OnClickListener {
      * Affiche le profil en utilisant le layout activity_profil
      */
     public void showProfil() {
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            String username = extras.getString("username");
+            DatabaseHandler db = new DatabaseHandler(this);
+            ucloveproject.uclove.DB.User current = db.getUser(username);//Le nom ambigu force ça
+            //Utiliser les get current pour l'affichage
+        }
         //A compléter
     }
 }

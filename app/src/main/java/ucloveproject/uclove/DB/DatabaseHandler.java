@@ -139,14 +139,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
                         YEUX, VILLE }, LOGIN + "=?",
                 new String[] { username }, null, null, null, null);
-        if (cursor != null)
+        if (cursor != null) {
             cursor.moveToFirst();
 
-        User found = new User(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                Integer.parseInt(cursor.getString(4)),cursor.getString(5), cursor.getString(6),
-                cursor.getString(7), cursor.getString(8), cursor.getString(9));
-        return found;
+            User found = new User(Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                    Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
+                    cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            return found;
+        }
+        else
+            return null;//On a pas trouvé d'user avec ce nom là
     }
 
     public ArrayList<User> getAllUsers() {
