@@ -44,12 +44,6 @@ public class Login extends MyActivity implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.btn_Connextion:
-                User toConnect= db.getUser(username);
-                boolean isValid = toConnect.connect(password);
-                if(isValid){
-                    //On est connecté, sauver l'user et passer à la suite
-                }
-                else {
                 this.launchConnexion();
         }
     }
