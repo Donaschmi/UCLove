@@ -146,6 +146,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            found.setFriendList();
+            return found;
+        }
+        else
+            return null;//On a pas trouvé d'user avec ce nom là
+    }
+
+    public User getUserById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS, new String[] {LOGIN,
+                        MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
+                        YEUX, VILLE }, U_KEY + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            User found = new User(Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                    Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
+                    cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            found.setFriendList();
             return found;
         }
         else
@@ -172,7 +193,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * @param idToDelete, l'id de l'utilisateur qu'on veut supprimer (peut se faire via l'objet également, à voir)
      */
-    public void supprimerUser(long idToDelete){
+    public void supprimerUser(int idToDelete){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USERS, U_KEY + " = ?", new String[]{String.valueOf(idToDelete)});
         db.close();
@@ -213,7 +234,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();//Fermer le flux
     }
 
-    public Message getMessage(long id){
+    public Message getMessage(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         Cursor cursor = db.query(TABLE_MESSAGES, new String[] {M_EXP,
@@ -232,7 +253,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * @param idToDelete, l'id du message qu'on veut supprimer
      */
-    public void supprimerMessage(long idToDelete){
+    public void supprimerMessage(int idToDelete){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_MESSAGES, M_KEY + " = ?", new String[]{String.valueOf(idToDelete)});
         db.close();
@@ -252,7 +273,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();//Fermer le flux
     }
 
-    public Requete getRequete(long id){
+    public Requete getRequete(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
@@ -267,10 +288,63 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return found;
     }
 
+    public ArrayList<Requete> getRequeteByExp(int idExp){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Requete> result = new ArrayList<Requete>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
+                        R_DEST, STATUT, R_DATE}, R_EXP + "=?",
+                new String[] { String.valueOf(idExp) }, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                        dateFormat.parse(cursor.getString(3)));
+                result.add(found);
+            } while (cursor.moveToNext());
+            return result;
+        }
+        return null;
+    }
+
+    public ArrayList<Requete> getRequeteByDest(int idDest){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Requete> result = new ArrayList<Requete>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
+                        R_DEST, STATUT, R_DATE}, R_EXP + "=?",
+                new String[] { String.valueOf(idDest) }, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                        dateFormat.parse(cursor.getString(3)));
+                result.add(found);
+            } while (cursor.moveToNext());
+            return result;
+        }
+        return null;
+    }
+
+    public Requete getRequeteByExp(int idExp){
+        SQLiteDatabase db = this.getReadableDatabase();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
+                        R_DEST, STATUT, R_DATE}, R_EXP + "=?",
+                new String[] { String.valueOf(idExp) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                dateFormat.parse(cursor.getString(3)));
+        return found;
+    }
+
     /**
      * @param idToDelete, l'id du message qu'on veut supprimer
      */
-    public void supprimerRequete(long idToDelete){
+    public void supprimerRequete(int idToDelete){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_REQUETES, R_KEY + " = ?", new String[]{String.valueOf(idToDelete)});
         db.close();
@@ -300,7 +374,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();//Fermer le flux
     }
 
-    public Disponibilite getDispo(long id){
+    public Disponibilite getDispo(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         Cursor cursor = db.query(TABLE_DISPOS, new String[] {PROP,
@@ -317,7 +391,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /**
      * @param idToDelete, l'id du message qu'on veut supprimer
      */
-    public void supprimerDispo(long idToDelete){
+    public void supprimerDispo(int idToDelete){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_DISPOS, D_KEY + " = ?", new String[]{String.valueOf(idToDelete)});
         db.close();

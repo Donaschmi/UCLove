@@ -2,6 +2,7 @@ package ucloveproject.uclove.DB;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  * Created by Céline on 28-04-16.
@@ -35,6 +36,27 @@ public class User {
         this.orientationSexuelle = orientation;
         this.preference = new String[3];
         //Fetch les amis, les dispos, comment retrouver les favs
+    }
+
+    public void setFriendList(){
+        DatabaseHandler db = new DatabaseHandler(this);//Context ne marche pas
+        ArrayList<Requete> in = db.getRequeteByDest(this.getId());
+        ArrayList<Requete> out = db.getRequeteByExp(this.getId());
+        Iterator<Requete> inIterator = in.iterator();
+        Iterator<Requete> outIterator = out.iterator();
+        while (inIterator.hasNext()) {
+            if(inIterator.next().getStatut()){
+                User toAdd=db.getUserById(inIterator.next().getExpediteur());
+                amis.add(toAdd);
+            }
+        }
+        while (outIterator.hasNext()) {
+            if(outIterator.next().getStatut()){
+                User toAdd=db.getUserById(outIterator.next().getDestinataire());
+                amis.add(toAdd);
+            }
+        }
+
     }
 
     public void addFriend(User user){
