@@ -8,12 +8,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <TextView
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/title_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Titre"
-            android:id="@+id/textView_titre"/>
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <TextView
+                android:id="@+id/textView_titre"
+                style="@style/Titre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_menu_p" />
+        </RelativeLayout>
+
     </RelativeLayout>
 </ScrollView>

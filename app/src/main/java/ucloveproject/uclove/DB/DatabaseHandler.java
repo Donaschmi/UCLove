@@ -133,12 +133,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();//Fermer le flux
     }
 
-    public User getUser(long id){
+    public User getUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[] {LOGIN,
                         MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
-                        YEUX, VILLE }, U_KEY + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+                        YEUX, VILLE }, LOGIN + "=?",
+                new String[] { username }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
