@@ -11,7 +11,7 @@ public class Disponibilite {
     private Date date;//Contient également l'heure
     private int idProprietaire;
 
-    public Disponibilite(int id, Date date, int proprietaire){
+    public Disponibilite(int id, int proprietaire, Date date){
         this.id=id;
         this.date=date;
         this.statut=false;

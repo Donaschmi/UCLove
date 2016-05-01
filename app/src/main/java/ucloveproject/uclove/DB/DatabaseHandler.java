@@ -23,6 +23,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_MESSAGES = "MESSAGES";
     private static final String TABLE_REQUETES = "REQUETES";
     private static final String TABLE_DISPOS = "DISPONIBILITES";
+    private static final String TABLE_PHOTOS = "PHOTOS"
     //Champs de la table users
     public static final String U_KEY = "_id";
     public static final String LOGIN = "Login";
@@ -34,7 +35,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String STYLE = "Style capillaire";
     public static final String YEUX = "Couleur des yeux";
     public static final String VILLE = "Ville de residence";
-    public static final String IMAGE = "Photos";
     //Champs de la table messages
     public static final String M_KEY = "_id";
     public static final String M_EXP = "Expediteur";
@@ -51,6 +51,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String D_KEY = "_id";
     public static final String PROP = "Proprietaire";
     public static final String D_DATE = "Date";
+    //Champs de la table photos
+    public static final String P_KEY = "_id";
+    public static final String IDUSER = "Proprietaire";
+    public static final String IMAGE = "Image";
 
     public DatabaseHandler(Context context) {
         super(context, DB_NOM, null, VERSION);
@@ -101,6 +105,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         + PROP + " TEXT, "
                         + R_DATE + "TEXT);";
         db.execSQL(DISPOS_CREATE);
+
+        //Contruction de la table photos
+        String PHOTOS_CREATE =
+                "CREATE TABLE " + TABLE_PHOTOS + " ("
+                        + P_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + IDUSER + " TEXT, "
+                        + IMAGE + "BLOB);";
+        db.execSQL(PHOTOS_CREATE);
     }
 
     @Override
@@ -113,6 +125,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(REQUETES_DROP);
         String DISPOS_DROP =  "DROP TABLE IF EXISTS " + TABLE_DISPOS + ";";
         db.execSQL(DISPOS_DROP);
+        String PHOTOS_DROP =  "DROP TABLE IF EXISTS " + TABLE_PHOTOS + ";";
+        db.execSQL(PHOTOS_DROP);
         onCreate(db);
     }
 
@@ -135,7 +149,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public User getUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USERS, new String[] {LOGIN,
+        Cursor cursor = db.query(TABLE_USERS, new String[] {U_KEY, LOGIN,
                         MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
                         YEUX, VILLE }, LOGIN + "=?",
                 new String[] { username }, null, null, null, null);
@@ -147,6 +161,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
             found.setFriendList();
+            cursor.close();
             return found;
         }
         else
@@ -155,7 +170,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public User getUserById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USERS, new String[] {LOGIN,
+        Cursor cursor = db.query(TABLE_USERS, new String[] {U_KEY, LOGIN,
                         MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
                         YEUX, VILLE }, U_KEY + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
@@ -166,7 +181,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
-            found.setFriendList();
+            cursor.close();
             return found;
         }
         else
@@ -187,6 +202,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 result.add(toAdd);//Ajouter à l'arraylist
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return result;
     }
 
@@ -237,17 +253,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Message getMessage(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_MESSAGES, new String[] {M_EXP,
-                        M_DEST, CONTENU, M_DATE}, M_KEY + "=?",
+        Cursor cursor = db.query(TABLE_MESSAGES, new String[] {M_KEY, CONTENU, M_EXP,
+                        M_DEST, M_DATE}, M_KEY + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
+        if (cursor != null) {
             cursor.moveToFirst();
 
-        Message found = new Message(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), Integer.parseInt(cursor.getString(2)),
-                Integer.parseInt(cursor.getString(3)),
-                dateFormat.parse(cursor.getString(4)));
-        return found;
+            Message found = new Message(Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1), Integer.parseInt(cursor.getString(2)),
+                    Integer.parseInt(cursor.getString(3)),
+                    dateFormat.parse(cursor.getString(4)));
+            cursor.close();
+            return found;
+        }
+        return null;
     }
 
     /**
@@ -276,32 +295,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Requete getRequete(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
+        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_KEY, R_EXP,
                         R_DEST, STATUT, R_DATE}, R_KEY + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
+        if (cursor != null) {
             cursor.moveToFirst();
 
-        Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                dateFormat.parse(cursor.getString(3)));
-        return found;
+            Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                    Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                    dateFormat.parse(cursor.getString(4)));
+            found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+            cursor.close();
+            return found;
+        }
+        return null;
     }
 
     public ArrayList<Requete> getRequeteByExp(int idExp){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
+        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_KEY, R_EXP,
                         R_DEST, STATUT, R_DATE}, R_EXP + "=?",
                 new String[] { String.valueOf(idExp) }, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                        dateFormat.parse(cursor.getString(3)));
+                        dateFormat.parse(cursor.getString(4)));
+                found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
                 result.add(found);
             } while (cursor.moveToNext());
+            cursor.close();
             return result;
         }
         return null;
@@ -319,26 +344,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                         dateFormat.parse(cursor.getString(3)));
+                found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
                 result.add(found);
             } while (cursor.moveToNext());
             return result;
         }
         return null;
-    }
-
-    public Requete getRequeteByExp(int idExp){
-        SQLiteDatabase db = this.getReadableDatabase();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
-                        R_DEST, STATUT, R_DATE}, R_EXP + "=?",
-                new String[] { String.valueOf(idExp) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                dateFormat.parse(cursor.getString(3)));
-        return found;
     }
 
     /**
@@ -370,22 +381,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         value.put(PROP, d.getProprietaire());
         value.put(STATUT, d.getStatut());
         value.put(D_DATE, String.valueOf(d.getDate()));
-        db.insert(TABLE_REQUETES, null, value);//Insérer la nouvelle ligne
+        db.insert(TABLE_DISPOS, null, value);//Insérer la nouvelle ligne
         db.close();//Fermer le flux
     }
 
     public Disponibilite getDispo(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_DISPOS, new String[] {PROP,
+        Cursor cursor = db.query(TABLE_DISPOS, new String[] {D_KEY, PROP,
                         STATUT, D_DATE}, D_KEY + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
+        if (cursor != null) {
             cursor.moveToFirst();
-
-        Disponibilite found = new Disponibilite(Integer.parseInt(cursor.getString(0)), dateFormat.parse(cursor.getString(1)),
-                Integer.parseInt(cursor.getString(2)));
-        return found;
+            Disponibilite found = new Disponibilite(Integer.parseInt(cursor.getString(0)),
+                    Integer.parseInt(cursor.getString(1), dateFormat.parse(cursor.getString(3))));
+            found.setStatut(Boolean.parseBoolean(cursor.getString(2)));
+            cursor.close();
+            return found;
+        }
+        return null;
     }
 
     /**
@@ -409,4 +423,40 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(toAlter.getId()) });
     }
 
+    //CRUD table PHOTOS
+    public void ajouterPhoto(Photo p){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(IDUSER, p.getUserId());
+        value.put(IMAGE, p.getImageBytes());
+        db.insert(TABLE_PHOTOS, null, value);//Insérer la nouvelle ligne
+        db.close();//Fermer le flux
+    }
+
+    public ArrayList<Photo> getPhotoByUserId(int idUser){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Photo> result = new ArrayList<Photo>();
+        Cursor cursor = db.query(TABLE_PHOTOS, new String[] {P_KEY, IDUSER,
+                        IMAGE}, IDUSER + "=?",
+                new String[] { String.valueOf(idUser) }, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Photo found = new Photo(Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)), cursor.getBlob(2))
+                result.add(found);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
+    /**
+     * @param idToDelete, l'id du message qu'on veut supprimer
+     */
+    public void supprimerPhoto(int idToDelete){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PHOTOS, P_KEY + " = ?", new String[]{String.valueOf(idToDelete)});
+        db.close();
+    }
+    //Pas besoin de modifier les photos
 }

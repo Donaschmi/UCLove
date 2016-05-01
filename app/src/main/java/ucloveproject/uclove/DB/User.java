@@ -1,5 +1,8 @@
 package ucloveproject.uclove.DB;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -19,9 +22,9 @@ public class User {
     private String villeResidence;
     private String orientationSexuelle;
     private String[] preference;
-    private String[] photo;//Trouver comment stocker des images
-    ArrayList<User> amis;
-    ArrayList<User> favoris;
+    private ArrayList<Photo> photo;
+    private ArrayList<User> amis;
+    private ArrayList<User> favoris;
 
     public User(int id, String login, String mdp, String nom, int age, String genre, String orientation, String style, String yeux, String ville) {
         this.id = id;
@@ -35,7 +38,8 @@ public class User {
         this.villeResidence = ville;
         this.orientationSexuelle = orientation;
         this.preference = new String[3];
-        //Fetch les amis, les dispos, comment retrouver les favs
+        this.setPhotos();//Récupérer les éventuelles photos
+        this.setFriendList();//Récupérer les éventuels amis
     }
 
     public void setFriendList(){
@@ -59,6 +63,11 @@ public class User {
 
     }
 
+    public void setPhotos(){
+        DatabaseHandler db = new DatabaseHandler(this);//Context ne marche pas
+        this.photo = db.getPhotoByUserId(this.getId());
+    }
+
     public void addFriend(User user){
         DatabaseHandler db = new DatabaseHandler(this);
         Date today = new Date();//Se crée au moment courant
@@ -68,7 +77,7 @@ public class User {
 
     public void acceptRequest(Requete requete){
         DatabaseHandler db = new DatabaseHandler(this);
-        User toAdd = db.getUser(requete.getExpediteur());//Récupérer l'utilisateur qui a envoyé la requete
+        User toAdd = db.getUserById(requete.getExpediteur());//Récupérer l'utilisateur qui a envoyé la requete
         requete.setStatut(true);//Passer le statut de la requête à true
         db.modifierRequete(requete);//Enregistrer dans la base de donnée
         amis.add(toAdd);//Ajouter à la liste d'amis
@@ -81,6 +90,19 @@ public class User {
     public void removeFriend(User user){
         amis.remove(user);
         favoris.remove(user);
+        DatabaseHandler db = new DatabaseHandler(this);
+        ArrayList<Requete> exp = db.getRequeteByExp(user.getId());
+        Iterator<Requete> expIterator = exp.iterator();
+        while (expIterator.hasNext()) {//Si c'était l'user à supprimer qui a fait la requête
+            Requete toDelete = expIterator.next();
+            db.supprimerRequete(toDelete.getId());//On supprime
+        }
+        ArrayList<Requete> dest = db.getRequeteByDest(user.getId());
+        Iterator<Requete> destIterator = exp.iterator();
+        while (destIterator.hasNext()) {//Si c'était l'user courant qui a fait la requête
+            Requete toDelete = destIterator.next();
+            db.supprimerRequete(toDelete.getId());
+        }
     }
 
     /**
@@ -256,8 +278,12 @@ public class User {
         }
     }
 
-    public void addPhoto(String photo){
-        //Add, arraylist ?
+    public void addPhoto(Bitmap photo){
+        byte[] image = BitmapFactory.decodeByteArray(photo, 0, image.length);
+        Photo toAdd = new Photo(0, this.getId(), image);
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.ajouterPhoto(toAdd);
+        this.photo.add(toAdd);
     }
 
     @Override
