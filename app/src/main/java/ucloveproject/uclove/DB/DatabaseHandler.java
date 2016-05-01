@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -134,7 +135,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //CRUD table USERS
     public void ajouterUser(User n){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.beginTransaction();
         ContentValues value = new ContentValues();
         value.put(LOGIN, n.getLogin());
         value.put(MDP, n.getMdp());
@@ -146,24 +146,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         value.put(YEUX, n.getYeux());
         value.put(VILLE, n.getVille());
         db.insert(TABLE_USERS, null, value);//Insérer la nouvelle ligne
-        db.endTransaction();
         db.close();//Fermer le flux
     }
 
     public User getUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USERS, new String[] {U_KEY, LOGIN,
-                        MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
-                        YEUX, VILLE }, LOGIN + " = '" + username +"'",
-                new String[] { username }, null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-
+        String query = "SELECT * FROM " + TABLE_USERS + " WHERE " + LOGIN + " = '" + username +"'";
+        Log.d("Query",query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
             User found = new User(Integer.parseInt(cursor.getString(0)),
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
             cursor.close();
+            Log.d("Mdp",found.getMdp());
             return found;
         }
         else

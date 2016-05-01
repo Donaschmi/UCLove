@@ -151,7 +151,7 @@ public class User {
     }
 
     public boolean connect(String mdp){
-        if(mdp == this.getMdp()){
+        if(mdp.equals(this.getMdp())){
             return true;
         }
         return false;

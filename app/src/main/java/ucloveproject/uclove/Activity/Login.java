@@ -3,6 +3,7 @@ package ucloveproject.uclove.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,14 +61,17 @@ public class Login extends MyActivity implements View.OnClickListener {
         if(toConnect != null) {
             boolean isValid = toConnect.connect(password);
             if (isValid) {
-                Intent i = new Intent(this, UserProfil.class);//Le nom User pour l'activity est redondant avec la db et peut-être pas trop approprié
+                Intent i = new Intent(this, UserProfil.class);//Plus tard, rediriger vers le menu
                 i.putExtra("username", username);
+                startActivity(i);
             } else {
                 //Mauvais password, demander de recommencer
+                Log.d("LaunchConnexion","Mauvais password");
+                Log.d("Recu", password);
             }
         }
         else{
-            //Username n'existe pas, demander de recommencer
+            Log.d("LaunchConnexion","User non trouvé");
         }
     }
 

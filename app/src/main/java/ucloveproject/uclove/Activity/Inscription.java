@@ -42,6 +42,7 @@ public class Inscription extends MyActivity implements View.OnClickListener{
             case R.id.btn_Inscription:
                 this.verificationInscr();
                 Intent i = new Intent(this, UserProfil.class);//Plus tard, rediriger vers le menu
+                i.putExtra("username", username);
                 startActivity(i);
                 break;
         }
