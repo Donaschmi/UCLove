@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Version de la base de données et son npm
-    protected final static int VERSION = 1;//Changer si on opère un gros changement dans la db
-    protected final static String DB_NOM = "uclove.sqlite";
+    protected final static int DATABASE_VERSION = 11;//Changer si on opère un gros changement dans la db
+    protected final static String DATABASE_NOM = "uclove.sqlite";
 
     //Tables
     private static final String TABLE_USERS = "UTILISATEUR";
@@ -25,39 +25,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_DISPOS = "DISPONIBILITES";
     private static final String TABLE_PHOTOS = "PHOTOS";
     //Champs de la table users
-    public static final String U_KEY = "_id";
-    public static final String LOGIN = "Login";
-    public static final String MDP = "Mdp";
-    public static final String NOM = "Nom";
-    public static final String AGE = "Age";
-    public static final String GENRE = "Genre";
-    public static final String ORIENTATION = "Orientation sexuelle";
-    public static final String STYLE = "Style capillaire";
-    public static final String YEUX = "Couleur des yeux";
-    public static final String VILLE = "Ville de residence";
+    public static final String U_KEY = "ROWID";
+    public static final String LOGIN = "LOGIN";
+    public static final String MDP = "MDP";
+    public static final String NOM = "NOM";
+    public static final String AGE = "AGE";
+    public static final String GENRE = "GENRE";
+    public static final String ORIENTATION = "ORIENTATION";
+    public static final String STYLE = "STYLECAPILLAIRE";
+    public static final String YEUX = "COULEURYEUX";
+    public static final String VILLE = "VILLE";
     //Champs de la table messages
-    public static final String M_KEY = "_id";
-    public static final String M_EXP = "Expediteur";
-    public static final String M_DEST = "Destinataire";
-    public static final String CONTENU = "Contenu";
-    public static final String M_DATE = "Date";
+    public static final String M_KEY = "ROWID";
+    public static final String M_EXP = "EXPEDITEUR";
+    public static final String M_DEST = "DESTINATAIRE";
+    public static final String CONTENU = "CONTENU";
+    public static final String M_DATE = "DATE";
     //Champs de la table requetes
-    public static final String R_KEY = "_id";
-    public static final String R_EXP = "Expediteur";
-    public static final String R_DEST = "Destinataire";
-    public static final String STATUT = "Statut";
-    public static final String R_DATE = "Date";
+    public static final String R_KEY = "ROWID";
+    public static final String R_EXP = "EXPEDDITEUR";
+    public static final String R_DEST = "DESTINATAIRE";
+    public static final String STATUT = "STATUT";
+    public static final String R_DATE = "DATE";
     //Champs de la table disponibilites
-    public static final String D_KEY = "_id";
-    public static final String PROP = "Proprietaire";
-    public static final String D_DATE = "Date";
+    public static final String D_KEY = "ROWID";
+    public static final String PROP = "PROPRIETAIRE";
+    public static final String D_DATE = "DATE";
     //Champs de la table photos
-    public static final String P_KEY = "_id";
-    public static final String IDUSER = "Proprietaire";
-    public static final String IMAGE = "Image";
+    public static final String P_KEY = "ROWID";
+    public static final String IDUSER = "PROPRIETAIRE";
+    public static final String IMAGE = "IMAGE";
 
     public DatabaseHandler(Context context) {
-        super(context, DB_NOM, null, VERSION);
+        super(context, DATABASE_NOM, null, DATABASE_VERSION);
     }
 
     @Override
@@ -67,15 +67,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_USERS + " ("
                         + U_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + LOGIN + " TEXT, "
-                        + MDP + "TEXT, "
-                        + NOM + "TEXT, "
-                        + AGE + "INTEGER, "
-                        + GENRE + "TEXT, "
-                        + ORIENTATION + "TEXT, "
-                        + STYLE + "TEXT, "
-                        + YEUX + "TEXT, "
-                        + VILLE + "TEXT, "
-                        + IMAGE + "BLOB);";
+                        + MDP + " TEXT, "
+                        + NOM + " TEXT, "
+                        + AGE + " INTEGER, "
+                        + GENRE + " TEXT, "
+                        + ORIENTATION + " TEXT, "
+                        + STYLE + " TEXT, "
+                        + YEUX + " TEXT, "
+                        + VILLE + " TEXT);";
         db.execSQL(USERS_CREATE);
 
         //Contruction de la table messages
@@ -83,9 +82,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_MESSAGES + " ("
                         + M_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + M_EXP + " TEXT, "
-                        + M_DEST + "TEXT, "
-                        + CONTENU + "TEXT, "
-                        + M_DATE + "TEXT);";
+                        + M_DEST + " TEXT, "
+                        + CONTENU + " TEXT, "
+                        + M_DATE + " TEXT);";
         db.execSQL(MESSAGES_CREATE);
 
         //Contruction de la table requêtes
@@ -93,9 +92,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_REQUETES + " ("
                         + R_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + R_EXP + " TEXT, "
-                        + R_DEST + "TEXT, "
-                        + STATUT + "TEXT, "
-                        + R_DATE + "TEXT);";
+                        + R_DEST + " TEXT, "
+                        + STATUT + " TEXT, "
+                        + R_DATE + " TEXT);";
         db.execSQL(REQUETES_CREATE);
 
         //Contruction de la table disponibilites
@@ -103,7 +102,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_DISPOS + " ("
                         + D_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + PROP + " TEXT, "
-                        + R_DATE + "TEXT);";
+                        + R_DATE + " TEXT);";
         db.execSQL(DISPOS_CREATE);
 
         //Contruction de la table photos
@@ -111,28 +110,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_PHOTOS + " ("
                         + P_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + IDUSER + " TEXT, "
-                        + IMAGE + "BLOB);";
+                        + IMAGE + " BLOB);";
         db.execSQL(PHOTOS_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String USERS_DROP =  "DROP TABLE IF EXISTS " + TABLE_USERS + ";";
-        db.execSQL(USERS_DROP);
-        String MESSAGES_DROP =  "DROP TABLE IF EXISTS " + TABLE_MESSAGES + ";";
-        db.execSQL(MESSAGES_DROP);
-        String REQUETES_DROP =  "DROP TABLE IF EXISTS " + TABLE_REQUETES + ";";
-        db.execSQL(REQUETES_DROP);
-        String DISPOS_DROP =  "DROP TABLE IF EXISTS " + TABLE_DISPOS + ";";
-        db.execSQL(DISPOS_DROP);
-        String PHOTOS_DROP =  "DROP TABLE IF EXISTS " + TABLE_PHOTOS + ";";
-        db.execSQL(PHOTOS_DROP);
-        onCreate(db);
+        if(oldVersion != newVersion) {//Si les versions on changé, on drop tout
+            String USERS_DROP = "DROP TABLE IF EXISTS " + TABLE_USERS + ";";
+            db.execSQL(USERS_DROP);
+            String MESSAGES_DROP = "DROP TABLE IF EXISTS " + TABLE_MESSAGES + ";";
+            db.execSQL(MESSAGES_DROP);
+            String REQUETES_DROP = "DROP TABLE IF EXISTS " + TABLE_REQUETES + ";";
+            db.execSQL(REQUETES_DROP);
+            String DISPOS_DROP = "DROP TABLE IF EXISTS " + TABLE_DISPOS + ";";
+            db.execSQL(DISPOS_DROP);
+            String PHOTOS_DROP = "DROP TABLE IF EXISTS " + TABLE_PHOTOS + ";";
+            db.execSQL(PHOTOS_DROP);
+            onCreate(db);
+        }
     }
 
     //CRUD table USERS
     public void ajouterUser(User n){
         SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
         ContentValues value = new ContentValues();
         value.put(LOGIN, n.getLogin());
         value.put(MDP, n.getMdp());
@@ -141,8 +143,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         value.put(GENRE, n.getGenre());
         value.put(ORIENTATION, n.getOrientation());
         value.put(STYLE, n.getCheveux());
+        value.put(YEUX, n.getYeux());
         value.put(VILLE, n.getVille());
         db.insert(TABLE_USERS, null, value);//Insérer la nouvelle ligne
+        db.endTransaction();
         db.close();//Fermer le flux
     }
 
@@ -150,7 +154,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[] {U_KEY, LOGIN,
                         MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
-                        YEUX, VILLE }, LOGIN + "=?",
+                        YEUX, VILLE }, LOGIN + " = '" + username +"'",
                 new String[] { username }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

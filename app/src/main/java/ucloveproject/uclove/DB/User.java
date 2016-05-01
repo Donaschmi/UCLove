@@ -42,6 +42,20 @@ public class User {
         //this.setFriendList();//Récupérer les éventuels amis
     }
 
+    public User(String username, String password){
+        this.id = 0;
+        this.login = username;
+        this.mdp = password;
+        this.nom = "inconnu";
+        this.genre = "inconnu";
+        this.age=0;
+        this.styleCapilaire = "inconnu";
+        this.couleurYeux = "inconnu";
+        this.villeResidence = "inconnu";
+        this.orientationSexuelle = "inconnu";
+        this.preference = new String[3];
+    }
+
     /*
     public void setFriendList(){
         DatabaseHandler db = new DatabaseHandler(this);//Context ne marche pas

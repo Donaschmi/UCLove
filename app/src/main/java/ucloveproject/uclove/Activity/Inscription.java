@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
@@ -39,6 +41,8 @@ public class Inscription extends MyActivity implements View.OnClickListener{
         switch(v.getId()){
             case R.id.btn_Inscription:
                 this.verificationInscr();
+                Intent i = new Intent(this, UserProfil.class);//Plus tard, rediriger vers le menu
+                startActivity(i);
                 break;
         }
     }
@@ -51,7 +55,9 @@ public class Inscription extends MyActivity implements View.OnClickListener{
         password=editPassword.getText().toString();
 
         if(this.verifChamp()){
-            //TODO ajout dans la DB
+            User newUser = new User(username, password);
+            DatabaseHandler db = new DatabaseHandler(this);
+            db.ajouterUser(newUser);
         }
     }
 
