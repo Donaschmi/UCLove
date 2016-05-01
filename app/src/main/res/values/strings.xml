@@ -8,7 +8,7 @@
     <string name="title_activity_inscription">Register</string>
     <string name="title_activity_menu_p">Menu</string>
     <string name="title_activity_profil">Your profil</string>
-    <string name="title_activity_profil_ami">Friend's profile</string>
+    <string name="title_activity_profil_ami">Friend\'s profile</string>
 
     <!-- Textes Connexion - Inscription -->
     <string name="texte_mdp">Password : </string>

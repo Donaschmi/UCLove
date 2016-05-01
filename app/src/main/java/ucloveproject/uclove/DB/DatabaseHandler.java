@@ -23,7 +23,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_MESSAGES = "MESSAGES";
     private static final String TABLE_REQUETES = "REQUETES";
     private static final String TABLE_DISPOS = "DISPONIBILITES";
-    private static final String TABLE_PHOTOS = "PHOTOS"
+    private static final String TABLE_PHOTOS = "PHOTOS";
     //Champs de la table users
     public static final String U_KEY = "_id";
     public static final String LOGIN = "Login";
@@ -142,7 +142,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         value.put(ORIENTATION, n.getOrientation());
         value.put(STYLE, n.getCheveux());
         value.put(VILLE, n.getVille());
-        value.put(IMAGE, n.getPhoto());
         db.insert(TABLE_USERS, null, value);//Insérer la nouvelle ligne
         db.close();//Fermer le flux
     }
@@ -160,7 +159,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
-            found.setFriendList();
             cursor.close();
             return found;
         }
@@ -231,7 +229,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(ORIENTATION, toAlter.getOrientation());
         values.put(STYLE, toAlter.getCheveux());
         values.put(VILLE, toAlter.getVille());
-        values.put(IMAGE, toAlter.getPhoto());
 
         // Mettre à jour
         return db.update(TABLE_USERS, values, U_KEY + " = ?",
@@ -258,13 +255,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-
-            Message found = new Message(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1), Integer.parseInt(cursor.getString(2)),
-                    Integer.parseInt(cursor.getString(3)),
-                    dateFormat.parse(cursor.getString(4)));
-            cursor.close();
-            return found;
+            try {
+                Message found = new Message(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), Integer.parseInt(cursor.getString(2)),
+                        Integer.parseInt(cursor.getString(3)),
+                        dateFormat.parse(cursor.getString(4)));
+                cursor.close();
+                return found;
+            }
+            catch (java.text.ParseException e){
+                return null;
+            }
         }
         return null;
     }
@@ -300,13 +301,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-
-            Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
-                    Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                    dateFormat.parse(cursor.getString(4)));
-            found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
-            cursor.close();
-            return found;
+            try {
+                Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                        dateFormat.parse(cursor.getString(4)));
+                found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+                cursor.close();
+                return found;
+            }
+            catch (java.text.ParseException e){
+                return null;
+            }
         }
         return null;
     }
@@ -320,11 +325,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(idExp) }, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
-                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                        dateFormat.parse(cursor.getString(4)));
-                found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
-                result.add(found);
+                try {
+                    Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                            Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                            dateFormat.parse(cursor.getString(4)));
+                    found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+                    result.add(found);
+                }
+                catch (java.text.ParseException e){
+                    //Just ignore
+                }
             } while (cursor.moveToNext());
             cursor.close();
             return result;
@@ -341,12 +351,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(idDest) }, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
-                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                        dateFormat.parse(cursor.getString(3)));
-                found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
-                result.add(found);
+                try {
+                    Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                            Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                            dateFormat.parse(cursor.getString(3)));
+                    found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+                    result.add(found);
+                }
+                catch (java.text.ParseException e){
+                    //Juste ignore
+                }
             } while (cursor.moveToNext());
+            cursor.close();
             return result;
         }
         return null;
@@ -393,11 +409,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-            Disponibilite found = new Disponibilite(Integer.parseInt(cursor.getString(0)),
-                    Integer.parseInt(cursor.getString(1), dateFormat.parse(cursor.getString(3))));
-            found.setStatut(Boolean.parseBoolean(cursor.getString(2)));
-            cursor.close();
-            return found;
+            try{
+                Disponibilite found = new Disponibilite(Integer.parseInt(cursor.getString(0)),
+                    Integer.parseInt(cursor.getString(1)), dateFormat.parse(cursor.getString(3)));
+                found.setStatut(Boolean.parseBoolean(cursor.getString(2)));
+                cursor.close();
+                return found;
+            }
+            catch (java.text.ParseException e){
+                return null;
+            }
         }
         return null;
     }
@@ -442,7 +463,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Photo found = new Photo(Integer.parseInt(cursor.getString(0)),
-                        Integer.parseInt(cursor.getString(1)), cursor.getBlob(2))
+                        Integer.parseInt(cursor.getString(1)), cursor.getBlob(2));
                 result.add(found);
             } while (cursor.moveToNext());
         }

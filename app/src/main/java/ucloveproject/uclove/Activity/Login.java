@@ -43,7 +43,7 @@ public class Login extends MyActivity implements View.OnClickListener {
                 Intent i = new Intent(this, Inscription.class);
                 startActivity(i);
                 break;
-            case R.id.btn_Connextion:
+            case R.id.btn_Connexion:
                 this.launchConnexion();
         }
     }

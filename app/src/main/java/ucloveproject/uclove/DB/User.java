@@ -38,10 +38,11 @@ public class User {
         this.villeResidence = ville;
         this.orientationSexuelle = orientation;
         this.preference = new String[3];
-        this.setPhotos();//Récupérer les éventuelles photos
-        this.setFriendList();//Récupérer les éventuels amis
+        //this.setPhotos();//Récupérer les éventuelles photos
+        //this.setFriendList();//Récupérer les éventuels amis
     }
 
+    /*
     public void setFriendList(){
         DatabaseHandler db = new DatabaseHandler(this);//Context ne marche pas
         ArrayList<Requete> in = db.getRequeteByDest(this.getId());
@@ -81,12 +82,13 @@ public class User {
         requete.setStatut(true);//Passer le statut de la requête à true
         db.modifierRequete(requete);//Enregistrer dans la base de donnée
         amis.add(toAdd);//Ajouter à la liste d'amis
-    }
+    }*/
 
     public void addFav(User user){
         favoris.add(user);
     }
 
+    /*
     public void removeFriend(User user){
         amis.remove(user);
         favoris.remove(user);
@@ -103,7 +105,7 @@ public class User {
             Requete toDelete = destIterator.next();
             db.supprimerRequete(toDelete.getId());
         }
-    }
+    }*/
 
     /**
      * Update les infos d'un utilisateur
@@ -111,6 +113,7 @@ public class User {
      * @param infos contient MDP, nom, genre, age, styleCapillaire, couleurYeux, villeResidence,
      *              orientationSexuelle, dans cette ordre
      */
+    /*
     public void setInfos(String[] infos){
         DatabaseHandler db = new DatabaseHandler(this);
         if(infos.length != 8){
@@ -127,7 +130,7 @@ public class User {
             this.setOrientation(infos[7]);
             db.modifierUser(this);
         }
-    }
+    }*/
 
     public void setPrivate(String[] infos){
         //TODO : Trouver comment différencier ça dans la db
@@ -255,8 +258,8 @@ public class User {
         this.villeResidence=ville;
     }
 
-    public String getPhoto() {
-        return photo[0];
+    public Photo getPhoto() {
+        return photo.get(0);
     }
 
     public String[] getPreference(){
@@ -268,6 +271,7 @@ public class User {
      *
      * @param pref contient age, styleCapillaire, couleurYeux dans cette ordre
      */
+    /*
     public void setPreference(String[] pref){
         DatabaseHandler db = new DatabaseHandler(this);
         if(pref.length != 3){
@@ -276,15 +280,16 @@ public class User {
         else{
             this.preference=pref;
         }
-    }
+    }*/
 
+    /*
     public void addPhoto(Bitmap photo){
         byte[] image = BitmapFactory.decodeByteArray(photo, 0, image.length);
         Photo toAdd = new Photo(0, this.getId(), image);
         DatabaseHandler db = new DatabaseHandler(this);
         db.ajouterPhoto(toAdd);
         this.photo.add(toAdd);
-    }
+    }*/
 
     @Override
     public boolean equals(Object obj) {
