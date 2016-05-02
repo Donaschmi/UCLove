@@ -306,7 +306,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                         dateFormat.parse(cursor.getString(4)));
-                found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+                found.setStatut(cursor.getString(3));
                 cursor.close();
                 return found;
             }
@@ -330,7 +330,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                             dateFormat.parse(cursor.getString(4)));
-                    found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+                    found.setStatut(cursor.getString(3));
                     result.add(found);
                 }
                 catch (java.text.ParseException e){
@@ -347,7 +347,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_EXP,
+        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_KEY, R_EXP,
                         R_DEST, STATUT, R_DATE}, R_EXP + "=?",
                 new String[] { String.valueOf(idDest) }, null, null, null, null);
         if (cursor.moveToFirst()) {
@@ -355,8 +355,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 try {
                     Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                            dateFormat.parse(cursor.getString(3)));
-                    found.setStatut(Boolean.parseBoolean(cursor.getString(3)));
+                            dateFormat.parse(cursor.getString(4)));
+                    found.setStatut(cursor.getString(3));
                     result.add(found);
                 }
                 catch (java.text.ParseException e){
@@ -424,8 +424,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    public ArrayList<Disponibilite> getDispoByUserId(int idUser){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Disponibilite> result = new ArrayList<Disponibilite>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        String query = "SELECT * FROM " + TABLE_DISPOS + " WHERE " + PROP + " = '" + String.valueOf(idUser) + "'";
+        Log.d("Query",query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                try {
+                    Disponibilite found = new Disponibilite(Integer.parseInt(cursor.getString(0)),
+                            Integer.parseInt(cursor.getString(1)), dateFormat.parse(cursor.getString(2)));
+                    result.add(found);
+                }
+                catch (java.text.ParseException e){
+                    //Juste ignore
+                }
+            } while (cursor.moveToNext());
+            cursor.close();
+            return result;
+        }
+        return null;
+    }
+
     /**
-     * @param idToDelete, l'id du message qu'on veut supprimer
+     * @param idToDelete, l'id de la disponibilite qu'on veut supprimer
      */
     public void supprimerDispo(int idToDelete){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -473,7 +497,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @param idToDelete, l'id du message qu'on veut supprimer
+     * @param idToDelete, l'id de la photo qu'on veut supprimer
      */
     public void supprimerPhoto(int idToDelete){
         SQLiteDatabase db = this.getWritableDatabase();
