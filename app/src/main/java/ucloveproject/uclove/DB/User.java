@@ -56,9 +56,8 @@ public class User {
         this.preference = new String[3];
     }
 
-    /*
-    public void setFriendList(){
-        DatabaseHandler db = new DatabaseHandler(this);//Context ne marche pas
+
+    public void setFriendList(DatabaseHandler db){
         ArrayList<Requete> in = db.getRequeteByDest(this.getId());
         ArrayList<Requete> out = db.getRequeteByExp(this.getId());
         Iterator<Requete> inIterator = in.iterator();
@@ -78,35 +77,30 @@ public class User {
 
     }
 
-    public void setPhotos(){
-        DatabaseHandler db = new DatabaseHandler(this);//Context ne marche pas
+    public void setPhotos(DatabaseHandler db){
         this.photo = db.getPhotoByUserId(this.getId());
     }
 
-    public void addFriend(User user){
-        DatabaseHandler db = new DatabaseHandler(this);
+    public void addFriend(User user, DatabaseHandler db){
         Date today = new Date();//Se crée au moment courant
         Requete toSend = new Requete(0, this.getId(), user.getId(), today);
         db.ajouterRequete(toSend);
     }
 
-    public void acceptRequest(Requete requete){
-        DatabaseHandler db = new DatabaseHandler(this);
+    public void acceptRequest(Requete requete, DatabaseHandler db){
         User toAdd = db.getUserById(requete.getExpediteur());//Récupérer l'utilisateur qui a envoyé la requete
         requete.setStatut(true);//Passer le statut de la requête à true
         db.modifierRequete(requete);//Enregistrer dans la base de donnée
         amis.add(toAdd);//Ajouter à la liste d'amis
-    }*/
+    }
 
     public void addFav(User user){
         favoris.add(user);
     }
 
-    /*
-    public void removeFriend(User user){
+    public void removeFriend(User user, DatabaseHandler db){
         amis.remove(user);
         favoris.remove(user);
-        DatabaseHandler db = new DatabaseHandler(this);
         ArrayList<Requete> exp = db.getRequeteByExp(user.getId());
         Iterator<Requete> expIterator = exp.iterator();
         while (expIterator.hasNext()) {//Si c'était l'user à supprimer qui a fait la requête
@@ -119,7 +113,7 @@ public class User {
             Requete toDelete = destIterator.next();
             db.supprimerRequete(toDelete.getId());
         }
-    }*/
+    }
 
     /**
      * Update les infos d'un utilisateur
@@ -127,9 +121,7 @@ public class User {
      * @param infos contient MDP, nom, genre, age, styleCapillaire, couleurYeux, villeResidence,
      *              orientationSexuelle, dans cette ordre
      */
-    /*
-    public void setInfos(String[] infos){
-        DatabaseHandler db = new DatabaseHandler(this);
+    public void setInfos(String[] infos, DatabaseHandler db){
         if(infos.length != 8){
             //Un problème, le gérer
         }
@@ -144,7 +136,7 @@ public class User {
             this.setOrientation(infos[7]);
             db.modifierUser(this);
         }
-    }*/
+    }
 
     public void setPrivate(String[] infos){
         //TODO : Trouver comment différencier ça dans la db
@@ -157,6 +149,7 @@ public class User {
         return false;
     }
 
+    //TODO : Déterminer un code pour l'orientation sexuelle
     public boolean match(User toMatch){//Faire une sélection qui évite les requêtes déjà acceptées ou refusées
         switch (this.getOrientation()){
             case "Hétérosexuel" :
@@ -285,25 +278,22 @@ public class User {
      *
      * @param pref contient age, styleCapillaire, couleurYeux dans cette ordre
      */
-    /*
-    public void setPreference(String[] pref){
-        DatabaseHandler db = new DatabaseHandler(this);
+    public void setPreference(String[] pref, DatabaseHandler db){
         if(pref.length != 3){
             //Un problème, le gérer
         }
         else{
             this.preference=pref;
         }
-    }*/
+    }
 
-    /*
-    public void addPhoto(Bitmap photo){
-        byte[] image = BitmapFactory.decodeByteArray(photo, 0, image.length);
+
+    public void addPhoto(Bitmap photo, DatabaseHandler db){
+        byte[] image = null;//BitmapFactory.decodeByteArray(photo, 0, image.length);//Non fonctionnel pour le moment, faire des recherches sur les images
         Photo toAdd = new Photo(0, this.getId(), image);
-        DatabaseHandler db = new DatabaseHandler(this);
         db.ajouterPhoto(toAdd);
         this.photo.add(toAdd);
-    }*/
+    }
 
     @Override
     public boolean equals(Object obj) {

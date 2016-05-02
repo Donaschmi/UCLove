@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
 import ucloveproject.uclove.DB.User;
@@ -31,6 +32,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
+        showProfil();
         this.addListener();
 
 
@@ -211,7 +213,21 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
             DatabaseHandler db = new DatabaseHandler(this);
             User current = db.getUser(username);//Le nom ambigu force ça
             //Utiliser les get current pour l'affichage
+            TextView genre = (TextView)findViewById(R.id.gender);
+            genre.setText(current.getGenre());
+            TextView age = (TextView)findViewById(R.id.age);
+            age.setText(String.valueOf(current.getAge()));
+            TextView cheveux = (TextView)findViewById(R.id.hair);
+            cheveux.setText(current.getCheveux());
+            TextView yeux = (TextView)findViewById(R.id.eyes);
+            yeux.setText(current.getYeux());
+            TextView ville = (TextView)findViewById(R.id.location);
+            ville.setText(current.getVille());
+            TextView orientation = (TextView)findViewById(R.id.inclination);
+            orientation.setText(current.getOrientation());
         }
-        //A compléter
+        else{
+            //Ne devrais pas arriver dans la mesure où l'user ne devrait pas être connecté
+        }
     }
 }
