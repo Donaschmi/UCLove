@@ -12,13 +12,13 @@ import ucloveproject.uclove.R;
  */
 public class Menu extends MyActivity implements View.OnClickListener {
 
-    private Button profile;
-    private Button preferences;
-    private Button people;
-    private Button friends;
-    private Button requests;
-    private Button chat;
-    private Button meet;
+    private Button btnProfile;
+    private Button btnPreferences;
+    private Button btnPeople;
+    private Button btnFriends;
+    private Button btnRequests;
+    private Button btnChat;
+    private Button btnMeet;
     private String username;
 
     @Override
@@ -30,8 +30,31 @@ public class Menu extends MyActivity implements View.OnClickListener {
             username = extras.getString("username");
         this.addListener();
     }
+    private void addListener() {
+        btnProfile =(Button) findViewById(R.id.btn_menu_profile);
+        btnProfile.setOnClickListener(this);
 
-    public void OnClick(View v) {
+        btnPreferences = (Button)findViewById(R.id.btn_menu_preferences);
+        btnPreferences.setOnClickListener(this);
+
+        btnPeople = (Button) findViewById(R.id.btn_menu_people);
+        btnPeople.setOnClickListener(this);
+
+        btnFriends = (Button) findViewById(R.id.btn_menu_friends);
+        btnFriends.setOnClickListener(this);
+
+        btnRequests= (Button) findViewById(R.id.btn_menu_requests);
+        btnRequests.setOnClickListener(this);
+
+        btnChat = (Button) findViewById(R.id.btn_menu_chat);
+        btnChat.setOnClickListener(this);
+
+        btnMeet= (Button) findViewById(R.id.btn_menu_meet);
+        btnMeet.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v){
         switch (v.getId()) {
             case R.id.btn_menu_profile:
                 Intent i = new Intent(this, UserProfil.class);
@@ -40,39 +63,37 @@ public class Menu extends MyActivity implements View.OnClickListener {
                 break;
             case R.id.btn_menu_preferences:
                 //Intent j = new Intent(this, Preferences.class);
-                //i.putExtra("username", username);
+                //j.putExtra("username", username);
                 //startActivity(j);
                 break;
             case R.id.btn_menu_people:
                 //Intent k = new Intent(this, People.class);
-                //i.putExtra("username", username);
+                //k.putExtra("username", username);
                 //startActivity(k);
                 break;
             case R.id.btn_menu_friends:
                 //Intent l = new Intent(this, Friends.class);
-                //i.putExtra("username", username);
+                //l.putExtra("username", username);
                 //startActivity(l);
                 break;
             case R.id.btn_menu_requests:
                 //Intent m = new Intent(this, Requests.class);
-                //i.putExtra("username", username);
+                //m.putExtra("username", username);
                 //startActivity(m);
                 break;
             case R.id.btn_menu_chat:
                 //Intent n = new Intent(this, Chat.class);
-                //i.putExtra("username", username);
+                //n.putExtra("username", username);
                 //startActivity(n);
                 break;
             case R.id.btn_menu_meet:
                 //Intent o = new Intent(this,Meet.class);
-                //i.putExtra("username", username);
+                //o.putExtra("username", username);
                 //startActivity(o);
                 break;
         }
     }
 
-    private void addListener() {
-    //TODO
-    }
+
 
 }
