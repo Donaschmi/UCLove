@@ -211,20 +211,21 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         if(extras != null) {
             String username = extras.getString("username");
             DatabaseHandler db = new DatabaseHandler(this);
-            User current = db.getUser(username);//Le nom ambigu force ça
-            //Utiliser les get current pour l'affichage
-            TextView genre = (TextView)findViewById(R.id.gender);
-            genre.setText(current.getGenre());
-            TextView age = (TextView)findViewById(R.id.age);
-            age.setText(String.valueOf(current.getAge()));
-            TextView cheveux = (TextView)findViewById(R.id.hair);
-            cheveux.setText(current.getCheveux());
-            TextView yeux = (TextView)findViewById(R.id.eyes);
-            yeux.setText(current.getYeux());
-            TextView ville = (TextView)findViewById(R.id.location);
-            ville.setText(current.getVille());
-            TextView orientation = (TextView)findViewById(R.id.inclination);
-            orientation.setText(current.getOrientation());
+            User current = db.getUser(username);
+            if(current != null) {
+                TextView genre = (TextView) findViewById(R.id.gender);
+                genre.setText(current.getGenre());
+                TextView age = (TextView) findViewById(R.id.age);
+                age.setText(String.valueOf(current.getAge()));
+                TextView cheveux = (TextView) findViewById(R.id.hair);
+                cheveux.setText(current.getCheveux());
+                TextView yeux = (TextView) findViewById(R.id.eyes);
+                yeux.setText(current.getYeux());
+                TextView ville = (TextView) findViewById(R.id.location);
+                ville.setText(current.getVille());
+                TextView orientation = (TextView) findViewById(R.id.inclination);
+                orientation.setText(current.getOrientation());
+            }
         }
         else{
             //Ne devrais pas arriver dans la mesure où l'user ne devrait pas être connecté

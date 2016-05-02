@@ -53,7 +53,8 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/view_sep"
                 android:id="@+id/right_profile_gender"
-                android:padding="@dimen/paddingLayout">
+                android:padding="@dimen/paddingLayout"
+                android:longClickable="true">
 
                 <TextView
                     style="@style/SimpleTexte"
@@ -61,8 +62,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/gender"
-                    android:text="N/A"
-                    />
+                    android:text="N/A" />
 
 
 
@@ -137,8 +137,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/age"
-                    android:text="N/A"
-                    />
+                    android:text="N/A" />
 
 
 
@@ -213,8 +212,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/hair"
-                    android:text="N/A"
-                    />
+                    android:text="N/A" />
 
 
 

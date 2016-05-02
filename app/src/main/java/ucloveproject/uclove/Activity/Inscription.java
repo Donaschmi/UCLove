@@ -42,9 +42,6 @@ public class Inscription extends MyActivity implements View.OnClickListener{
         switch(v.getId()){
             case R.id.btn_Inscription:
                 this.verificationInscr();
-                Intent i = new Intent(this, UserProfil.class);//Plus tard, rediriger vers le menu
-                i.putExtra("username", username);
-                startActivity(i);
                 break;
         }
     }
@@ -62,6 +59,9 @@ public class Inscription extends MyActivity implements View.OnClickListener{
             User newUser = new User(username, password);
             DatabaseHandler db = new DatabaseHandler(this);
             db.ajouterUser(newUser);
+            Intent i = new Intent(this, UserProfil.class);//Plus tard, rediriger vers le menu
+            i.putExtra("username", username);
+            startActivity(i);
         }
     }
 
