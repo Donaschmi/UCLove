@@ -20,6 +20,7 @@ public class Inscription extends MyActivity implements View.OnClickListener{
     private Button btnIns=null;
     private String username=null;
     private String password=null;
+    private String password2=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -51,9 +52,11 @@ public class Inscription extends MyActivity implements View.OnClickListener{
     private void verificationInscr(){
         EditText editUser=(EditText) findViewById(R.id.login_field);
         EditText editPassword=(EditText) findViewById(R.id.password_field);
+        EditText editPassword2 =(EditText) findViewById(R.id.password_field2);
 
         username=editUser.getText().toString();
         password=editPassword.getText().toString();
+        password2=editPassword2.getText().toString();
 
         if(this.verifChamp()){
             User newUser = new User(username, password);
@@ -69,7 +72,14 @@ public class Inscription extends MyActivity implements View.OnClickListener{
         if(isUserValid()){
 
             if(isPasswordValid()){
-                ok=true;
+
+                if(arePasswordsSame()){
+                    ok=true;
+                }
+                else{
+                    String errorMessage="Passwords are not the same";
+                    super.printToast(errorMessage);
+                }
             }
             else{
                 String errorMessage="Password must be between 6 and 40 characters";
@@ -89,6 +99,10 @@ public class Inscription extends MyActivity implements View.OnClickListener{
 
     private boolean isPasswordValid(){
         return (this.password.length() >=6)&&(this.password.length()<=40);
+    }
+
+    private boolean arePasswordsSame(){
+        return (this.password.equalsIgnoreCase(password2));
     }
 
 

@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/title_register"
+            android:id="@+id/title_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="30px"
@@ -24,6 +24,236 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_menu_p" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_profile"
+            android:layout_below="@+id/title_menu"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_profile"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_profile"
+                android:layout_toRightOf="@+id/img_menu_profile"
+                android:text="@string/texte_profile"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_preferences"
+            android:layout_below="@+id/menu_profile"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_preferences"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_preferences"
+                android:layout_toRightOf="@+id/img_menu_preferences"
+                android:text="@string/texte_preferences"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_people"
+            android:layout_below="@+id/menu_preferences"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_people"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_people"
+                android:layout_toRightOf="@+id/img_menu_people"
+                android:text="@string/texte_people"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_friends"
+            android:layout_below="@+id/menu_people"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_friends"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_friends"
+                android:layout_toRightOf="@+id/img_menu_friends"
+                android:text="@string/texte_friends"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_requests"
+            android:layout_below="@+id/menu_friends"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_requests"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_requests"
+                android:layout_toRightOf="@+id/img_menu_requests"
+                android:text="@string/texte_requests"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_chat"
+            android:layout_below="@+id/menu_requests"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_chat"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_chat"
+                android:layout_toRightOf="@+id/img_menu_chat"
+                android:text="@string/texte_chat"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_meet"
+            android:layout_below="@+id/menu_chat"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_meet"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_below="@id/profile_picture"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_meet"
+                android:layout_toRightOf="@+id/img_menu_meet"
+                android:text="@string/texte_meet"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/title_menu"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_profile"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_preferences"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_people"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_friends"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_requests"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_chat"
+            android:background="@android:color/darker_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/menu_meet"
+            android:background="@android:color/darker_gray" />
+
 
     </RelativeLayout>
 </ScrollView>

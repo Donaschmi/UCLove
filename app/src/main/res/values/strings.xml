@@ -15,6 +15,11 @@
     <string name="texte_login">Username : </string>
     <string name="hint_mdp">Password</string>
     <string name="hint_login">Username</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_hair">Hair</string>
+    <string name="hint_eyes">Eyes</string>
+    <string name="hint_location">Location</string>
+    <string name="hint_inclination">Inclination</string>
     <string name="texte_connexion">I am already registered!</string>
     <string name="btn_seConnecter">Log in</string>
     <string name="btn_SInscrire">Sign up</string>
@@ -22,5 +27,14 @@
 
     <string name="texte_PasDeCompte">Not already registered?</string>
     <string name="texte_description">Description :</string>
+
+    <!-- Textes Menu -->
+    <string name="texte_profile">Profile</string>
+    <string name="texte_preferences">Preferences</string>
+    <string name="texte_people">People</string>
+    <string name="texte_friends">Friends</string>
+    <string name="texte_requests">Requests</string>
+    <string name="texte_chat">Chat</string>
+    <string name="texte_meet">Meet</string>
 
 </resources>
