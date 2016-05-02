@@ -23,8 +23,7 @@ public class User {
     private String orientationSexuelle;
     private String[] preference;
     private ArrayList<Photo> photo;
-    private ArrayList<User> amis;
-    private ArrayList<User> favoris;
+    private ArrayList<Relation> amis;
 
     public User(int id, String login, String mdp, String nom, int age, String genre, String orientation, String style, String yeux, String ville) {
         this.id = id;
@@ -38,8 +37,6 @@ public class User {
         this.villeResidence = ville;
         this.orientationSexuelle = orientation;
         this.preference = new String[3];
-        //this.setPhotos();//Récupérer les éventuelles photos
-        //this.setFriendList();//Récupérer les éventuels amis
     }
 
     public User(String username, String password){
@@ -58,22 +55,7 @@ public class User {
 
 
     public void setFriendList(DatabaseHandler db){
-        ArrayList<Requete> in = db.getRequeteByDest(this.getId());
-        ArrayList<Requete> out = db.getRequeteByExp(this.getId());
-        Iterator<Requete> inIterator = in.iterator();
-        Iterator<Requete> outIterator = out.iterator();
-        while (inIterator.hasNext()) {
-            if(inIterator.next().getStatut()){
-                User toAdd=db.getUserById(inIterator.next().getExpediteur());
-                amis.add(toAdd);
-            }
-        }
-        while (outIterator.hasNext()) {
-            if(outIterator.next().getStatut()){
-                User toAdd=db.getUserById(outIterator.next().getDestinataire());
-                amis.add(toAdd);
-            }
-        }
+        this.amis = db.getFriendList(this.getId());
 
     }
 
@@ -89,18 +71,16 @@ public class User {
 
     public void acceptRequest(Requete requete, DatabaseHandler db){
         User toAdd = db.getUserById(requete.getExpediteur());//Récupérer l'utilisateur qui a envoyé la requete
-        requete.setStatut(true);//Passer le statut de la requête à true
+        requete.setStatut("valide");//Passer le statut de la requête à valide
         db.modifierRequete(requete);//Enregistrer dans la base de donnée
-        amis.add(toAdd);//Ajouter à la liste d'amis
+        Relation newRelation = new Relation(0, this.getId(), toAdd.getId());
+        db.ajouterRelation(newRelation);
     }
 
-    public void addFav(User user){
-        favoris.add(user);
-    }
 
     public void removeFriend(User user, DatabaseHandler db){
-        amis.remove(user);
-        favoris.remove(user);
+        Relation toRemove = db.getOneFriend(this.getId(), user.getId());
+        db.supprimerRelation(toRemove.getId());
         ArrayList<Requete> exp = db.getRequeteByExp(user.getId());
         Iterator<Requete> expIterator = exp.iterator();
         while (expIterator.hasNext()) {//Si c'était l'user à supprimer qui a fait la requête
@@ -108,7 +88,7 @@ public class User {
             db.supprimerRequete(toDelete.getId());//On supprime
         }
         ArrayList<Requete> dest = db.getRequeteByDest(user.getId());
-        Iterator<Requete> destIterator = exp.iterator();
+        Iterator<Requete> destIterator = dest.iterator();
         while (destIterator.hasNext()) {//Si c'était l'user courant qui a fait la requête
             Requete toDelete = destIterator.next();
             db.supprimerRequete(toDelete.getId());

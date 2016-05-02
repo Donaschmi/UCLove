@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Version de la base de données et son npm
-    protected final static int DATABASE_VERSION = 11;//Changer si on opère un gros changement dans la db
+    protected final static int DATABASE_VERSION = 12;//Changer si on opère un gros changement dans la db
     protected final static String DATABASE_NOM = "uclove.sqlite";
 
     //Tables
@@ -25,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_REQUETES = "REQUETES";
     private static final String TABLE_DISPOS = "DISPONIBILITES";
     private static final String TABLE_PHOTOS = "PHOTOS";
+    private static final String TABLE_AMIS = "AMIS";
     //Champs de la table users
     public static final String U_KEY = "ROWID";
     public static final String LOGIN = "LOGIN";
@@ -56,6 +57,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String P_KEY = "ROWID";
     public static final String IDUSER = "PROPRIETAIRE";
     public static final String IMAGE = "IMAGE";
+    //Champs de la table amis
+    public static final String A_KEY = "ROWID";
+    public static final String IDFISRT = "PREMIER";
+    public static final String IDSECOND = "DEUXIEME";
+    public static final String FAV = "FAVORIS"
+
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NOM, null, DATABASE_VERSION);
@@ -113,6 +120,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         + IDUSER + " TEXT, "
                         + IMAGE + " BLOB);";
         db.execSQL(PHOTOS_CREATE);
+
+        //Contruction de la table amis
+        String AMIS_CREATE =
+                "CREATE TABLE " + TABLE_AMIS + " ("
+                        + A_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + IDFISRT + " TEXT, "
+                        + IDSECOND + " TEXT, "
+                        + FAV + " TEXT);";
+        db.execSQL(AMIS_CREATE);
     }
 
     @Override
@@ -128,6 +144,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.execSQL(DISPOS_DROP);
             String PHOTOS_DROP = "DROP TABLE IF EXISTS " + TABLE_PHOTOS + ";";
             db.execSQL(PHOTOS_DROP);
+            String AMIS_DROP = "DROP TABLE IF EXISTS " + TABLE_AMIS + ";";
+            db.execSQL(AMIS_DROP);
             onCreate(db);
         }
     }
@@ -505,4 +523,56 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
     //Pas besoin de modifier les photos
+
+    //CRUD table AMIS
+    public void ajouterRelation(Relation r){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(IDFISRT, r.getFirstUser());
+        value.put(IDSECOND, r.getSecondUser());
+        value.put(FAV, r.getFav());
+        db.insert(TABLE_AMIS, null, value);//Insérer la nouvelle ligne
+        db.close();//Fermer le flux
+    }
+
+    public ArrayList<Relation> getFriendList(int idUser){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Relation> result = new ArrayList<Relation>();
+        String query = "SELECT * FROM " + TABLE_AMIS + " WHERE " + IDFISRT + " = '" + String.valueOf(idUser) + "'";
+        Log.d("Query",query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Relation found = new Relation(Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)));
+                result.add(found);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
+    public Relation getOneFriend(int idFirstUser, int idSecondUser){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_AMIS + " WHERE " + IDFISRT + " = '" + String.valueOf(idFirstUser) + "' and " + IDSECOND + " = '" + String.valueOf(idSecondUser) + "'";
+        Log.d("Query",query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            Relation found = new Relation(Integer.parseInt(cursor.getString(0)),
+                     Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)));
+            found.setFav(Boolean.parseBoolean(cursor.getString(3)));
+            cursor.close();
+            return found;
+        }
+        return null;
+    }
+
+    /**
+     * @param idToDelete, l'id de la photo qu'on veut supprimer
+     */
+    public void supprimerRelation(int idToDelete){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_AMIS, A_KEY + " = ?", new String[]{String.valueOf(idToDelete)});
+        db.close();
+    }
 }
