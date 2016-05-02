@@ -27,15 +27,17 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     private Button chgInclination;
     private Button chgPicture;
     private Button back;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null)
+            username = extras.getString("username");
         showProfil();
         this.addListener();
-
-
     }
 
     @Override
@@ -207,12 +209,9 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
      * Affiche le profil en utilisant le layout activity_profil
      */
     public void showProfil() {
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            String username = extras.getString("username");
-            DatabaseHandler db = new DatabaseHandler(this);
-            User current = db.getUser(username);
-            if(current != null) {
+        DatabaseHandler db = new DatabaseHandler(this);
+        User current = db.getUser(username);
+        if(current != null) {
                 TextView genre = (TextView) findViewById(R.id.gender);
                 genre.setText(current.getGenre());
                 TextView age = (TextView) findViewById(R.id.age);
@@ -225,10 +224,6 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
                 ville.setText(current.getVille());
                 TextView orientation = (TextView) findViewById(R.id.inclination);
                 orientation.setText(current.getOrientation());
-            }
-        }
-        else{
-            //Ne devrais pas arriver dans la mesure où l'user ne devrait pas être connecté
         }
     }
 }

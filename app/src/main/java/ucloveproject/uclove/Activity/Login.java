@@ -61,7 +61,7 @@ public class Login extends MyActivity implements View.OnClickListener {
         if(toConnect != null) {
             boolean isValid = toConnect.connect(password);
             if (isValid) {
-                Intent i = new Intent(this, UserProfil.class);//Plus tard, rediriger vers le menu
+                Intent i = new Intent(this, Menu.class);//Plus tard, rediriger vers le menu
                 i.putExtra("username", username);
                 startActivity(i);
             } else {
