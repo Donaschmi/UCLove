@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Inscription" />
+        <activity android:name=".Activity.Menu" />
         <activity android:name=".Activity.UserProfil" />
     </application>
 
