@@ -87,14 +87,19 @@ public class Inscription extends MyActivity implements View.OnClickListener{
             }
         }
         else{
-            String errorMessage="Username must be between 4 and 50 characters";
+            String errorMessage="Username must be between 4 and 50 characters, or it already exists in the database";
             super.printToast(errorMessage);
         }
         return ok;
     }
 
     private boolean isUserValid(){
-        return (this.username.length() >=4)&&(this.username.length()<=50);
+        if((this.username.length() <4)&&(this.username.length()>50)){
+            return false;
+        }
+        DatabaseHandler db = new DatabaseHandler(this);
+        User exists = db.getUser(username);
+        return exists==null;
     }
 
     private boolean isPasswordValid(){
