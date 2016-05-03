@@ -21,6 +21,8 @@
         <activity android:name=".Activity.Menu" />
         <activity android:name=".Activity.UserProfil" />
         <activity android:name=".Activity.Preference" />
+        <activity android:name=".Activity.Friends" />
+        <activity android:name=".Activity.FriendRequests" />
     </application>
 
 </manifest>
