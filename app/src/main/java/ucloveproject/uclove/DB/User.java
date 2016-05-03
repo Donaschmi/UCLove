@@ -22,9 +22,13 @@ public class User {
     private String villeResidence;
     private String orientationSexuelle;
     private String[] preference;
+    private boolean privacyNom;
+    private boolean privacyVille;
+    private boolean privacyPhoto;
     private ArrayList<Photo> photo;
     private ArrayList<Relation> amis;
 
+    //TODO : Add favoris
     public User(int id, String login, String mdp, String nom, int age, String genre, String orientation, String style, String yeux, String ville) {
         this.id = id;
         this.login = login;
@@ -57,6 +61,30 @@ public class User {
     public void setFriendList(DatabaseHandler db){
         this.amis = db.getFriendList(this.getId());
 
+    }
+
+    public void setFav(DatabaseHandler db, User user){
+        Relation toUpdate = db.getOneFriend(this.getId(), user.getId());
+        toUpdate.setFav(true);
+        db.modifierRelation(toUpdate);
+    }
+
+    public void setPrivacy(boolean nom, boolean ville, boolean photo){
+        this.privacyNom = nom;
+        this.privacyVille = ville;
+        this.privacyPhoto = photo;
+    }
+
+    public boolean getPrivacyNom(){
+        return this.privacyNom;
+    }
+
+    public boolean getPrivacyVille(){
+        return this.privacyVille;
+    }
+
+    public boolean getPrivacyPhoto(){
+        return this.privacyPhoto;
     }
 
     public void setPhotos(DatabaseHandler db){
@@ -116,10 +144,6 @@ public class User {
             this.setOrientation(infos[7]);
             db.modifierUser(this);
         }
-    }
-
-    public void setPrivate(String[] infos){
-        //TODO : Trouver comment différencier ça dans la db
     }
 
     public boolean connect(String mdp){

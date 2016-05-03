@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Version de la base de données et son npm
-    protected final static int DATABASE_VERSION = 12;//Changer si on opère un gros changement dans la db
+    protected final static int DATABASE_VERSION = 13;//Changer si on opère un gros changement dans la db
     protected final static String DATABASE_NOM = "uclove.sqlite";
 
     //Tables
@@ -37,6 +37,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String STYLE = "STYLECAPILLAIRE";
     public static final String YEUX = "COULEURYEUX";
     public static final String VILLE = "VILLE";
+    public static final String PRIVACYV = "VILLEPRIVEE";
+    public static final String PRIVACYN = "NOMPRIVE";
+    public static final String PRIVACYP = "PHOTOPRIVEE";
     //Champs de la table messages
     public static final String M_KEY = "ROWID";
     public static final String M_EXP = "EXPEDITEUR";
@@ -61,7 +64,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String A_KEY = "ROWID";
     public static final String IDFISRT = "PREMIER";
     public static final String IDSECOND = "DEUXIEME";
-    public static final String FAV = "FAVORIS"
+    public static final String FAV = "FAVORIS";
 
 
     public DatabaseHandler(Context context) {
@@ -82,7 +85,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         + ORIENTATION + " TEXT, "
                         + STYLE + " TEXT, "
                         + YEUX + " TEXT, "
-                        + VILLE + " TEXT);";
+                        + VILLE + " TEXT, "
+                        + PRIVACYN + " TEXT, "
+                        + PRIVACYV + " TEXT, "
+                        + PRIVACYP + " TEXT);";
         db.execSQL(USERS_CREATE);
 
         //Contruction de la table messages
@@ -157,12 +163,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         value.put(LOGIN, n.getLogin());
         value.put(MDP, n.getMdp());
         value.put(NOM, n.getNom());
+        value.put(PRIVACYN, n.getPrivacyNom());
         value.put(AGE, n.getAge());
         value.put(GENRE, n.getGenre());
         value.put(ORIENTATION, n.getOrientation());
         value.put(STYLE, n.getCheveux());
         value.put(YEUX, n.getYeux());
         value.put(VILLE, n.getVille());
+        value.put(PRIVACYV, n.getPrivacyVille());
+        value.put(PRIVACYV, n.getPrivacyPhoto());
         db.insert(TABLE_USERS, null, value);//Insérer la nouvelle ligne
         db.close();//Fermer le flux
     }
@@ -177,6 +186,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            found.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
+                    Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
             cursor.close();
             Log.d("Mdp",found.getMdp());
             return found;
@@ -198,6 +209,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            found.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
+                    Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
             cursor.close();
             return found;
         }
@@ -216,6 +229,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         cursor.getString(1), cursor.getString(2), cursor.getString(3),
                         Integer.parseInt(cursor.getString(4)),cursor.getString(5), cursor.getString(6),
                         cursor.getString(7), cursor.getString(8), cursor.getString(9));
+                toAdd.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
+                        Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
                 result.add(toAdd);//Ajouter à l'arraylist
             } while (cursor.moveToNext());
         }
@@ -248,6 +263,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(ORIENTATION, toAlter.getOrientation());
         values.put(STYLE, toAlter.getCheveux());
         values.put(VILLE, toAlter.getVille());
+        values.put(PRIVACYN, toAlter.getPrivacyNom());
+        values.put(PRIVACYV, toAlter.getPrivacyVille());
+        values.put(PRIVACYP, toAlter.getPrivacyPhoto());
 
         // Mettre à jour
         return db.update(TABLE_USERS, values, U_KEY + " = ?",
@@ -565,6 +583,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return found;
         }
         return null;
+    }
+
+    public int modifierRelation(Relation toAlter){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(IDFISRT, toAlter.getFirstUser());
+        value.put(IDSECOND, toAlter.getSecondUser());
+        value.put(FAV, String.valueOf(toAlter.getFav()));
+
+        // Mettre à jour
+        return db.update(TABLE_AMIS, value, A_KEY + " = ?",
+                new String[] { String.valueOf(toAlter.getId()) });
     }
 
     /**
