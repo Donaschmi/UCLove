@@ -259,6 +259,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(MDP, toAlter.getMdp());
         values.put(NOM, toAlter.getNom());
         values.put(AGE, toAlter.getAge());
+        values.put(YEUX, toAlter.getYeux());
         values.put(GENRE, toAlter.getGenre());
         values.put(ORIENTATION, toAlter.getOrientation());
         values.put(STYLE, toAlter.getCheveux());

@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/texte_inscription" />
+                android:text="@string/title_activity_edit_profil" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -51,13 +51,12 @@
                 android:layout_toRightOf="@+id/view_sep"
                 android:padding="@dimen/paddingLayout">
 
-                <TextView
-                    android:id="@+id/gender"
-                    style="@style/SimpleTexte"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:text="N/A" />
+                <Spinner
+                    android:id="@+id/spinner_gender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
+
 
 
             </RelativeLayout>
@@ -68,22 +67,12 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/right_profile_gender">
 
-                <Button
-                    android:id="@+id/button_Chg_Gender"
-                    style="@style/BoutonCarre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     android:id="@+id/textView_gender"
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/button_Chg_Gender"
                     android:text="Gender"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -138,22 +127,12 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/right_profile_age">
 
-                <Button
-                    android:id="@+id/button_Chg_Age"
-                    style="@style/BoutonCarre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     android:id="@+id/textView_age"
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/button_Chg_Age"
                     android:text="Age"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -192,12 +171,11 @@
                 android:layout_toRightOf="@+id/view_sep2"
                 android:padding="@dimen/paddingLayout">
 
-                <EditText
-                    android:id="@+id/hair_field"
-                    style="@style/ChampsUneLigne"
-                    android:gravity="center_horizontal"
-                    android:hint="@string/hint_hair"
-                    android:inputType="textVisiblePassword|textNoSuggestions" />
+                <Spinner
+                    android:id="@+id/spinner_hair"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
 
             </RelativeLayout>
 
@@ -207,22 +185,12 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/right_profile_hair">
 
-                <Button
-                    android:id="@+id/button_Chg_Hair"
-                    style="@style/BoutonCarre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     android:id="@+id/textView_hair"
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/button_Chg_Hair"
                     android:text="Hair"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -261,12 +229,11 @@
                 android:layout_toRightOf="@+id/view_sep3"
                 android:padding="@dimen/paddingLayout">
 
-                <EditText
-                    android:id="@+id/eyes_field"
-                    style="@style/ChampsUneLigne"
-                    android:gravity="center_horizontal"
-                    android:hint="@string/hint_eyes"
-                    android:inputType="textVisiblePassword|textNoSuggestions" />
+                <Spinner
+                    android:id="@+id/spinner_eye"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
 
 
 
@@ -279,22 +246,12 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/right_profile_eyes">
 
-                <Button
-                    android:id="@+id/button_Chg_Eyes"
-                    style="@style/BoutonCarre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     android:id="@+id/textView_eyes"
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/button_Chg_Eyes"
                     android:text="Eyes"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -334,11 +291,12 @@
                 android:padding="@dimen/paddingLayout">
 
                 <EditText
-                    android:id="@+id/location_field"
+                    android:id="@+id/edit_location"
                     style="@style/ChampsUneLigne"
                     android:gravity="center_horizontal"
                     android:hint="@string/hint_location"
                     android:inputType="textVisiblePassword|textNoSuggestions" />
+
 
 
 
@@ -351,22 +309,12 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/right_profile_location">
 
-                <Button
-                    android:id="@+id/button_Chg_Location"
-                    style="@style/BoutonCarre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     android:id="@+id/textView_location"
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/button_Chg_Location"
                     android:text="Location"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -405,12 +353,11 @@
                 android:layout_toRightOf="@+id/view_sep5"
                 android:padding="@dimen/paddingLayout">
 
-                <EditText
-                    android:id="@+id/inclination_field"
-                    style="@style/ChampsUneLigne"
-                    android:gravity="center_horizontal"
-                    android:hint="@string/hint_inclination"
-                    android:inputType="textVisiblePassword|textNoSuggestions" />
+                <Spinner
+                    android:id="@+id/spinner_inclinaison"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
 
 
 
@@ -422,22 +369,12 @@
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/right_profile_inclination">
 
-                <Button
-                    android:id="@+id/button_Chg_Inclination"
-                    style="@style/BoutonCarre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     android:id="@+id/textView_inclination"
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/button_Chg_Inclination"
                     android:text="Inclination"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -494,6 +431,14 @@
             android:src="@mipmap/ic_launcher"
 
             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:id="@+id/btn_valider_change"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 

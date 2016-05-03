@@ -3,10 +3,16 @@ package ucloveproject.uclove.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
 import ucloveproject.uclove.DB.User;
@@ -34,7 +40,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
         Bundle extras = getIntent().getExtras();
-        if(extras != null)
+        if (extras != null)
             username = extras.getString("username");
         showProfil();
         this.addListener();
@@ -44,7 +50,9 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_Chg_Gender:
-                this.messBtnChgGender();
+                Intent i = new Intent(this, EditProfile.class);
+                i.putExtra("username", username);
+                startActivity(i);
                 break;
             case R.id.button_Chg_Age:
                 this.messBtnChgAge();
@@ -77,7 +85,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         chgGender = (Button) findViewById(R.id.button_Chg_Gender);
         chgGender.setOnClickListener(this);
 
-        chgAge =(Button) findViewById(R.id.button_Chg_Age);
+        chgAge = (Button) findViewById(R.id.button_Chg_Age);
         chgAge.setOnClickListener(this);
 
         chgHair = (Button) findViewById(R.id.button_Chg_Hair);
@@ -99,7 +107,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         back.setOnClickListener(this);
     }
 
-    public void messBtnChgGender(){
+    public void messBtnChgGender() {
         AlertDialog alertGender = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertGender.setTitle("Choose my gender");
         alertGender.setMessage("Please select your gender");
@@ -114,7 +122,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         alertGender.show();
     }
 
-    public void messBtnChgAge(){
+    public void messBtnChgAge() {
         AlertDialog alertAge = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertAge.setTitle("Choose my age");
         alertAge.setMessage("Please enter your age");
@@ -129,7 +137,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         alertAge.show();
     }
 
-    public void messBtnChgHair(){
+    public void messBtnChgHair() {
         AlertDialog alertHair = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertHair.setTitle("Choose my hair type");
         alertHair.setMessage("Please enter your hair type");
@@ -144,7 +152,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         alertHair.show();
     }
 
-    public void messBtnChgEyes(){
+    public void messBtnChgEyes() {
         AlertDialog alertEyes = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertEyes.setTitle("Choose my eyes type");
         alertEyes.setMessage("Please enter your eyes type");
@@ -159,7 +167,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         alertEyes.show();
     }
 
-    public void messBtnChgLocation(){
+    public void messBtnChgLocation() {
         AlertDialog alertLocation = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertLocation.setTitle("Choose my location");
         alertLocation.setMessage("Please enter your location");
@@ -174,7 +182,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         alertLocation.show();
     }
 
-    public void messBtnChgInclination(){
+    public void messBtnChgInclination() {
         AlertDialog alertInclination = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertInclination.setTitle("Choose my inclination");
         alertInclination.setMessage("Please choose your inclination");
@@ -189,7 +197,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         alertInclination.show();
     }
 
-    public void messBtnChgPicture(){
+    public void messBtnChgPicture() {
         AlertDialog alertPicture = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle).create();
         alertPicture.setTitle("Choose my picture");
         alertPicture.setMessage("Please select a picture");
@@ -211,19 +219,20 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     public void showProfil() {
         DatabaseHandler db = new DatabaseHandler(this);
         User current = db.getUser(username);
-        if(current != null) {
-                TextView genre = (TextView) findViewById(R.id.gender);
-                genre.setText(current.getGenre());
-                TextView age = (TextView) findViewById(R.id.age);
-                age.setText(String.valueOf(current.getAge()));
-                TextView cheveux = (TextView) findViewById(R.id.hair);
-                cheveux.setText(current.getCheveux());
-                TextView yeux = (TextView) findViewById(R.id.eyes);
-                yeux.setText(current.getYeux());
-                TextView ville = (TextView) findViewById(R.id.location);
-                ville.setText(current.getVille());
-                TextView orientation = (TextView) findViewById(R.id.inclination);
-                orientation.setText(current.getOrientation());
+        if (current != null) {
+            TextView genre = (TextView) findViewById(R.id.gender);
+            genre.setText(current.getGenre());
+            TextView age = (TextView) findViewById(R.id.age);
+            age.setText(String.valueOf(current.getAge()));
+            TextView cheveux = (TextView) findViewById(R.id.hair);
+            cheveux.setText(current.getCheveux());
+            TextView yeux = (TextView) findViewById(R.id.eyes);
+            yeux.setText(current.getYeux());
+            TextView ville = (TextView) findViewById(R.id.location);
+            ville.setText(current.getVille());
+            TextView orientation = (TextView) findViewById(R.id.inclination);
+            orientation.setText(current.getOrientation());
         }
     }
+
 }

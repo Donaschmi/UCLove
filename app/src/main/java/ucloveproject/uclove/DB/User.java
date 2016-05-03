@@ -28,7 +28,6 @@ public class User {
     private ArrayList<Photo> photo;
     private ArrayList<Relation> amis;
 
-    //TODO : Add favoris
     public User(int id, String login, String mdp, String nom, int age, String genre, String orientation, String style, String yeux, String ville) {
         this.id = id;
         this.login = login;
