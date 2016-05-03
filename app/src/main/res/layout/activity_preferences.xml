@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:padding="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/title_preferences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+
+            <TextView
+                android:id="@+id/textView_title_preferences"
+                style="@style/Titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/texte_preferences" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/pref_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_preferences"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:id="@+id/textView_language"
+                style="@style/GrosTexte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="0dp"
+                android:text="@string/texte_language" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/textView_language">
+
+                <RadioButton
+                    android:textColor="@color/darkAmbre"
+                    android:id="@+id/radio_english"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/language_english"
+                     />
+                <RadioButton
+                    android:textColor="@color/darkAmbre"
+                    android:id="@+id/radio_french"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/language_french"
+                    />
+            </RadioGroup>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/pref_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pref_language"
+            android:layout_marginBottom="50dp">
+
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/texte_about" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/title_preferences"
+            android:background="@android:color/darker_gray" />
+
+    </RelativeLayout>
+
+</ScrollView>

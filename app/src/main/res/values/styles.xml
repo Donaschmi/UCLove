@@ -20,6 +20,13 @@
         <item name="android:gravity">left</item>
         <item name="android:textColor">@color/ambre</item>
     </style>
+    <style name="GrosTexte">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/titreSize</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/ambre</item>
+    </style>
 
     <style name="LittleSimpleTexte">
         <item name="android:layout_width">wrap_content</item>

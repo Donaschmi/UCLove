@@ -37,4 +37,18 @@
     <string name="texte_chat">Chat</string>
     <string name="texte_meet">Meet</string>
 
+    <!-- Textes Preferences -->
+
+    <string name="texte_language">Language</string>
+    <string name="texte_about">About us</string>
+    <string name="language_english">English</string>
+    <string name="language_french">Français</string>
+
+    <string name="about_us">UCLove is a project made by six students from the University of Louvain-la_Neuve.</string>
+
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
+
 </resources>
