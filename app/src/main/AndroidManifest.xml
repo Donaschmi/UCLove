@@ -20,6 +20,7 @@
         <activity android:name=".Activity.Inscription" />
         <activity android:name=".Activity.Menu" />
         <activity android:name=".Activity.UserProfil" />
+        <activity android:name=".Activity.Preference" />
     </application>
 
 </manifest>

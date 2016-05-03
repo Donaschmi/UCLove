@@ -62,9 +62,9 @@ public class Menu extends MyActivity implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.btn_menu_preferences:
-                //Intent j = new Intent(this, Preferences.class);
-                //j.putExtra("username", username);
-                //startActivity(j);
+                Intent j = new Intent(this, Preference.class);
+                j.putExtra("username", username);
+                startActivity(j);
                 break;
             case R.id.btn_menu_people:
                 //Intent k = new Intent(this, People.class);
