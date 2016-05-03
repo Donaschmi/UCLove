@@ -75,15 +75,6 @@
                 android:id="@+id/left_profile_gender"
                 >
 
-                <Button
-                    style="@style/BoutonCarre"
-                    android:id="@+id/button_Chg_Gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
@@ -91,7 +82,6 @@
                     android:id="@+id/textView_gender"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Gender"
-                    android:layout_toRightOf="@+id/button_Chg_Gender"
                     android:layout_centerVertical="true"/>
 
 
@@ -150,15 +140,6 @@
                 android:id="@+id/left_profile_age"
                 >
 
-                <Button
-                    style="@style/BoutonCarre"
-                    android:id="@+id/button_Chg_Age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
@@ -166,7 +147,6 @@
                     android:id="@+id/textView_age"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Age"
-                    android:layout_toRightOf="@+id/button_Chg_Age"
                     android:layout_centerVertical="true"/>
 
 
@@ -225,15 +205,6 @@
                 android:id="@+id/left_profile_hair"
                 >
 
-                <Button
-                    style="@style/BoutonCarre"
-                    android:id="@+id/button_Chg_Hair"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
@@ -241,7 +212,6 @@
                     android:id="@+id/textView_hair"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Hair"
-                    android:layout_toRightOf="@+id/button_Chg_Hair"
                     android:layout_centerVertical="true"/>
 
 
@@ -301,15 +271,6 @@
                 android:id="@+id/left_profile_eyes"
                 >
 
-                <Button
-                    style="@style/BoutonCarre"
-                    android:id="@+id/button_Chg_Eyes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
@@ -317,7 +278,6 @@
                     android:id="@+id/textView_eyes"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Eyes"
-                    android:layout_toRightOf="@+id/button_Chg_Eyes"
                     android:layout_centerVertical="true"/>
 
 
@@ -377,15 +337,6 @@
                 android:id="@+id/left_profile_location"
                 >
 
-                <Button
-                    style="@style/BoutonCarre"
-                    android:id="@+id/button_Chg_Location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
@@ -393,7 +344,6 @@
                     android:id="@+id/textView_location"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Location"
-                    android:layout_toRightOf="@+id/button_Chg_Location"
                     android:layout_centerVertical="true"/>
 
 
@@ -453,15 +403,6 @@
                 android:id="@+id/left_profile_inclination"
                 >
 
-                <Button
-                    style="@style/BoutonCarre"
-                    android:id="@+id/button_Chg_Inclination"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48px"
-                    android:layout_centerVertical="true"
-
-                    />
-
                 <TextView
                     style="@style/SimpleTexte"
                     android:layout_width="wrap_content"
@@ -469,7 +410,6 @@
                     android:id="@+id/textView_inclination"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Inclination"
-                    android:layout_toRightOf="@+id/button_Chg_Inclination"
                     android:layout_centerVertical="true"/>
 
 
@@ -524,6 +464,18 @@
             android:layout_centerHorizontal="true"
 
             />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit profile"
+            android:id="@+id/btn_edit"
+            android:layout_alignBottom="@+id/img_profile"
+            android:layout_toRightOf="@+id/img_profile"
+            android:layout_toEndOf="@+id/img_profile"
+            android:layout_marginLeft="52dp"
+            android:layout_marginStart="52dp" />
 
 
     </RelativeLayout>
