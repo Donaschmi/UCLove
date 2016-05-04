@@ -1,17 +1,25 @@
 package ucloveproject.uclove.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
@@ -33,21 +41,23 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
             username = extras.getString("username");
 
         listview = (ListView) findViewById(R.id.list_requests);
-        String[] friend_requests = new String[] { "Android", "iPhone", "WindowsMobile",
+
+        String[] friends_names = new String[] { "Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
                 "Android", "iPhone", "WindowsMobile" };
 
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < friend_requests.length; i++) {
-            list.add(friend_requests[i]);
+        final ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < friends_names.length; i++) {
+            list.add(friends_names[i]);
         }
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
+
         listview.setAdapter(adapter);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
@@ -57,7 +67,7 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                         .withEndAction(new Runnable() {
                             @Override
                             public void run() {
-                                list.remove(item);
+                               // list.remove(item);
                                 adapter.notifyDataSetChanged();
                                 view.setAlpha(1);
                             }
@@ -68,10 +78,15 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v){
-        switch(v.getId()){
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.show_fav:
+                finish();
         }
     }
+
+
 
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
