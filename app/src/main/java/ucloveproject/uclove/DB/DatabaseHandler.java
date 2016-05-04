@@ -186,6 +186,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            found.setFriendList(this);
             found.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
                     Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
             cursor.close();
@@ -209,6 +210,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
                     cursor.getString(7), cursor.getString(8), cursor.getString(9));
+            found.setFriendList(this);
             found.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
                     Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
             cursor.close();
@@ -229,6 +231,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         cursor.getString(1), cursor.getString(2), cursor.getString(3),
                         Integer.parseInt(cursor.getString(4)),cursor.getString(5), cursor.getString(6),
                         cursor.getString(7), cursor.getString(8), cursor.getString(9));
+                toAdd.setFriendList(this);
                 toAdd.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
                         Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
                 result.add(toAdd);//Ajouter à l'arraylist
