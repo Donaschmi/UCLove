@@ -50,7 +50,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
                 "Android", "iPhone", "WindowsMobile" };
 
-        final ArrayList<String> list = new ArrayList<String>();
+        final ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < friends_names.length; i++) {
             list.add(friends_names[i]);
         }
@@ -78,11 +78,29 @@ public class Friends extends MyActivity implements View.OnClickListener {
         });
     }
 
-    @Override
-    public void onClick(View v){
-        switch(v.getId()){
+    public void onCheckboxClicked(View v) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) v).isChecked();
+
+        // Check which checkbox was clicked
+        switch (v.getId()) {
             case R.id.show_fav:
-                break;
+                if (checked) {
+                    //String[] friends_names = username.getFriends;
+                    String aboutUs="favoris";
+                    super.printToast(aboutUs);
+                    break;
+                } else {
+                    //String[] friends_names = username.getFav;
+                    String aboutUs="pas favoris";
+                    super.printToast(aboutUs);
+                    break;
+                }
+        }
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
         }
     }
 

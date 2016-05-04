@@ -14,7 +14,7 @@
 
             <Button
                 style="@style/GrosBouton"
-                android:id="@+id/button_back"
+                android:id="@+id/btn_back"
                 android:layout_alignParentTop="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                 android:id="@+id/textView_title_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/button_back"
+                android:layout_toRightOf="@+id/btn_back"
                 android:text="Your profile"/>
 
         </RelativeLayout>

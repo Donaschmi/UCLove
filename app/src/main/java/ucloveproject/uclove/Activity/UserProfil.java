@@ -26,6 +26,7 @@ import ucloveproject.uclove.R;
 public class UserProfil extends MyActivity implements View.OnClickListener {
 
     private Button edit;
+    private Button back;
     private String username;
 
     @Override
@@ -47,6 +48,11 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
                 i.putExtra("username", username);
                 startActivity(i);
                 break;
+            case R.id.btn_back:
+                Intent j = new Intent(this, Menu.class);
+                j.putExtra("username", username);
+                startActivity(j);
+                break;
         }
     }
 
@@ -56,6 +62,9 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     public void addListener() {
         edit = (Button) findViewById(R.id.btn_edit);
         edit.setOnClickListener(this);
+
+        back = (Button) findViewById(R.id.btn_back);
+        back.setOnClickListener(this);
     }
 
 
