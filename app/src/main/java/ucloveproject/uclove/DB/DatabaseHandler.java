@@ -357,11 +357,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public ArrayList<Requete> getRequetesUser(int id){
+    public ArrayList<Requete> getRequetesIn(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        String selectAll = "SELECT * FROM" + TABLE_REQUETES + " WHERE "+ R_EXP + " = '" + String.valueOf(id) + "' or " + R_DEST + " = '" + String.valueOf(id) + "'";
+        String selectAll = "SELECT * FROM" + TABLE_REQUETES + " WHERE "+ R_DEST + " = '" + String.valueOf(id) + "'";
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {
@@ -370,7 +370,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                             dateFormat.parse(cursor.getString(4)));
                     found.setStatut(cursor.getString(3));
-                    result.add(found);
+                    if(!found.getStatut().equals("valide")) {
+                        result.add(found);
+                    }
+                }
+                catch (java.text.ParseException e){
+                    //Just ignore
+                }
+            } while (cursor.moveToNext());
+            cursor.close();
+            return result;
+        }
+        return null;
+    }
+
+    public ArrayList<Requete> getRequetesOut(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Requete> result = new ArrayList<Requete>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        String selectAll = "SELECT * FROM" + TABLE_REQUETES + " WHERE "+ R_EXP + " = '" + String.valueOf(id) + "'";
+        Cursor cursor = db.rawQuery(selectAll, null);
+        if (cursor.moveToFirst()) {
+            do {
+                try {
+                    Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                            Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                            dateFormat.parse(cursor.getString(4)));
+                    found.setStatut(cursor.getString(3));
+                    if(!found.getStatut().equals("valide")) {
+                        result.add(found);
+                    }
                 }
                 catch (java.text.ParseException e){
                     //Just ignore
