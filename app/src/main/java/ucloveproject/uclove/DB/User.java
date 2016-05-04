@@ -135,18 +135,7 @@ public class User {
     public void removeFriend(User user, DatabaseHandler db){
         Relation toRemove = db.getOneFriend(this.getId(), user.getId());
         db.supprimerRelation(toRemove.getId());
-        ArrayList<Requete> exp = db.getRequeteByExp(user.getId());
-        Iterator<Requete> expIterator = exp.iterator();
-        while (expIterator.hasNext()) {//Si c'était l'user à supprimer qui a fait la requête
-            Requete toDelete = expIterator.next();
-            db.supprimerRequete(toDelete.getId());//On supprime
-        }
-        ArrayList<Requete> dest = db.getRequeteByDest(user.getId());
-        Iterator<Requete> destIterator = dest.iterator();
-        while (destIterator.hasNext()) {//Si c'était l'user courant qui a fait la requête
-            Requete toDelete = destIterator.next();
-            db.supprimerRequete(toDelete.getId());
-        }
+        //TODO : Supprimer la requete correspondante
     }
 
     /**

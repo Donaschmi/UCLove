@@ -104,7 +104,6 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         confirm.setOnClickListener(this);
     }
 
-
     public void setSpinners(){
         // Spinner pour genre
         spinnerGenre = (Spinner) findViewById(R.id.spinner_gender);

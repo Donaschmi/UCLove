@@ -357,13 +357,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public ArrayList<Requete> getRequeteByExp(int idExp){
+    public ArrayList<Requete> getRequetesUser(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_KEY, R_EXP,
-                        R_DEST, STATUT, R_DATE}, R_EXP + "=?",
-                new String[] { String.valueOf(idExp) }, null, null, null, null);
+        String selectAll = "SELECT * FROM" + TABLE_REQUETES + " WHERE "+ R_EXP + " = '" + String.valueOf(id) + "' or " + R_DEST + " = '" + String.valueOf(id) + "'";
+        Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {
                 try {
@@ -383,33 +382,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public ArrayList<Requete> getRequeteByDest(int idDest){
-        SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<Requete> result = new ArrayList<Requete>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        Cursor cursor = db.query(TABLE_REQUETES, new String[] {R_KEY, R_EXP,
-                        R_DEST, STATUT, R_DATE}, R_EXP + "=?",
-                new String[] { String.valueOf(idDest) }, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                try {
-                    Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
-                            Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                            dateFormat.parse(cursor.getString(4)));
-                    found.setStatut(cursor.getString(3));
-                    result.add(found);
-                }
-                catch (java.text.ParseException e){
-                    //Juste ignore
-                }
-            } while (cursor.moveToNext());
-            cursor.close();
-            return result;
-        }
-        return null;
-    }
-
-    /**
+     /**
      * @param idToDelete, l'id du message qu'on veut supprimer
      */
     public void supprimerRequete(int idToDelete){
