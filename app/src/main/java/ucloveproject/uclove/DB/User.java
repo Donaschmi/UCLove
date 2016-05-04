@@ -56,10 +56,33 @@ public class User {
         this.preference = new String[3];
     }
 
-
     public void setFriendList(DatabaseHandler db){
         this.amis = db.getFriendList(this.getId());
 
+    }
+
+    public ArrayList<String> getFriendNames(DatabaseHandler db){
+        ArrayList<String> result = new ArrayList<String>();
+        Iterator<Relation> friendIterator = this.amis.iterator();
+        while(friendIterator.hasNext()) {
+            Relation token = friendIterator.next();
+            User addToList = db.getUserById(token.getSecondUser());
+            result.add(addToList.getLogin());
+        }
+        return result;
+    }
+
+    public ArrayList<String> getFavdNames(DatabaseHandler db){
+        ArrayList<String> result = new ArrayList<String>();
+        Iterator<Relation> friendIterator = this.amis.iterator();
+        while(friendIterator.hasNext()) {
+            Relation token = friendIterator.next();
+            if(token.getFav()) {
+                User addToList = db.getUserById(token.getSecondUser());
+                result.add(addToList.getLogin());
+            }
+        }
+        return result;
     }
 
     public ArrayList<Relation> getFriendList(){
