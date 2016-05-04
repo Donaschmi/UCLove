@@ -62,6 +62,10 @@ public class User {
 
     }
 
+    public ArrayList<Relation> getFriendList(){
+        return this.amis;
+    }
+
     public void setFav(DatabaseHandler db, User user){
         Relation toUpdate = db.getOneFriend(this.getId(), user.getId());
         toUpdate.setFav(true);
