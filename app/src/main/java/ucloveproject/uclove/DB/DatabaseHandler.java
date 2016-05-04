@@ -370,7 +370,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                             dateFormat.parse(cursor.getString(4)));
                     found.setStatut(cursor.getString(3));
-                    if(!found.getStatut().equals("valide")) {
+                    if(found.getStatut().equals("attente")) {
                         result.add(found);
                     }
                 }
@@ -397,7 +397,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                             dateFormat.parse(cursor.getString(4)));
                     found.setStatut(cursor.getString(3));
-                    if(!found.getStatut().equals("valide")) {
+                    if(!found.getStatut().equals("attente")) {
                         result.add(found);
                     }
                 }
