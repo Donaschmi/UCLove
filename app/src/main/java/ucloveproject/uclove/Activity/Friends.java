@@ -44,6 +44,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
         btnFav = (CheckBox) findViewById(R.id.show_fav);
 
         listview = (ListView) findViewById(R.id.list_friends);
+        //
         String[] friends_names = new String[] { "Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
@@ -54,6 +55,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
         for (int i = 0; i < friends_names.length; i++) {
             list.add(friends_names[i]);
         }
+        //
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
@@ -117,6 +119,11 @@ public class Friends extends MyActivity implements View.OnClickListener {
                         }
 
                     });
+
+                    String aboutUs="Favoris";
+                    super.printToast(aboutUs);
+                    break;
+
                 } else {
                     DatabaseHandler db = new DatabaseHandler(this);
                     User current = db.getUser(username);
@@ -143,6 +150,11 @@ public class Friends extends MyActivity implements View.OnClickListener {
                         }
 
                     });
+
+                    String aboutUs="All Friends";
+                    super.printToast(aboutUs);
+                    break;
+
                 }
         }
     }

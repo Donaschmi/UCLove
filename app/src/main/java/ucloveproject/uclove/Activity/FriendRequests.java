@@ -28,6 +28,7 @@ import ucloveproject.uclove.R;
 
 public class FriendRequests extends MyActivity implements View.OnClickListener {
 
+    private CheckBox btnRequests = null;
     private String username = null;
     private ListView listview = null;
 
@@ -40,21 +41,23 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
         if (extras != null)
             username = extras.getString("username");
 
-        listview = (ListView) findViewById(R.id.list_requests);
+        btnRequests = (CheckBox) findViewById(R.id.show_in_out);
 
-        String[] friends_names = new String[] { "Android", "iPhone", "WindowsMobile",
+        listview = (ListView) findViewById(R.id.list_requests);
+        //
+        String[] requests = new String[] { "Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
                 "Android", "iPhone", "WindowsMobile" };
 
         final ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < friends_names.length; i++) {
-            list.add(friends_names[i]);
+        for (int i = 0; i < requests.length; i++) {
+            list.add(requests[i]);
         }
+        //
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
-
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -67,7 +70,7 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                         .withEndAction(new Runnable() {
                             @Override
                             public void run() {
-                               // list.remove(item);
+                                list.remove(item);
                                 adapter.notifyDataSetChanged();
                                 view.setAlpha(1);
                             }
@@ -75,14 +78,84 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
             }
 
         });
+        this.addListener();
+    }
+    private void addListener() {
+        btnRequests = (CheckBox) findViewById(R.id.show_in_out);
+        btnRequests.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) v).isChecked();
 
+        // Check which checkbox was clicked
         switch (v.getId()) {
-            case R.id.show_fav:
-                finish();
+            case R.id.show_in_out:
+                if (checked) {
+                    DatabaseHandler db = new DatabaseHandler(this);
+                    User current = db.getUser(username);
+
+                    final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                            android.R.layout.simple_list_item_1, current.getFriendNames(db));
+                    listview.setAdapter(adapter);
+
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, final View view,
+                                                int position, long id) {
+                            final String item = (String) parent.getItemAtPosition(position);
+                            view.animate().setDuration(2000).alpha(0)
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //list.remove(item);
+                                            adapter.notifyDataSetChanged();
+                                            view.setAlpha(1);
+                                        }
+                                    });
+                        }
+
+                    });
+
+                    String aboutUs="Envoyées";
+                    super.printToast(aboutUs);
+                    break;
+
+                } else {
+                    DatabaseHandler db = new DatabaseHandler(this);
+                    User current = db.getUser(username);
+
+                    final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                            android.R.layout.simple_list_item_1, current.getFavNames(db));
+                    listview.setAdapter(adapter);
+
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, final View view,
+                                                int position, long id) {
+                            final String item = (String) parent.getItemAtPosition(position);
+                            view.animate().setDuration(2000).alpha(0)
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //list.remove(item);
+                                            adapter.notifyDataSetChanged();
+                                            view.setAlpha(1);
+                                        }
+                                    });
+                        }
+
+                    });
+
+                    String aboutUs="Reçues";
+                    super.printToast(aboutUs);
+                    break;
+
+                }
         }
     }
 
