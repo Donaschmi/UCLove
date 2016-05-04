@@ -72,7 +72,7 @@ public class User {
         return result;
     }
 
-    public ArrayList<String> getFavdNames(DatabaseHandler db){
+    public ArrayList<String> getFavNames(DatabaseHandler db){
         ArrayList<String> result = new ArrayList<String>();
         Iterator<Relation> friendIterator = this.amis.iterator();
         while(friendIterator.hasNext()) {

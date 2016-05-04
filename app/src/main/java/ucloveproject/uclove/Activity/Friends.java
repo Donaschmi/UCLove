@@ -58,7 +58,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
@@ -76,9 +76,15 @@ public class Friends extends MyActivity implements View.OnClickListener {
             }
 
         });
+        this.addListener();
+    }
+    private void addListener() {
+        btnFav = (CheckBox) findViewById(R.id.show_fav);
+        btnFav.setOnClickListener(this);
     }
 
-    public void onCheckboxClicked(View v) {
+    @Override
+    public void onClick(View v) {
         // Is the view now checked?
         boolean checked = ((CheckBox) v).isChecked();
 
@@ -86,28 +92,62 @@ public class Friends extends MyActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.show_fav:
                 if (checked) {
-                    //String[] friends_names = username.getFriends;
-                    String aboutUs="favoris";
-                    super.printToast(aboutUs);
-                    break;
+                    DatabaseHandler db = new DatabaseHandler(this);
+                    User current = db.getUser(username);
+
+                    final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                            android.R.layout.simple_list_item_1, current.getFriendNames(db));
+                    listview.setAdapter(adapter);
+
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, final View view,
+                                                int position, long id) {
+                            final String item = (String) parent.getItemAtPosition(position);
+                            view.animate().setDuration(2000).alpha(0)
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //list.remove(item);
+                                            adapter.notifyDataSetChanged();
+                                            view.setAlpha(1);
+                                        }
+                                    });
+                        }
+
+                    });
                 } else {
-                    //String[] friends_names = username.getFav;
-                    String aboutUs="pas favoris";
-                    super.printToast(aboutUs);
-                    break;
+                    DatabaseHandler db = new DatabaseHandler(this);
+                    User current = db.getUser(username);
+
+                    final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                            android.R.layout.simple_list_item_1, current.getFavNames(db));
+                    listview.setAdapter(adapter);
+
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, final View view,
+                                                int position, long id) {
+                            final String item = (String) parent.getItemAtPosition(position);
+                            view.animate().setDuration(2000).alpha(0)
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //list.remove(item);
+                                            adapter.notifyDataSetChanged();
+                                            view.setAlpha(1);
+                                        }
+                                    });
+                        }
+
+                    });
                 }
         }
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-        }
-    }
 
-    private void addListener() {
-        btnFav = (CheckBox) findViewById(R.id.show_fav);
-        btnFav.setOnClickListener(this);
-    }
+
 
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
