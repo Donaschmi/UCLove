@@ -40,6 +40,9 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
     private Spinner spinnerHair;
     private Spinner spinnerEyes;
     private Spinner spinnerIncli;
+    private EditText age;
+    private EditText ville;
+    private User current;
     //TODO : mettre les infos actuelles en selectionne de base
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         Bundle extras = getIntent().getExtras();
         if (extras != null)
             username = extras.getString("username");
+        DatabaseHandler db = new DatabaseHandler(this);
+        current = db.getUser(username);
         setSpinners();
         this.addListener();
     }
@@ -57,19 +62,20 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         switch (v.getId()) {
             case R.id.btn_valider_change:
                 DatabaseHandler db = new DatabaseHandler(this);
-                User current = db.getUser(username);
                 current.setGenre((String)spinnerGenre.getSelectedItem());
                 current.setCheveux((String) spinnerHair.getSelectedItem());
                 current.setYeux((String) spinnerEyes.getSelectedItem());
                 current.setOrientation((String) spinnerIncli.getSelectedItem());
-                EditText age = (EditText) findViewById(R.id.age_field) ;
+                age = (EditText) findViewById(R.id.age_field);
                 try {
                     current.setAge(Integer.parseInt(age.getText().toString()));
                 }catch (NumberFormatException e){
                     current.setAge(0);
                 }
-                EditText ville = (EditText) findViewById(R.id.edit_location) ;
-                current.setVille(ville.getText().toString());
+                ville = (EditText) findViewById(R.id.edit_location) ;
+                if(!ville.getText().toString().equals(null)) {
+                    current.setVille(ville.getText().toString());
+                }
                 db.modifierUser(current);
                 Intent i = new Intent(this, UserProfil.class);
                 i.putExtra("username", username);
@@ -110,8 +116,14 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoriesG);
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        int spinnerGPosition = dataAdapter.getPosition(current.getGenre());
+        Log.d("Numtrouvé", String.valueOf(spinnerGPosition));
+        Log.d("Gender value", current.getGenre());
+        //set the default according to value
+
         // attaching data adapter to spinner
         spinnerGenre.setAdapter(dataAdapter);
+        spinnerGenre.setSelection(spinnerGPosition);
 
         // Spinner pour Hair
         spinnerHair = (Spinner) findViewById(R.id.spinner_hair);
@@ -122,7 +134,9 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         categoriesH.add("Red");
         ArrayAdapter<String> dataAdapterH = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoriesH);
         dataAdapterH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        int spinnerHPosition = dataAdapterH.getPosition(current.getCheveux());
         spinnerHair.setAdapter(dataAdapterH);
+        spinnerHair.setSelection(spinnerHPosition);
 
         // Spinner pour Eyes
         spinnerEyes = (Spinner) findViewById(R.id.spinner_eye);
@@ -134,7 +148,9 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         categoriesE.add("Black");
         ArrayAdapter<String> dataAdapterE = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoriesE);
         dataAdapterE.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        int spinnerEPosition = dataAdapterE.getPosition(current.getYeux());
         spinnerEyes.setAdapter(dataAdapterE);
+        spinnerEyes.setSelection(spinnerEPosition);
 
         // Spinner pour Eyes
         spinnerIncli = (Spinner) findViewById(R.id.spinner_inclinaison);
@@ -144,6 +160,14 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         categoriesI.add("Bisexual");
         ArrayAdapter<String> dataAdapterI = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoriesI);
         dataAdapterI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        int spinnerIPosition = dataAdapterI.getPosition(current.getOrientation());
         spinnerIncli.setAdapter(dataAdapterI);
+        spinnerIncli.setSelection(spinnerIPosition);
+
+        //Set des editText
+        age = (EditText) findViewById(R.id.age_field);
+        age.setText(String.valueOf(current.getAge()));
+        ville = (EditText) findViewById(R.id.edit_location);
+        ville.setText(current.getVille());
     }
 }
