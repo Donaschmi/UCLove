@@ -26,6 +26,7 @@ public class Match extends MyActivity implements View.OnClickListener {
     private Button back;
     private User current;
     private User matched;
+    private ArrayList<User> users;
     private DatabaseHandler db;
 
     @Override
@@ -38,6 +39,8 @@ public class Match extends MyActivity implements View.OnClickListener {
             String username = extras.getString("username");
             this.current = db.getUser(username);
         }
+        users = db.getAllUsers();
+        users.remove(current);
         showPeople();
         this.addListener();
     }
@@ -49,13 +52,15 @@ public class Match extends MyActivity implements View.OnClickListener {
             case R.id.yes:
                 Requete req = new Requete(0, current.getId(), matched.getId(), String.valueOf(today));
                 db.ajouterRequete(req);
-                //Goto user next
+                users.remove(matched);
+                showPeople();
                 break;
             case R.id.noo:
                 Requete reqNon = new Requete(0, current.getId(), matched.getId(), String.valueOf(today));
                 reqNon.setStatut("rejet");
                 db.ajouterRequete(reqNon);
-                //Goto user next
+                users.remove(matched);
+                showPeople();
                 break;
             case R.id.btn_back:
                 Intent j = new Intent(this, Menu.class);
@@ -84,18 +89,19 @@ public class Match extends MyActivity implements View.OnClickListener {
      * Affiche le profil en utilisant le layout activity_profil
      */
     public void showPeople() {
-        ArrayList<User> users = db.getAllUsers();
         Iterator<User> iter = users.iterator();
         TextView pseudo = (TextView) findViewById(R.id.textView10);
         TextView age = (TextView) findViewById(R.id.textView12);
         while (iter.hasNext()){
             User temp = iter.next();
-            Log.d("User found : ", temp.getLogin());
             if(current.match(temp)){
                 this.matched = temp;
                 pseudo.setText("Pseudo : " + temp.getLogin());
                 age.setText("Age : "+temp.getAge());
                 return;
+            }
+            else{
+                users.remove(temp);
             }
         }
         pseudo.setText("Désolé, aucun match");

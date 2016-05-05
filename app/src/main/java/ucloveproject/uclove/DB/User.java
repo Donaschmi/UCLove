@@ -180,22 +180,17 @@ public class User {
         return false;
     }
 
-    //TODO : Déterminer un code pour l'orientation sexuelle
     public boolean match(User toMatch){//Faire une sélection qui évite les requêtes déjà acceptées ou refusées
-        Log.d("User match ", toMatch.getGenre());
-        Log.d("User tomatch", this.getGenre() + " "+ this.getOrientation());
         switch (this.getOrientation()){//Prendre en compte l'orientation sexuelle
             case "Heterosexual" :
                 switch (this.getGenre()){
                     case "Women" :
                         if(!toMatch.getGenre().equals("Men")){
-                            Log.d("match hétéro", "Returned false because match is a woman");
                             return false;
                         }
                         break;
                     case "Men":
                         if(toMatch.getGenre().equals("Men")){
-                            Log.d("match match hétéro", "Returned false because match is a men");
                             return false;
                         }
                         break;
@@ -205,13 +200,11 @@ public class User {
                 switch (this.getGenre()){
                     case "Women" :
                         if(toMatch.getGenre().equals("Men")){
-                            Log.d("match homo", "Returned false because match is a men");
                             return false;
                         }
                         break;
                     case "Men":
                         if(!toMatch.getGenre().equals("Men")){
-                            Log.d("match match homo", "Returned false because match is a woman");
                             return false;
                         }
                         break;
