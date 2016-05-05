@@ -53,7 +53,6 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
         Iterator iter = listRequete.iterator();
         while (iter.hasNext()){
             Requete temp = (Requete) iter.next();
-            Log.d("Requete trouvee", String.valueOf(temp.getExpediteur()));
             User requested = db.getUserById(temp.getExpediteur());
             list.add(requested.getLogin());
         }
@@ -98,10 +97,19 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                 if (checked) {
                     DatabaseHandler db = new DatabaseHandler(this);
                     User current = db.getUser(username);
+                    ArrayList<Requete> listRequete = db.getRequetesOut(current.getId());
+                    list = new ArrayList<String>();
+                    Iterator iter = listRequete.iterator();
+                    while (iter.hasNext()){
+                        Requete temp = (Requete) iter.next();
+                        User requested = db.getUserById(temp.getExpediteur());
+                        list.add(requested.getLogin());
+                    }
 
                     final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                            android.R.layout.simple_list_item_1, current.getFriendNames(db));
+                            android.R.layout.simple_list_item_1, list);
                     listview.setAdapter(adapter);
+
 
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -130,8 +138,17 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                     DatabaseHandler db = new DatabaseHandler(this);
                     User current = db.getUser(username);
 
+                    ArrayList<Requete> listRequete = db.getRequetesIn(current.getId());
+                    list = new ArrayList<String>();
+                    Iterator iter = listRequete.iterator();
+                    while (iter.hasNext()){
+                        Requete temp = (Requete) iter.next();
+                        User requested = db.getUserById(temp.getExpediteur());
+                        list.add(requested.getLogin());
+                    }
+
                     final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                            android.R.layout.simple_list_item_1, current.getFavNames(db));
+                            android.R.layout.simple_list_item_1, list);
                     listview.setAdapter(adapter);
 
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){

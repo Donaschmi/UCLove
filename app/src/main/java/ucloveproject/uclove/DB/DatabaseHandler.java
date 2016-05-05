@@ -437,7 +437,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        String selectAll = "SELECT * FROM" + TABLE_REQUETES + " WHERE "+ R_EXP + " = '" + String.valueOf(id) + "'";
+        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_EXP + " = '" + String.valueOf(id) + "'";
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {

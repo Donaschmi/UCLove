@@ -31,6 +31,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
     private CheckBox btnFav = null;
     private String username = null;
     private ListView listview = null;
+    private ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +45,9 @@ public class Friends extends MyActivity implements View.OnClickListener {
         btnFav = (CheckBox) findViewById(R.id.show_fav);
 
         listview = (ListView) findViewById(R.id.list_friends);
-        //
-        String[] friends_names = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
-
-        final ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < friends_names.length; i++) {
-            list.add(friends_names[i]);
-        }
-        //
+        DatabaseHandler db = new DatabaseHandler(this);
+        User current = db.getUser(username);
+        list = current.getFriendNames(db);
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
