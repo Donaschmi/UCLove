@@ -19,10 +19,12 @@ import android.widget.Toast;
 //import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.Message;
 import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
@@ -33,18 +35,22 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
 
     private Button send;
     private Button back;
-    private String username;
-    private String correspondant;
+    private User user;
+    private User correspondant;
     private ListView msgList;
+    private DatabaseHandler db:
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_m);
+        db = new DatabaseHandler(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            username = extras.getString("username");
-            correspondant = extras.getString("correspondant");
+            String username = extras.getString("username");
+            this.user = db.getUser(username);
+            String correspondantL = extras.getString("correspondant");
+            this.correspondant = db.getUser(correspondantL);
         }
         buildList();
         this.addListener();
@@ -54,13 +60,15 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_send:
-                Intent i = new Intent(this, EditProfile.class);
-                i.putExtra("username", username);
-                startActivity(i);
+                EditText contenuMsg = (EditText) findViewById(R.id.msg);
+                String contenu = contenuMsg.getText().toString();
+                Date today = new Date();
+                Message toSend = new Message(0, contenu, this.user.getId(), this.correspondant.getId(), today);
+                db.ajouterMessage(toSend);
                 break;
             case R.id.btn_back:
                 Intent j = new Intent(this, Menu.class);//On ne devrait pas revenir au menu
-                j.putExtra("username", username);
+                j.putExtra("username", user.getLogin());
                 startActivity(j);
                 break;
         }
@@ -82,11 +90,8 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
      * Affiche la liste des messages
      */
     public void buildList() {
-        DatabaseHandler db = new DatabaseHandler(this);
-        User current = db.getUser(username);
-        User corr = db.getUser(correspondant);
         msgList = (ListView) findViewById(R.id.msgview);
-        ArrayList<String> list = current.getConvWith(db, corr.getId());
+        ArrayList<String> list = user.getConvWith(db, correspondant.getId());
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         msgList.setAdapter(adapter);
