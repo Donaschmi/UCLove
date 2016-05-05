@@ -39,8 +39,7 @@ public class Match extends MyActivity implements View.OnClickListener {
             String username = extras.getString("username");
             this.current = db.getUser(username);
         }
-        users = db.getAllUsers();
-        users.remove(current);
+        getPossibleMatchs();
         showPeople();
         this.addListener();
     }
@@ -82,6 +81,30 @@ public class Match extends MyActivity implements View.OnClickListener {
 
         back = (Button) findViewById(R.id.btn_back);
         back.setOnClickListener(this);
+    }
+
+    public void getPossibleMatchs(){
+        users = db.getAllUsers();//Tous les users
+        users.remove(current);//Enlever l'user courant
+        ArrayList<String> friends = current.getFriendNames(db);
+        Iterator<String> friendIter = friends.iterator();
+        while (friendIter.hasNext()){//Enlever les amis
+            String temp = friendIter.next();
+            User toRemove = db.getUser(temp);
+            users.remove(toRemove);
+        }
+        ArrayList<Requete> requetes = db.getAllRequetes(current.getId());
+        Iterator<Requete> requeteIter = requetes.iterator();
+        while (requeteIter.hasNext()) {//Enlever les gens qui ont déjà des requêtes en cours
+            Requete temp = requeteIter.next();
+            if (temp.getDestinataire() != current.getId()) {
+                User toRemove = db.getUserById(temp.getDestinataire());
+                users.remove(toRemove);
+            } else {
+                User toRemove = db.getUserById(temp.getExpediteur());
+                users.remove(toRemove);
+            }
+        }
     }
 
 
