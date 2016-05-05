@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ import ucloveproject.uclove.R;
 public class ChatWith extends MyActivity implements View.OnClickListener{
 
     private Button send;
-    private Button back;
+    private ImageButton back;
     private User user;
     private User correspondant;
     private ListView msgList;
@@ -81,7 +82,7 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
         send = (Button) findViewById(R.id.btn_send);
         send.setOnClickListener(this);
 
-        back = (Button) findViewById(R.id.btn_back);
+        back = (ImageButton) findViewById(R.id.btn_back);
         back.setOnClickListener(this);
     }
 

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 //import com.google.android.gms.appindexing.Action;
@@ -26,7 +27,7 @@ import ucloveproject.uclove.R;
 public class UserProfil extends MyActivity implements View.OnClickListener {
 
     private Button edit;
-    private Button back;
+    private ImageButton back;
     private String username;
 
     @Override
@@ -63,7 +64,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         edit = (Button) findViewById(R.id.btn_edit);
         edit.setOnClickListener(this);
 
-        back = (Button) findViewById(R.id.btn_back);
+        back = (ImageButton) findViewById(R.id.btn_back);
         back.setOnClickListener(this);
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,9 +22,9 @@ import ucloveproject.uclove.R;
  */
 public class Match extends MyActivity implements View.OnClickListener {
 
-    private Button oui;
-    private Button non;
-    private Button back;
+    private ImageButton oui;
+    private ImageButton non;
+    private ImageButton back;
     private User current;
     private User matched;
     private ArrayList<User> users;
@@ -32,7 +33,7 @@ public class Match extends MyActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match);
+        setContentView(R.layout.activity_people);
         Bundle extras = getIntent().getExtras();
         db = new DatabaseHandler(this);
         if (extras != null) {
@@ -48,13 +49,13 @@ public class Match extends MyActivity implements View.OnClickListener {
     public void onClick(View v) {
         Date today = new Date();
         switch (v.getId()) {
-            case R.id.yes:
+            case R.id.button_add:
                 Requete req = new Requete(0, current.getId(), matched.getId(), String.valueOf(today));
                 db.ajouterRequete(req);
                 users.remove(matched);
                 showPeople();
                 break;
-            case R.id.noo:
+            case R.id.button_next:
                 Requete reqNon = new Requete(0, current.getId(), matched.getId(), String.valueOf(today));
                 reqNon.setStatut("rejet");
                 db.ajouterRequete(reqNon);
@@ -73,13 +74,13 @@ public class Match extends MyActivity implements View.OnClickListener {
      * Ajoute aux boutons du profil leur fonction
      */
     public void addListener() {
-        oui = (Button) findViewById(R.id.yes);
+        oui = (ImageButton) findViewById(R.id.button_next);
         oui.setOnClickListener(this);
 
-        non = (Button) findViewById(R.id.noo);
+        non = (ImageButton) findViewById(R.id.button_add);
         non.setOnClickListener(this);
 
-        back = (Button) findViewById(R.id.btn_back);
+        back = (ImageButton) findViewById(R.id.btn_back);
         back.setOnClickListener(this);
     }
 
@@ -113,14 +114,24 @@ public class Match extends MyActivity implements View.OnClickListener {
      */
     public void showPeople() {
         Iterator<User> iter = users.iterator();
-        TextView pseudo = (TextView) findViewById(R.id.textView10);
-        TextView age = (TextView) findViewById(R.id.textView12);
+        TextView pseudo = (TextView) findViewById(R.id.user_login);
+        TextView genre = (TextView) findViewById(R.id.user_gender);
+        TextView cheveux = (TextView) findViewById(R.id.user_hair);
+        TextView location = (TextView) findViewById(R.id.user_location);
+        TextView age = (TextView) findViewById(R.id.user_age);
+        TextView yeux = (TextView)findViewById(R.id.user_eyes);
+        TextView orientation = (TextView) findViewById(R.id.user_inclination);
         while (iter.hasNext()){
             User temp = iter.next();
             if(current.match(temp)){
                 this.matched = temp;
-                pseudo.setText("Pseudo : " + temp.getLogin());
+                pseudo.setText(temp.getLogin());
+                genre.setText("Genre : "+temp.getGenre());
+                cheveux.setText("Hair : "+temp.getCheveux());
+                location.setText("Location : "+temp.getVille());
                 age.setText("Age : "+temp.getAge());
+                yeux.setText("Eyes : "+temp.getYeux());
+                orientation.setText("Inclinaison : "+temp.getOrientation());
                 return;
             }
             else{
@@ -129,5 +140,10 @@ public class Match extends MyActivity implements View.OnClickListener {
         }
         pseudo.setText("Désolé, aucun match");
         age.setText("");
+        genre.setText("");
+        cheveux.setText("");
+        location.setText("");
+        yeux.setText("");
+        orientation.setText("");
     }
 }
