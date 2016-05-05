@@ -189,7 +189,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             found.setPrivacy(Boolean.parseBoolean(cursor.getString(10)),
                     Boolean.parseBoolean(cursor.getString(11)), Boolean.parseBoolean(cursor.getString(12)));
             cursor.close();
-            Log.d("Mdp",found.getMdp());
             return found;
         }
         else
@@ -222,7 +221,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<User> result = new ArrayList<User>();
         String selectAll = "SELECT * FROM " + TABLE_USERS;
         SQLiteDatabase db = this.getReadableDatabase();
-        Log.d("Query",selectAll);
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {

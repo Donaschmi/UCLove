@@ -2,6 +2,7 @@ package ucloveproject.uclove.DB;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -181,26 +182,39 @@ public class User {
 
     //TODO : Déterminer un code pour l'orientation sexuelle
     public boolean match(User toMatch){//Faire une sélection qui évite les requêtes déjà acceptées ou refusées
-        /*
-        switch (this.getOrientation()){
-            case "Hétérosexuel" :
-                if(toMatch.getGenre().equals("Homme")){
-                    return false;
+        Log.d("User match ", toMatch.getGenre());
+        Log.d("User tomatch", this.getGenre() + " "+ this.getOrientation());
+        switch (this.getOrientation()){//Prendre en compte l'orientation sexuelle
+            case "Heterosexual" :
+                switch (this.getGenre()){
+                    case "Women" :
+                        if(!toMatch.getGenre().equals("Men")){
+                            Log.d("match hétéro", "Returned false because match is a woman");
+                            return false;
+                        }
+                        break;
+                    case "Men":
+                        if(toMatch.getGenre().equals("Men")){
+                            Log.d("match match hétéro", "Returned false because match is a men");
+                            return false;
+                        }
+                        break;
                 }
                 break;
-            case "Homosexuel" :
-                if(!toMatch.getGenre().equals("Homme")){
-                    return false;
-                }
-                break;
-            case "Hétérosexuelle" :
-                if(!toMatch.getGenre().equals("Homme")){
-                    return false;
-                }
-                break;
-            case "Homosexuelle" :
-                if(toMatch.getGenre().equals("Homme")){
-                    return false;
+            case "Homosexual" :
+                switch (this.getGenre()){
+                    case "Women" :
+                        if(toMatch.getGenre().equals("Men")){
+                            Log.d("match homo", "Returned false because match is a men");
+                            return false;
+                        }
+                        break;
+                    case "Men":
+                        if(!toMatch.getGenre().equals("Men")){
+                            Log.d("match match homo", "Returned false because match is a woman");
+                            return false;
+                        }
+                        break;
                 }
                 break;
             default://Gère les deux cas bisexuel, où les deux genre sont bons
@@ -208,15 +222,21 @@ public class User {
         }
 
         String[] prefs = this.getPreference();
-        if(!prefs[0].equals("") && toMatch.getAge()>Integer.parseInt(prefs[0])){//Trop agé
-            return false;
+        if(prefs[0]!=null) {
+            if (!prefs[0].equals("") && toMatch.getAge() > Integer.parseInt(prefs[0])) {//Trop agé
+                return false;
+            }
         }
-        if(!prefs[0].equals("") && !toMatch.getCheveux().equals(prefs[1])){//Cheveux
-            return false;
+        if(prefs[1] !=null) {
+            if (!prefs[1].equals("") && !toMatch.getCheveux().equals(prefs[1])) {//Cheveux
+                return false;
+            }
         }
-        if(!prefs[0].equals("") && !toMatch.getYeux().equals(prefs[2])){//Yeux
-            return false;
-        }*/
+        if(prefs[2] != null) {
+            if (!prefs[2].equals("") && !toMatch.getYeux().equals(prefs[2])) {//Yeux
+                return false;
+            }
+        }
         return true;
     }
 
