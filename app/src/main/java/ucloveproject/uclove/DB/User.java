@@ -85,6 +85,17 @@ public class User {
         return result;
     }
 
+    public ArrayList<String> getConvWith(DatabaseHandler db, int corr){
+        ArrayList<Message> messages = db.findConv(this.getId(), corr);
+        ArrayList<String> result = new ArrayList<>();
+        Iterator iter = messages.iterator();
+        while(iter.hasNext()){
+            Message temp = (Message)iter.next();
+            result.add(temp.getContenu());
+        }
+        return result;
+    }
+
     public ArrayList<Relation> getFriendList(){
         return this.amis;
     }
