@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentTop="true"
-                android:src="@mipmap/backb" />
+                />
 
             <TextView
                 android:id="@+id/textView_title_people"
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/btn_back"
-                android:text="@string/title_activity_people" />
+                android:text="Request" />
 
         </RelativeLayout>
 
@@ -42,62 +42,11 @@
             android:layout_below="@+id/title_people"
             android:layout_marginTop="20dp">
 
-            <TextView
-                android:id="@+id/filtre1"
-                style="@style/SimpleTexte"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:text="@string/texte_filtre1" />
 
-            <EditText
-                android:id="@+id/hint_value"
-                style="@style/SimpleTexte"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_toEndOf="@+id/filtre1"
-                android:layout_toRightOf="@+id/filtre1"
-                android:hint="@string/hint_value" />
-
-            <TextView
-                android:id="@+id/filtre2"
-                style="@style/SimpleTexte"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-
-                android:layout_toRightOf="@id/hint_value"
-                android:text="@string/texte_filtre2" />
-
-            <Spinner
-                android:id="@+id/spinner_keyword"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignBaseline="@+id/filtre2"
-                android:layout_alignBottom="@+id/filtre2"
-                android:layout_toEndOf="@+id/filtre2"
-                android:layout_toRightOf="@+id/filtre2">
-
-            </Spinner>
 
 
         </RelativeLayout>
 
-        <ImageButton
-            android:id="@+id/button_filtre"
-            style="@style/BoutonCarre"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_below="@id/filtre"
-            android:background="@android:color/transparent"
-            android:src="@mipmap/reload" />
 
         <View
             android:layout_width="match_parent"
@@ -105,28 +54,21 @@
             android:layout_below="@+id/title_people"
             android:background="@android:color/darker_gray" />
 
-        <Button
-            android:id="@+id/button_random"
-            style="@style/GrosBouton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/filtre"
-            android:text="@string/texte_random" />
+
 
         <RelativeLayout
             android:id="@+id/ajout_refus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_random"
-            android:layout_marginTop="20dp">
+            android:layout_below="@id/title_people"
+            android:layout_marginTop="60dp">
 
             <TextView
                 style="@style/SimpleTexte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="User"
-                android:id="@+id/user_login" />
+                android:text="User" />
 
             <ImageButton
                 android:id="@+id/button_add"
@@ -151,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ajout_refus"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="50dp"
+            >
 
             <ImageView
                 android:id="@+id/img_user"
@@ -160,21 +103,17 @@
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_launcher" />
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/img_user"
-                android:src="@mipmap/arrow1"
-                android:background="@android:color/transparent"
-                android:id="@+id/img_prev"/>
+                android:src="@mipmap/arrow1" />
 
-            <ImageButton
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/img_user"
-                android:src="@mipmap/arrow2"
-                android:id="@+id/img_next"
-                android:background="@android:color/transparent"/>
+                android:src="@mipmap/arrow2" />
 
             <TextView
                 android:id="@+id/user_gender"
