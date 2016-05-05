@@ -7,6 +7,7 @@
     <string name="title_activity_accueil">Accueil</string>
     <string name="title_activity_inscription">Register</string>
     <string name="title_activity_menu_p">Menu</string>
+    <string name="title_activity_people">People</string>
     <string name="title_activity_profil">Your profil</string>
     <string name="title_activity_profil_ami">Friend\'s profile</string>
     <string name="title_activity_edit_profil">Edit my profile</string>
@@ -51,5 +52,12 @@
         <item>English</item>
         <item>Français</item>
     </string-array>
+
+    <!-- Textes People -->
+    <string name="texte_filtre1">Filter by</string>
+    <string name="texte_filtre2">for</string>
+    <string name="texte_random">Random search</string>
+    <string name="hint_value">value</string>
+
 
 </resources>
