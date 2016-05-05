@@ -71,7 +71,7 @@ public class Login extends MyActivity implements View.OnClickListener {
             }
         }
         else{
-            Log.d("LaunchConnexion","User non trouvé");
+            //User non trouvé
         }
     }
 

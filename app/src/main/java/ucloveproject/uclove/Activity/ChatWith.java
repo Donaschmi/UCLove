@@ -38,7 +38,7 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
     private User user;
     private User correspondant;
     private ListView msgList;
-    private DatabaseHandler db:
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

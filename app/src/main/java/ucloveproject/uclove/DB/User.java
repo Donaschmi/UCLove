@@ -130,7 +130,7 @@ public class User {
 
     public void addFriend(User user, DatabaseHandler db){
         Date today = new Date();//Se crée au moment courant
-        Requete toSend = new Requete(0, this.getId(), user.getId(), today);
+        Requete toSend = new Requete(0, this.getId(), user.getId(), String.valueOf(today));
         db.ajouterRequete(toSend);
     }
 
@@ -181,6 +181,7 @@ public class User {
 
     //TODO : Déterminer un code pour l'orientation sexuelle
     public boolean match(User toMatch){//Faire une sélection qui évite les requêtes déjà acceptées ou refusées
+        /*
         switch (this.getOrientation()){
             case "Hétérosexuel" :
                 if(toMatch.getGenre().equals("Homme")){
@@ -215,7 +216,7 @@ public class User {
         }
         if(!prefs[0].equals("") && !toMatch.getYeux().equals(prefs[2])){//Yeux
             return false;
-        }
+        }*/
         return true;
     }
 

@@ -16,9 +16,11 @@ import android.widget.RadioButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.Requete;
 import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
@@ -31,6 +33,7 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
     private CheckBox btnRequests = null;
     private String username = null;
     private ListView listview = null;
+    private ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +45,19 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
             username = extras.getString("username");
 
         btnRequests = (CheckBox) findViewById(R.id.show_in_out);
-
         listview = (ListView) findViewById(R.id.list_requests);
-        //
-        String[] requests = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
-
-        final ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < requests.length; i++) {
-            list.add(requests[i]);
+        DatabaseHandler db = new DatabaseHandler(this);
+        User current = db.getUser(username);
+        ArrayList<Requete> listRequete = db.getRequetesIn(current.getId());
+        list = new ArrayList<String>();
+        Iterator iter = listRequete.iterator();
+        while (iter.hasNext()){
+            Requete temp = (Requete) iter.next();
+            Log.d("Requete trouvee", String.valueOf(temp.getExpediteur()));
+            User requested = db.getUserById(temp.getExpediteur());
+            list.add(requested.getLogin());
         }
-        //
+
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);

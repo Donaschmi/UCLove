@@ -171,7 +171,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         value.put(YEUX, n.getYeux());
         value.put(VILLE, n.getVille());
         value.put(PRIVACYV, n.getPrivacyVille());
-        value.put(PRIVACYV, n.getPrivacyPhoto());
+        value.put(PRIVACYP, n.getPrivacyPhoto());
         db.insert(TABLE_USERS, null, value);//Insérer la nouvelle ligne
         db.close();//Fermer le flux
     }
@@ -179,7 +179,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public User getUser(String username){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_USERS + " WHERE " + LOGIN + " = '" + username +"'";
-        Log.d("Query",query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             User found = new User(Integer.parseInt(cursor.getString(0)),
@@ -201,11 +200,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[] {U_KEY, LOGIN,
                         MDP, NOM, AGE, GENRE, ORIENTATION, STYLE,
-                        YEUX, VILLE }, U_KEY + "=?",
+                        YEUX, VILLE, PRIVACYN, PRIVACYV, PRIVACYP }, U_KEY + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-
             User found = new User(Integer.parseInt(cursor.getString(0)),
                     cursor.getString(1), cursor.getString(2), cursor.getString(3),
                     Integer.parseInt(cursor.getString(4)), cursor.getString(5), cursor.getString(6),
@@ -222,8 +220,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public ArrayList<User> getAllUsers() {
         ArrayList<User> result = new ArrayList<User>();
-        String selectAll = "SELECT * FROM" + TABLE_USERS;
+        String selectAll = "SELECT * FROM " + TABLE_USERS;
         SQLiteDatabase db = this.getReadableDatabase();
+        Log.d("Query",selectAll);
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {
@@ -384,18 +383,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-            try {
                 Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                        dateFormat.parse(cursor.getString(4)));
+                        (cursor.getString(4)));
                 found.setStatut(cursor.getString(3));
                 cursor.close();
                 return found;
             }
-            catch (java.text.ParseException e){
-                return null;
-            }
-        }
         return null;
     }
 
@@ -403,22 +397,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        String selectAll = "SELECT * FROM" + TABLE_REQUETES + " WHERE "+ R_DEST + " = '" + String.valueOf(id) + "'";
+        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_DEST + " = '" + String.valueOf(id) + "'";
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {
-                try {
                     Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                            dateFormat.parse(cursor.getString(4)));
+                           (cursor.getString(4)));
                     found.setStatut(cursor.getString(3));
                     if(found.getStatut().equals("attente")) {
                         result.add(found);
                     }
-                }
-                catch (java.text.ParseException e){
-                    //Just ignore
-                }
             } while (cursor.moveToNext());
             cursor.close();
             return result;
@@ -434,18 +423,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {
-                try {
                     Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
-                            dateFormat.parse(cursor.getString(4)));
+                            (cursor.getString(4)));
                     found.setStatut(cursor.getString(3));
                     if(!found.getStatut().equals("attente")) {
                         result.add(found);
                     }
-                }
-                catch (java.text.ParseException e){
-                    //Just ignore
-                }
             } while (cursor.moveToNext());
             cursor.close();
             return result;
@@ -513,7 +497,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<Disponibilite> result = new ArrayList<Disponibilite>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         String query = "SELECT * FROM " + TABLE_DISPOS + " WHERE " + PROP + " = '" + String.valueOf(idUser) + "'";
-        Log.d("Query",query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
@@ -605,7 +588,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Relation> result = new ArrayList<Relation>();
         String query = "SELECT * FROM " + TABLE_AMIS + " WHERE " + IDFISRT + " = '" + String.valueOf(idUser) + "'";
-        Log.d("Query",query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
@@ -621,7 +603,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Relation getOneFriend(int idFirstUser, int idSecondUser){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_AMIS + " WHERE " + IDFISRT + " = '" + String.valueOf(idFirstUser) + "' and " + IDSECOND + " = '" + String.valueOf(idSecondUser) + "'";
-        Log.d("Query",query);
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             Relation found = new Relation(Integer.parseInt(cursor.getString(0)),

@@ -24,6 +24,8 @@
         <activity android:name=".Activity.Friends" />
         <activity android:name=".Activity.FriendRequests" />
         <activity android:name=".Activity.EditProfile" />
+        <activity android:name=".Activity.Match" />
+        <activity android:name=".Activity.ChatWith" />
     </application>
 
 </manifest>

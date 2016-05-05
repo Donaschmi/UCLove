@@ -11,9 +11,9 @@ public class Requete {
     private int idExpediteur;
     private int idDestinataire;
     private String statut;
-    private Date date;//Contient également l'heure
+    private String date;//Contient également l'heure
 
-    public Requete(int id, int expediteur, int destinataire, Date jour){
+    public Requete(int id, int expediteur, int destinataire, String jour){
         this.id=id;
         this.idExpediteur=expediteur;
         this.idDestinataire=destinataire;
@@ -45,7 +45,7 @@ public class Requete {
         this.statut=statut;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 }
