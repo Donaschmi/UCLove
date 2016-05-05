@@ -68,7 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="User" />
+                android:text="User"
+                android:id="@+id/user_login" />
 
             <ImageButton
                 android:id="@+id/button_add"

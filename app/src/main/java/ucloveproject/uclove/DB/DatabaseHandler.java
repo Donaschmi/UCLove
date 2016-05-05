@@ -308,6 +308,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    public ArrayList<User> findAllConv(int idUser){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<User> result = new ArrayList<>();
+        String select = "SELECT * FROM" + TABLE_MESSAGES + " WHERE "+ M_EXP + " = '"
+                + String.valueOf(idUser) + "' or " + M_DEST + " = '" + String.valueOf(idUser)+ "'";
+        Cursor cursor = db.rawQuery(select, null);
+        if (cursor.moveToFirst()) {
+            do {
+                if(cursor.getInt(2)!=idUser){
+                    User toAdd = this.getUserById(cursor.getInt(3));
+                    result.add(toAdd);
+                }
+                else{
+                    User toAdd = this.getUserById(cursor.getInt(2));
+                    result.add(toAdd);
+                }
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return result;
+    }
+
     public ArrayList<Message> findConv(int idUser, int idCorr){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Message> result = new ArrayList<Message>();
@@ -387,6 +409,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.close();
                 return found;
             }
+        return null;
+    }
+
+    public Requete getOneRequete(int idFirst, int idSecond){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Requete> result = new ArrayList<Requete>();
+        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_DEST + " = '"
+                + String.valueOf(idFirst) + "' and " + R_EXP + " = '" + String.valueOf(idSecond) + "'";
+        Cursor cursor = db.rawQuery(selectAll, null);
+        if (cursor.moveToFirst()) {
+            Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
+                        (cursor.getString(4)));
+            found.setStatut(cursor.getString(3));
+            cursor.close();
+            return found;
+        }
         return null;
     }
 

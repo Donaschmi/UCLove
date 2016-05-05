@@ -67,15 +67,11 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
+                Intent i = new Intent(FriendRequests.this, DetailRequete.class);
+                i.putExtra("username", username);
+                i.putExtra("request", item);//Envoyer l'username de la request
+                startActivity(i);
+
             }
 
         });
