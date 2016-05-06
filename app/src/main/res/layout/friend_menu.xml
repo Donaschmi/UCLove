@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_fav"
                 android:layout_toRightOf="@+id/img_menu_profile"
-                android:text="Add to favorite"
+                android:text="@string/add_fav"
                 style="@style/GrosBouton"
                 android:gravity="bottom"
                 android:background="@android:color/transparent"/>
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_chat"
                 android:layout_toRightOf="@+id/img_menu_preferences"
-                android:text="Chat"
+                android:text="@string/chat"
                 style="@style/GrosBouton"
                 android:gravity="bottom"
                 android:background="@android:color/transparent"/>
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_rdv"
                 android:layout_toRightOf="@+id/img_menu_people"
-                android:text="Send rendez-vous"
+                android:text="@string/rdv"
                 style="@style/GrosBouton"
                 android:gravity="bottom"
                 android:background="@android:color/transparent"/>
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_delete"
                 android:layout_toRightOf="@+id/img_menu_friends"
-                android:text="Delete Friend"
+                android:text="@string/delete_f"
                 style="@style/GrosBouton"
                 android:gravity="bottom"
                 android:background="@android:color/transparent"/>

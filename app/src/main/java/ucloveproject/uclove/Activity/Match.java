@@ -179,7 +179,7 @@ public class Match extends MyActivity implements View.OnClickListener {
                     users.remove(temp);
                 }
         }
-        pseudo.setText("Désolé, aucun match");
+        pseudo.setText("Sorry, no match");
         age.setText("");
         genre.setText("");
         cheveux.setText("");
