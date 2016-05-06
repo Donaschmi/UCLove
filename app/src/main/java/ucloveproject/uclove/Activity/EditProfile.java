@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
     private Spinner spinnerHair;
     private Spinner spinnerEyes;
     private Spinner spinnerIncli;
+    private CheckBox set_private;
     private EditText age;
     private EditText ville;
     private EditText nom;
@@ -104,6 +106,9 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
     public void addListener() {
         confirm = (Button) findViewById(R.id.btn_valider_change);
         confirm.setOnClickListener(this);
+
+        set_private=(CheckBox) findViewById(R.id.checkbox_private);
+
     }
 
     public void setSpinners(){
