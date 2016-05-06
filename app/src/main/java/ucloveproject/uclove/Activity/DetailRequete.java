@@ -52,6 +52,8 @@ public class DetailRequete extends MyActivity implements View.OnClickListener {
                 db.modifierRequete(req);
                 Relation newRel = new Relation(0, current.getId(), temp.getId());
                 db.ajouterRelation(newRel);
+                Relation newRel2 = new Relation(0, temp.getId(), current.getId());
+                db.ajouterRelation(newRel2);
                 Intent i = new Intent(this, FriendRequests.class);
                 i.putExtra("username", current.getLogin());
                 startActivity(i);

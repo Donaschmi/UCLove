@@ -19,6 +19,10 @@ import android.widget.Toast;
 //import com.google.android.gms.appindexing.AppIndex;
 //import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,7 +39,7 @@ import ucloveproject.uclove.R;
 public class ChatWith extends MyActivity implements View.OnClickListener{
 
     private Button send;
-    private ImageButton back;
+    private Button back;
     private User user;
     private User correspondant;
     private ListView msgList;
@@ -63,13 +67,15 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
             case R.id.btn_send:
                 EditText contenuMsg = (EditText) findViewById(R.id.msg);
                 String contenu = contenuMsg.getText().toString();
-                Date today = new Date();
-                Message toSend = new Message(0, contenu, this.user.getId(), this.correspondant.getId(), today);
-                db.ajouterMessage(toSend);
+                String date = DateFormat.getDateTimeInstance().format(new Date());
+                    Message toSend = new Message(0, contenu, this.user.getId(), this.correspondant.getId(), date);
+                    db.ajouterMessage(toSend);
+                    contenuMsg.setText("");
                 break;
             case R.id.btn_back:
-                Intent j = new Intent(this, Menu.class);//On ne devrait pas revenir au menu
+                Intent j = new Intent(this, FriendMenu.class);//On ne devrait pas revenir au menu
                 j.putExtra("username", user.getLogin());
+                j.putExtra("friend", correspondant.getLogin());
                 startActivity(j);
                 break;
         }
@@ -82,7 +88,7 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
         send = (Button) findViewById(R.id.btn_send);
         send.setOnClickListener(this);
 
-        back = (ImageButton) findViewById(R.id.btn_back);
+        back = (Button) findViewById(R.id.btn_back);
         back.setOnClickListener(this);
     }
 

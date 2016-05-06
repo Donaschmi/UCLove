@@ -58,15 +58,10 @@ public class Friends extends MyActivity implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
+                Intent k = new Intent(Friends.this, FriendMenu.class);
+                k.putExtra("username", username);
+                k.putExtra("friend", item);
+                startActivity(k);
             }
 
         });
@@ -99,15 +94,10 @@ public class Friends extends MyActivity implements View.OnClickListener {
                         public void onItemClick(AdapterView<?> parent, final View view,
                                                 int position, long id) {
                             final String item = (String) parent.getItemAtPosition(position);
-                            view.animate().setDuration(2000).alpha(0)
-                                    .withEndAction(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //list.remove(item);
-                                            adapter.notifyDataSetChanged();
-                                            view.setAlpha(1);
-                                        }
-                                    });
+                            Intent k = new Intent(Friends.this, FriendMenu.class);
+                            k.putExtra("username", username);
+                            k.putExtra("friend", item);
+                            startActivity(k);
                         }
 
                     });
@@ -130,15 +120,10 @@ public class Friends extends MyActivity implements View.OnClickListener {
                         public void onItemClick(AdapterView<?> parent, final View view,
                                                 int position, long id) {
                             final String item = (String) parent.getItemAtPosition(position);
-                            view.animate().setDuration(2000).alpha(0)
-                                    .withEndAction(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //list.remove(item);
-                                            adapter.notifyDataSetChanged();
-                                            view.setAlpha(1);
-                                        }
-                                    });
+                            Intent k = new Intent(Friends.this, FriendMenu.class);
+                            k.putExtra("username", username);
+                            k.putExtra("friend", item);
+                            startActivity(k);
                         }
 
                     });

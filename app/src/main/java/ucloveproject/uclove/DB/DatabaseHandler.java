@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -293,17 +294,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-            try {
                 Message found = new Message(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1), Integer.parseInt(cursor.getString(2)),
                         Integer.parseInt(cursor.getString(3)),
-                        dateFormat.parse(cursor.getString(4)));
+                        (cursor.getString(4)));
                 cursor.close();
                 return found;
-            }
-            catch (java.text.ParseException e){
-                return null;
-            }
         }
         return null;
     }
@@ -333,41 +329,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Message> findConv(int idUser, int idCorr){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Message> result = new ArrayList<Message>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-        String selectFirstHalf = "SELECT * FROM" + TABLE_MESSAGES + " WHERE "+ M_EXP + " = '"
-                + String.valueOf(idUser) + "' and " + M_DEST + " = '" + String.valueOf(idCorr)+ "'";
+        String selectFirstHalf = "SELECT * FROM " + TABLE_MESSAGES + " WHERE "+ M_EXP + " = "
+                + String.valueOf(idUser) + " and " + M_DEST + " = " + String.valueOf(idCorr)+ " or " +
+                M_DEST + " = " + String.valueOf(idUser) + " and " + M_EXP + " = " + String.valueOf(idCorr);
         Cursor cursor = db.rawQuery(selectFirstHalf, null);//Les messages envoyés par user à corr
         if (cursor.moveToFirst()) {
             do {
-                try {
                     Message found = new Message(Integer.parseInt(cursor.getString(0)),
-                            cursor.getString(1), Integer.parseInt(cursor.getString(2)),
-                            Integer.parseInt(cursor.getString(3)),
-                            dateFormat.parse(cursor.getString(4)));
+                            cursor.getString(3), Integer.parseInt(cursor.getString(1)),
+                            Integer.parseInt(cursor.getString(2)),
+                            (cursor.getString(4)));
                     result.add(found);
-                }
-                catch (java.text.ParseException e){
-                    //Just ignore
-                }
+
             } while (cursor.moveToNext());
             cursor.close();
-        }
-        String selectSecondHalf = "SELECT * FROM" + TABLE_MESSAGES + " WHERE "+ M_DEST + " = '"
-                + String.valueOf(idUser) + "' and " + M_EXP + " = '" + String.valueOf(idCorr)+ "'";
-        Cursor cursor2 = db.rawQuery(selectSecondHalf, null);//Les messages envoyés par corr à user
-        if (cursor2.moveToFirst()) {
-            do {
-                try {
-                    Message found = new Message(Integer.parseInt(cursor.getString(0)),
-                            cursor.getString(1), Integer.parseInt(cursor.getString(2)),
-                            Integer.parseInt(cursor.getString(3)),
-                            dateFormat.parse(cursor.getString(4)));
-                    result.add(found);
-                } catch (java.text.ParseException e) {
-                    //Just ignore
-                }
-            } while (cursor2.moveToNext());
-            cursor2.close();
         }
         return result;
     }

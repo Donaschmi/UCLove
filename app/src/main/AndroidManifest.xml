@@ -27,6 +27,7 @@
         <activity android:name=".Activity.Match" />
         <activity android:name=".Activity.ChatWith" />
         <activity android:name=".Activity.DetailRequete" />
+        <activity android:name=".Activity.FriendMenu" />
     </application>
 
 </manifest>

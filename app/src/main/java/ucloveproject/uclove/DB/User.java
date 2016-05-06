@@ -90,9 +90,20 @@ public class User {
         ArrayList<Message> messages = db.findConv(this.getId(), corr);
         ArrayList<String> result = new ArrayList<>();
         Iterator iter = messages.iterator();
+        Message previous=null;
         while(iter.hasNext()){
             Message temp = (Message)iter.next();
+            User temp2 = db.getUserById(temp.getExpediteur());
+            if(previous != null) {
+                if(previous.getExpediteur() != temp.getExpediteur()) {
+                    result.add(temp2.getLogin() + " :");
+                }
+            }
+            else {
+                result.add(temp2.getLogin() + " :");
+            }
             result.add(temp.getContenu());
+            previous = temp;
         }
         return result;
     }

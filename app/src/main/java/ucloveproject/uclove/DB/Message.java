@@ -10,9 +10,9 @@ public class Message {
     private String contenu;
     private int idExpediteur;
     private int idDestinataire;
-    private Date date;//Contient egalement l'heure
+    private String date;//Contient egalement l'heure
 
-    public Message(int id, String texte, int expediteur, int destinataire, Date jour){
+    public Message(int id, String texte, int expediteur, int destinataire, String jour){
         this.id=id;
         this.contenu=texte;
         this.idExpediteur=expediteur;
@@ -37,7 +37,7 @@ public class Message {
         return idDestinataire;
     }
 
-    public Date getDate(){
+    public String getDate(){
         return date;
     }
 }
