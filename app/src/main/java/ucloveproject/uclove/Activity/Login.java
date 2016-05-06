@@ -65,13 +65,11 @@ public class Login extends MyActivity implements View.OnClickListener {
                 i.putExtra("username", username);
                 startActivity(i);
             } else {
-                //Mauvais password, demander de recommencer
-                Log.d("LaunchConnexion","Mauvais password");
-                Log.d("Recu", password);
+                printToast("Wrong password");
             }
         }
         else{
-            //User non trouvé
+            printToast("Wrong username");
         }
     }
 
