@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,27 +86,28 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         // Is the view now checked?
-        boolean checked = ((CheckBox) v).isChecked();
+        final boolean checked = ((CheckBox) v).isChecked();
 
         // Check which checkbox was clicked
         switch (v.getId()) {
             case R.id.show_in_out:
                 if (checked) {
-                    DatabaseHandler db = new DatabaseHandler(this);
-                    User current = db.getUser(username);
+                    final DatabaseHandler db = new DatabaseHandler(this);
+                    final User current = db.getUser(username);
                     ArrayList<Requete> listRequete = db.getRequetesOut(current.getId());
                     list = new ArrayList<String>();
                     Iterator iter = listRequete.iterator();
                     while (iter.hasNext()){
                         Requete temp = (Requete) iter.next();
-                        User requested = db.getUserById(temp.getExpediteur());
+                        User requested = db.getUserById(temp.getDestinataire());
                         list.add(requested.getLogin());
                     }
 
                     final StableArrayAdapter adapter = new StableArrayAdapter(this,
                             android.R.layout.simple_list_item_1, list);
                     listview.setAdapter(adapter);
-
+                    TextView remarque = (TextView) findViewById(R.id.text_supp);
+                    remarque.setText("To cancel a request, click on it");
 
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -113,15 +115,14 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                         public void onItemClick(AdapterView<?> parent, final View view,
                                                 int position, long id) {
                             final String item = (String) parent.getItemAtPosition(position);
-                            view.animate().setDuration(2000).alpha(0)
-                                    .withEndAction(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //list.remove(item);
-                                            adapter.notifyDataSetChanged();
-                                            view.setAlpha(1);
-                                        }
-                                    });
+                            User temp = db.getUser(item);
+                            Requete req = db.getOneRequete(temp.getId(), current.getId());
+                            if(req != null) {
+                                db.supprimerRequete(req.getId());
+                                list.remove(item);
+                                adapter.notifyDataSetChanged();
+                                view.setAlpha(1);
+                            }
                         }
 
                     });
@@ -131,6 +132,8 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                     break;
 
                 } else {
+                    TextView remarque = (TextView) findViewById(R.id.text_supp);
+                    remarque.setText("");
                     DatabaseHandler db = new DatabaseHandler(this);
                     User current = db.getUser(username);
 
@@ -153,15 +156,10 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                         public void onItemClick(AdapterView<?> parent, final View view,
                                                 int position, long id) {
                             final String item = (String) parent.getItemAtPosition(position);
-                            view.animate().setDuration(2000).alpha(0)
-                                    .withEndAction(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //list.remove(item);
-                                            adapter.notifyDataSetChanged();
-                                            view.setAlpha(1);
-                                        }
-                                    });
+                            Intent i = new Intent(FriendRequests.this, DetailRequete.class);
+                            i.putExtra("username", username);
+                            i.putExtra("request", item);//Envoyer l'username de la request
+                            startActivity(i);
                         }
 
                     });

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Version de la base de données et son npm
-    protected final static int DATABASE_VERSION = 13;//Changer si on opère un gros changement dans la db
+    protected final static int DATABASE_VERSION = 14;//Changer si on opère un gros changement dans la db
     protected final static String DATABASE_NOM = "uclove.sqlite";
 
     //Tables
@@ -414,9 +414,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Requete getOneRequete(int idFirst, int idSecond){
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<Requete> result = new ArrayList<Requete>();
-        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_DEST + " = '"
-                + String.valueOf(idFirst) + "' and " + R_EXP + " = '" + String.valueOf(idSecond) + "'";
+        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_DEST + " = "
+                + String.valueOf(idFirst) + " and " + R_EXP + " = " + String.valueOf(idSecond) + "";
+        Log.d("query", selectAll);
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             Requete found = new Requete(Integer.parseInt(cursor.getString(0)),
@@ -446,7 +446,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.close();
             return result;
         }
-        return null;
+        return result;
     }
 
     public ArrayList<Requete> getRequetesIn(int id){
@@ -467,13 +467,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.close();
             return result;
         }
-        return null;
+        return result;
     }
 
     public ArrayList<Requete> getRequetesOut(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Requete> result = new ArrayList<Requete>();
-        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_EXP + " = '" + String.valueOf(id) + "'";
+        String selectAll = "SELECT * FROM " + TABLE_REQUETES + " WHERE "+ R_EXP + " = " + String.valueOf(id) + "";
         Cursor cursor = db.rawQuery(selectAll, null);
         if (cursor.moveToFirst()) {
             do {
@@ -481,14 +481,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                             (cursor.getString(4)));
                     found.setStatut(cursor.getString(3));
-                    if(!found.getStatut().equals("attente")) {
+                    if(found.getStatut().equals("attente")) {
                         result.add(found);
                     }
             } while (cursor.moveToNext());
             cursor.close();
             return result;
         }
-        return null;
+        return result;
     }
 
      /**
@@ -566,7 +566,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.close();
             return result;
         }
-        return null;
+        return result;
     }
 
     /**
