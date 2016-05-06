@@ -27,7 +27,7 @@ import ucloveproject.uclove.R;
 
 
 /**
- * Classe User, cette activité permet de montrer le profil d'un utilisateur
+ * Classe EditProfile, cette activité permet de modifier le profil de l'utilisateur en cours
  * Created by Donatien on 25/04/2016.
  */
 public class EditProfile extends MyActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {

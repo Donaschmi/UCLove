@@ -13,6 +13,7 @@ import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
+ * Classe inscription permettant de créer un compte via un username et un password
  * Created by Donatien on 30/04/2016.
  */
 public class Inscription extends MyActivity implements View.OnClickListener{
