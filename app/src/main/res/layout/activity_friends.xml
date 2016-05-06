@@ -9,13 +9,31 @@
 
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_request"
+        android:paddingBottom="30px"
+        android:paddingTop="30px">
 
+    <ImageButton
+        android:id="@+id/btn_back"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src="@mipmap/back"
+        android:background="@android:color/transparent"
+        />
     <TextView
         android:id="@+id/textView_title_profile"
         style="@style/Titre"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="Friends" />
+        android:text="Friends"
+        android:background="@android:color/transparent"/>/>
+
+    </RelativeLayout>
 
     <CheckBox
         android:layout_width="wrap_content"

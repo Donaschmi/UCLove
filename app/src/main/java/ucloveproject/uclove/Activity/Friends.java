@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
@@ -29,6 +30,7 @@ import ucloveproject.uclove.R;
 public class Friends extends MyActivity implements View.OnClickListener {
 
     private CheckBox btnFav = null;
+    private ImageButton back;
     private String username = null;
     private ListView listview = null;
     private ArrayList<String> list;
@@ -43,6 +45,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
             username = extras.getString("username");
 
         btnFav = (CheckBox) findViewById(R.id.show_fav);
+        back = (ImageButton) findViewById(R.id.btn_back);
 
         listview = (ListView) findViewById(R.id.list_friends);
         DatabaseHandler db = new DatabaseHandler(this);
@@ -70,12 +73,15 @@ public class Friends extends MyActivity implements View.OnClickListener {
     private void addListener() {
         btnFav = (CheckBox) findViewById(R.id.show_fav);
         btnFav.setOnClickListener(this);
+
+        back = (ImageButton) findViewById(R.id.btn_back);
+        back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         // Is the view now checked?
-        boolean checked = ((CheckBox) v).isChecked();
+        boolean checked = btnFav.isChecked();
 
         // Check which checkbox was clicked
         switch (v.getId()) {
@@ -114,7 +120,7 @@ public class Friends extends MyActivity implements View.OnClickListener {
                             android.R.layout.simple_list_item_1, current.getFavNames(db));
                     listview.setAdapter(adapter);
 
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                         @Override
                         public void onItemClick(AdapterView<?> parent, final View view,
@@ -128,15 +134,17 @@ public class Friends extends MyActivity implements View.OnClickListener {
 
                     });
 
-                    String aboutUs="All Friends";
+                    String aboutUs = "All Friends";
                     super.printToast(aboutUs);
-                    break;
-
                 }
+                break;
+            case R.id.btn_back:
+                Intent j = new Intent(this, Menu.class);
+                j.putExtra("username", username);
+                startActivity(j);
+                break;
         }
     }
-
-
 
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
