@@ -155,6 +155,32 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_dispo"
+            android:layout_below="@+id/menu_requests"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_menu_dispo"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_menu_dispo"
+                android:layout_toRightOf="@+id/img_menu_dispo"
+                android:text="Disponibilities"
+                style="@style/GrosBouton"
+                android:gravity="bottom"
+                android:background="@android:color/transparent"/>
+
+
+        </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"

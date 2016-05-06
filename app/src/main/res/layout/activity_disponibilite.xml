@@ -10,26 +10,66 @@
 
 
 
-    <TextView
-        android:id="@+id/textView_title_profile"
-        style="@style/Titre"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:text="Disponibility" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/title_dispo"
+        android:paddingBottom="30px"
+        android:paddingTop="30px">
 
-        android:text="Show Favorites"
-        android:id="@+id/show_fav"
-        android:textColor="@color/darkAmbre"
-        android:layout_gravity="center_horizontal" />
+        <ImageButton
+            android:id="@+id/btn_back"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@mipmap/back"
+            android:background="@android:color/transparent"
+            />
+
+
+        <TextView
+            style="@style/Titre"
+            android:id="@+id/textView_title_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disponibilities"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Matched/Unmatched"
+            android:id="@+id/btn_unmatched"
+            android:textColor="@color/darkAmbre"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add disponibility"
+            android:id="@+id/add_dispo"
+            android:layout_marginRight="10dp"
+            />
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/list_friends"
+        android:id="@+id/list_dispo"
         android:padding="5dp"
         tools:listitem="@android:layout/simple_list_item_1" />
 

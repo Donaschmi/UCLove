@@ -28,6 +28,7 @@
         <activity android:name=".Activity.ChatWith" />
         <activity android:name=".Activity.DetailRequete" />
         <activity android:name=".Activity.FriendMenu" />
+        <activity android:name=".Activity.Disponibilities" />
     </application>
 
 </manifest>
