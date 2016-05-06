@@ -54,7 +54,7 @@
                     android:id="@+id/nom_field"
                     style="@style/ChampsUneLigne"
                     android:gravity="center_horizontal"
-                    android:hint="Nom"
+                    android:hint="@string/edit_name"
                     android:inputType="textVisiblePassword|textNoSuggestions" />
 
 
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Nom"
+                    android:text="@string/edit_name"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Gender"
+                    android:text="@string/edit_gender"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -192,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Age"
+                    android:text="@string/edit_age"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -250,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Hair"
+                    android:text="@string/edit_hair"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -311,7 +311,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Eyes"
+                    android:text="@string/edit_eyes"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -374,7 +374,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Location"
+                    android:text="@string/edit_loc"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -434,7 +434,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Inclination"
+                    android:text="@string/edit_ori"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
@@ -464,7 +464,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/edit_textView_picture"
-                android:text="Picture"
+                android:text="@string/edit_pic"
                 android:layout_toLeftOf="@+id/btn_valider_change"
                 />
 
@@ -488,7 +488,7 @@
                 style="@style/GrosBouton"
                 android:layout_width="335px"
                 android:layout_height="wrap_content"
-                android:text="Confirm"
+                android:text="@string/btn_confirm"
                 android:id="@+id/btn_valider_change"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -497,13 +497,11 @@
                 style="@style/GrosBouton"
                 android:layout_width="335px"
                 android:layout_height="wrap_content"
-                android:text="Change picture"
+                android:text="@string/btn_changePic"
                 android:id="@+id/btn_edit_picture"
                 android:layout_below="@+id/btn_valider_change"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
-
-
 
 
         </RelativeLayout>

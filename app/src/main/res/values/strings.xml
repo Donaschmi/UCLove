@@ -59,5 +59,27 @@
     <string name="texte_random">Random search</string>
     <string name="hint_value">value</string>
 
+    <!-- Textes Chat -->
+    <string name="titre_chat">Chat</string>
+    <string name="btn_send">Send</string>
+
+    <!-- Textes dispo -->
+    <string name="titre_dispo">Disponibilities</string>
+    <string name="btn_addDispo">Add disponibility</string>
+    <string name="check_dispo">Matched/Unmatched</string>
+
+    <!--Textes edit-->
+    <string name="edit_name">Name</string>
+    <string name="edit_gender">Gender</string>
+    <string name="edit_age">Age</string>
+    <string name="edit_hair">Hairs</string>
+    <string name="edit_eyes">Eyes</string>
+    <string name="edit_loc">Location</string>
+    <string name="edit_ori">Inclinaiton</string>
+    <string name="edit_pic">Picture</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_changePic">Change picture</string>
+
+
 
 </resources>

@@ -21,7 +21,7 @@
             style="@style/Titre"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Chat" />
+            android:text="@string/titre_chat" />
 
     </LinearLayout>
 
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="Send" />
+            android:text="@string/btn_send" />
 
     </LinearLayout>
 </LinearLayout>
