@@ -58,8 +58,6 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
                 j.putExtra("username", username);
                 startActivity(j);
                 break;
-            case R.id.button_Chg_Picture:
-                imageView.setImageResource(R.mipmap.ajout);
         }
     }
 
@@ -76,8 +74,7 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         imageView = (ImageView) findViewById(R.id.img_profile);
         imageView.setOnClickListener(this);
 
-        changePicture = (Button) findViewById(R.id.button_Chg_Picture);
-        changePicture.setOnClickListener(this);
+
     }
 
 

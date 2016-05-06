@@ -552,56 +552,63 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_inclination"
-            android:id="@+id/profile_picture">
-            <Button
-                style="@style/BoutonCarre"
-                android:layout_width="wrap_content"
-                android:layout_height="48px"
-                android:id="@+id/button_Chg_Picture"
-                android:layout_toLeftOf="@+id/textView_picture"/>
+            android:id="@+id/profile_picture"
+            android:layout_alignParentLeft="true"
+
+
+            >
+
             <TextView
                 style="@style/SimpleTexte"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_picture"
                 android:text="Picture"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:layout_toLeftOf="@+id/btn_edit"
                 />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_profile"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_toLeftOf="@+id/btn_edit"
+                android:layout_below="@id/textView_picture"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"/>
 
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="325px"
+                android:layout_height="wrap_content"
+                android:text="Edit profile"
+                android:id="@+id/btn_edit"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload picture"
+                android:id="@+id/btn_upload"
+                android:layout_below="@+id/btn_edit"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+
 
         </RelativeLayout>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/img_profile"
-            android:src="@mipmap/ic_launcher"
-            android:adjustViewBounds="true"
-            android:layout_below="@id/profile_picture"
-            android:layout_centerHorizontal="true"
-
-            />
-
-        <Button
-            style="@style/GrosBouton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit profile"
-            android:id="@+id/btn_edit"
-            android:layout_alignBottom="@+id/img_profile"
-            android:layout_toRightOf="@+id/img_profile"
-            android:layout_toEndOf="@+id/img_profile"
-            android:layout_marginLeft="52dp"
-            android:layout_marginStart="52dp" />
 
 
         <View
@@ -609,6 +616,7 @@
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:background="@android:color/darker_gray"/>
+
     </RelativeLayout>
 
 
