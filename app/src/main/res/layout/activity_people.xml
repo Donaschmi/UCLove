@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="User"
+                android:text="@string/username"
                 android:id="@+id/user_login" />
 
             <ImageButton
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/img_user"
                 android:layout_marginLeft="20dp"
-                android:text="Genre" />
+                android:text="@string/genre" />
 
             <TextView
                 android:id="@+id/user_hair"
@@ -172,7 +172,7 @@
                 android:layout_below="@+id/user_gender"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Hair" />
+                android:text="@string/hair" />
             <TextView
                 android:id="@+id/user_location"
                 style="@style/SimpleTexte"
@@ -181,7 +181,7 @@
                 android:layout_below="@+id/user_hair"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Location" />
+                android:text="@string/location" />
 
             <TextView
                 style="@style/SimpleTexte"
@@ -191,7 +191,7 @@
                 android:layout_below="@id/img_user"
                 android:id="@+id/user_age"
                 android:layout_marginRight="20dp"
-                android:text="Age" />
+                android:text="@string/age" />
 
             <TextView
                 style="@style/SimpleTexte"
@@ -202,7 +202,7 @@
                 android:id="@+id/user_eyes"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Eyes" />
+                android:text="@string/eyes" />
             <TextView
                 style="@style/SimpleTexte"
                 android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
                 android:id="@+id/user_inclination"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Inclination" />
+                android:text="@string/inclinaison" />
 
 
         </RelativeLayout>

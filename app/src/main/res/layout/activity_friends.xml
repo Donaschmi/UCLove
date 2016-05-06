@@ -30,7 +30,7 @@
         style="@style/Titre"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="Friends"
+        android:text="@string/title_friend"
         android:background="@android:color/transparent"/>/>
 
     </RelativeLayout>
@@ -39,10 +39,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Show Favorites"
+        android:text="@string/btn_Favs"
         android:id="@+id/show_fav"
         android:textColor="@color/darkAmbre"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:checked="false" />
 
     <ListView
         android:layout_width="match_parent"

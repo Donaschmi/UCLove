@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_menu_dispo"
                 android:layout_toRightOf="@+id/img_menu_dispo"
-                android:text="Disponibilities"
+                android:text="@string/texte_dispo"
                 style="@style/GrosBouton"
                 android:gravity="bottom"
                 android:background="@android:color/transparent"/>

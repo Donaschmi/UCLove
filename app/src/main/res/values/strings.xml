@@ -11,6 +11,8 @@
     <string name="title_activity_profil">Your profil</string>
     <string name="title_activity_profil_ami">Friend\'s profile</string>
     <string name="title_activity_edit_profil">Edit my profile</string>
+    <string name="title_request">Requests</string>
+    <string name="title_friend">Friends</string>
 
     <!-- Textes Connexion - Inscription -->
     <string name="texte_mdp">Password : </string>
@@ -36,8 +38,7 @@
     <string name="texte_people">People</string>
     <string name="texte_friends">Friends</string>
     <string name="texte_requests">Requests</string>
-    <string name="texte_chat">Chat</string>
-    <string name="texte_meet">Meet</string>
+    <string name="texte_dispo">Disponibilities</string>
 
     <!-- Textes Preferences -->
 
@@ -58,6 +59,13 @@
     <string name="texte_filtre2">for</string>
     <string name="texte_random">Random search</string>
     <string name="hint_value">value</string>
+    <string name="username">User</string>
+    <string name="genre">Gender</string>
+    <string name="age">Age</string>
+    <string name="location">Location</string>
+    <string name="inclinaison">Inclinaison</string>
+    <string name="eyes">Eyes</string>
+    <string name="hair">Hairs</string>
 
     <!-- Textes Chat -->
     <string name="titre_chat">Chat</string>
@@ -79,6 +87,12 @@
     <string name="edit_pic">Picture</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_changePic">Change picture</string>
+
+    <!--Textes request-->
+    <string name="btn_InOut">Sent/Received</string>
+
+    <!--Textes friends-->
+    <string name="btn_Favs">Show only favorites</string>
 
 
 
