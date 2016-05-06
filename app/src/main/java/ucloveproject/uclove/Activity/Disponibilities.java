@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
@@ -30,6 +31,7 @@ public class Disponibilities extends MyActivity implements View.OnClickListener 
 
     private CheckBox btnFav = null;
     private String username = null;
+    private ImageButton back;
     private Button add_dispo = null;
     private ListView listview = null;
     private ArrayList<String> list;
@@ -74,16 +76,19 @@ public class Disponibilities extends MyActivity implements View.OnClickListener 
 
         add_dispo = (Button) findViewById(R.id.add_dispo);
         add_dispo.setOnClickListener(this);
+
+        back = (ImageButton) findViewById(R.id.btn_dispo_back);
+        back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         // Is the view now checked?
-        boolean checked = ((CheckBox) v).isChecked();
 
         // Check which checkbox was clicked
         switch (v.getId()) {
             case R.id.btn_unmatched:
+                boolean checked = ((CheckBox) v).isChecked();
                 if (checked) {
                     DatabaseHandler db = new DatabaseHandler(this);
                     User current = db.getUser(username);
@@ -141,10 +146,14 @@ public class Disponibilities extends MyActivity implements View.OnClickListener 
                 Intent i = new Intent(this, Menu.class);
                 i.putExtra("username", username);
                 startActivity(i);
+
+            case R.id.btn_dispo_back:
+                Intent j = new Intent(this, Menu.class);
+                j.putExtra("username", username);
+                startActivity(j);
+                break;
         }
     }
-
-
 
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
