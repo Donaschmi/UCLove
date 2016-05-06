@@ -7,6 +7,7 @@ import android.view.View;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
@@ -21,7 +22,7 @@ public class Preference extends MyActivity implements View.OnClickListener{
     private RadioButton btnFrench = null;
     private RadioButton btnEnglish = null;
     private Button about = null;
-    private Button btnBack;
+    private ImageButton btnBack;
     private String username = null;
 
     @Override
@@ -42,7 +43,7 @@ public class Preference extends MyActivity implements View.OnClickListener{
         btnFrench.setOnClickListener(this);
         btnEnglish = (RadioButton) findViewById(R.id.radio_french);
         btnEnglish.setOnClickListener(this);
-        btnBack=(Button) findViewById(R.id.btn_pref_back);
+        btnBack=(ImageButton) findViewById(R.id.btn_pref_back);
         btnBack.setOnClickListener(this);
         about = (Button) findViewById(R.id.btn_about);
         about.setOnClickListener(this);
