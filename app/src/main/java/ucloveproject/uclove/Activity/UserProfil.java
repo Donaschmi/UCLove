@@ -26,6 +26,7 @@ import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
 import ucloveproject.uclove.DB.Photo;
@@ -153,7 +154,8 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
             TextView orientation = (TextView) findViewById(R.id.inclination);
             orientation.setText(current.getOrientation());
             ImageView pic = (ImageView) findViewById(R.id.img_profile);
-            if (db.getPhotoByUserId(current.getId()).get(0).getImage() != null) {
+            ArrayList<Photo> pics = db.getPhotoByUserId(current.getId());
+            if (pics.size()!=0) {
                 pic.setImageBitmap(db.getPhotoByUserId(current.getId()).get(0).getImage());
             }
         }
