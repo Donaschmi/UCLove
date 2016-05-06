@@ -30,7 +30,7 @@
         style="@style/Titre"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="@string/title_friend"
+        android:text="@string/title_activity_friend"
         android:background="@android:color/transparent"/>/>
 
     </RelativeLayout>

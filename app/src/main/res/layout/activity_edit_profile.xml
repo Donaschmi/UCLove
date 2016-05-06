@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:padding="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/title_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+
+            <TextView
+                android:id="@+id/textView_title_profile"
+                style="@style/Titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/title_activity_edit_profil" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_register"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sepe"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_nom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sepe"
+                android:padding="@dimen/paddingLayout">
+
+                <EditText
+                    android:id="@+id/nom_field"
+                    style="@style/ChampsUneLigne"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/edit_name"
+                    android:inputType="textVisiblePassword|textNoSuggestions" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_nom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_nom">
+
+                <TextView
+                    android:id="@+id/textView_nom"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_name"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_nom"
+
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sep"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep"
+                android:padding="@dimen/paddingLayout">
+
+                <Spinner
+                    android:id="@+id/spinner_gender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_gender">
+
+                <TextView
+                    android:id="@+id/textView_gender"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_gender"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_gender"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sep1"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_age"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep1"
+                android:padding="@dimen/paddingLayout">
+
+                <EditText
+                    android:id="@+id/age_field"
+                    style="@style/ChampsUneLigne"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/hint_age"
+                    android:inputType="textVisiblePassword|textNoSuggestions" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_age"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_age">
+
+                <TextView
+                    android:id="@+id/textView_age"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_age"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_hair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_age"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sep2"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_hair"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep2"
+                android:padding="@dimen/paddingLayout">
+
+                <Spinner
+                    android:id="@+id/spinner_hair"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_hair"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_hair">
+
+                <TextView
+                    android:id="@+id/textView_hair"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_hair"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_eyes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_hair"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sep3"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_eyes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep3"
+                android:padding="@dimen/paddingLayout">
+
+                <Spinner
+                    android:id="@+id/spinner_eye"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_eyes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_eyes">
+
+                <TextView
+                    android:id="@+id/textView_eyes"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_eyes"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_eyes"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sep4"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep4"
+                android:padding="@dimen/paddingLayout">
+
+                <EditText
+                    android:id="@+id/edit_location"
+                    style="@style/ChampsUneLigne"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/hint_location"
+                    android:inputType="textVisiblePassword|textNoSuggestions" />
+
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_location">
+
+                <TextView
+                    android:id="@+id/textView_location"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_loc"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_inclination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_location"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sep5"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_inclination"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sep5"
+                android:padding="@dimen/paddingLayout">
+
+                <Spinner
+                    android:id="@+id/spinner_inclinaison"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_inclination"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_inclination">
+
+                <TextView
+                    android:id="@+id/textView_inclination"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/edit_ori"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_inclination"
+            android:id="@+id/edit_profile_picture"
+            android:layout_alignParentLeft="true"
+
+
+            >
+
+            <TextView
+                style="@style/SimpleTexte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_textView_picture"
+                android:text="@string/edit_pic"
+                android:layout_toLeftOf="@+id/btn_valider_change"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_img_profile"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_toLeftOf="@+id/btn_valider_change"
+                android:layout_below="@id/edit_textView_picture"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="335px"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_confirm"
+                android:id="@+id/btn_valider_change"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="335px"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_changePic"
+                android:id="@+id/btn_edit_picture"
+                android:layout_below="@+id/btn_valider_change"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                style="@style/SimpleTexte"
+                android:id="@+id/TextView_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_edit_picture"
+                android:layout_alignStart="@+id/btn_edit_picture"
+                android:layout_alignLeft="@+id/btn_edit_picture"
+                android:text="@string/set_private"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox_private"
+                android:paddingTop="0dp"
+                android:paddingLeft="0dp"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/btn_edit_picture"
+                android:layout_toRightOf="@+id/TextView_private"
+                android:layout_toEndOf="@+id/TextView_private" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_below="@+id/title_profile"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/darker_gray"/>
+
+    </RelativeLayout>
+
+
+</ScrollView>

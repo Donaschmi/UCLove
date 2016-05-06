@@ -11,8 +11,8 @@
     <string name="title_activity_profil">Your profil</string>
     <string name="title_activity_profil_ami">Friend\'s profile</string>
     <string name="title_activity_edit_profil">Edit my profile</string>
-    <string name="title_request">Requests</string>
-    <string name="title_friend">Friends</string>
+    <string name="title_activity_request">Requests</string>
+    <string name="title_activity_friend">Friends</string>
 
     <!-- Textes Connexion - Inscription -->
     <string name="texte_mdp">Password : </string>
@@ -87,6 +87,7 @@
     <string name="edit_pic">Picture</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_changePic">Change picture</string>
+    <string name="set_private">Private mode</string>
 
     <!--Textes request-->
     <string name="btn_InOut">Sent/Received</string>

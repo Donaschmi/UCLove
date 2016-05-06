@@ -31,7 +31,7 @@
             android:id="@+id/textView_title_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_request"
+            android:text="@string/title_activity_request"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"/>
