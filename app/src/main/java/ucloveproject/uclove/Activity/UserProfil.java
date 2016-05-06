@@ -152,6 +152,10 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
             ville.setText(current.getVille());
             TextView orientation = (TextView) findViewById(R.id.inclination);
             orientation.setText(current.getOrientation());
+            ImageView pic = (ImageView) findViewById(R.id.img_profile);
+            if (db.getPhotoByUserId(current.getId()).get(0).getImage() != null) {
+                pic.setImageBitmap(db.getPhotoByUserId(current.getId()).get(0).getImage());
+            }
         }
     }
 }
