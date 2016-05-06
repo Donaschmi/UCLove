@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import ucloveproject.uclove.R;
 public class FriendRequests extends MyActivity implements View.OnClickListener {
 
     private CheckBox btnRequests = null;
+    private ImageButton back;
     private String username = null;
     private ListView listview = null;
     private ArrayList<String> list;
@@ -81,12 +83,15 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
     private void addListener() {
         btnRequests = (CheckBox) findViewById(R.id.show_in_out);
         btnRequests.setOnClickListener(this);
+
+        back = (ImageButton) findViewById(R.id.btn_back);
+        back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         // Is the view now checked?
-        final boolean checked = ((CheckBox) v).isChecked();
+        boolean checked = btnRequests.isChecked();
 
         // Check which checkbox was clicked
         switch (v.getId()) {
@@ -140,7 +145,7 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                     ArrayList<Requete> listRequete = db.getRequetesIn(current.getId());
                     list = new ArrayList<String>();
                     Iterator iter = listRequete.iterator();
-                    while (iter.hasNext()){
+                    while (iter.hasNext()) {
                         Requete temp = (Requete) iter.next();
                         User requested = db.getUserById(temp.getExpediteur());
                         list.add(requested.getLogin());
@@ -150,7 +155,7 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
                             android.R.layout.simple_list_item_1, list);
                     listview.setAdapter(adapter);
 
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                         @Override
                         public void onItemClick(AdapterView<?> parent, final View view,
@@ -164,11 +169,16 @@ public class FriendRequests extends MyActivity implements View.OnClickListener {
 
                     });
 
-                    String aboutUs="Reçues";
+                    String aboutUs = "Reçues";
                     super.printToast(aboutUs);
-                    break;
-
                 }
+                break;
+            case R.id.btn_back:
+                Intent j = new Intent(this, Menu.class);
+                j.putExtra("username", username);
+                startActivity(j);
+                break;
+
         }
     }
 
