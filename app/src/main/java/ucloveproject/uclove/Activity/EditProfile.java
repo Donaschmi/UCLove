@@ -39,6 +39,7 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
     private Spinner spinnerIncli;
     private EditText age;
     private EditText ville;
+    private EditText nom;
     private User current;
     //TODO : mettre les infos actuelles en selectionne de base
     @Override
@@ -72,6 +73,10 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
                 ville = (EditText) findViewById(R.id.edit_location) ;
                 if(!ville.getText().toString().equals(null)) {
                     current.setVille(ville.getText().toString());
+                }
+                nom = (EditText) findViewById(R.id.nom_field) ;
+                if(!nom.getText().toString().equals(null)) {
+                    current.setNom(nom.getText().toString());
                 }
                 db.modifierUser(current);
                 Intent i = new Intent(this, UserProfil.class);
@@ -165,5 +170,7 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         age.setText(String.valueOf(current.getAge()));
         ville = (EditText) findViewById(R.id.edit_location);
         ville.setText(current.getVille());
+        nom = (EditText) findViewById(R.id.nom_field);
+        nom.setText(current.getNom());
     }
 }

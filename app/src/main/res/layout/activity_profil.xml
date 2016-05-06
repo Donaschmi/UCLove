@@ -33,12 +33,136 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_username"
+            android:layout_below="@+id/title_profile"
+            android:padding="5dp"
+
+            >
+
+
+            <View
+                android:id="@+id/view_sepe"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sepe"
+                android:id="@+id/right_profile_username"
+                android:padding="@dimen/paddingLayout"
+                android:longClickable="true">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/username"
+                    android:text="N/A" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_username"
+                android:id="@+id/left_profile_username"
+                >
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_username"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="username"
+                    android:layout_centerVertical="true"/>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_nom"
+            android:layout_below="@+id/profile_username"
+            android:padding="5dp"
+
+            >
+
+
+            <View
+                android:id="@+id/view_seper"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_seper"
+                android:id="@+id/right_profile_nom"
+                android:padding="@dimen/paddingLayout"
+                android:longClickable="true">
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/nom"
+                    android:text="N/A" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_nom"
+                android:id="@+id/left_profile_nom"
+                >
+
+                <TextView
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_nom"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Nom"
+                    android:layout_centerVertical="true"/>
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profile_gender"
-            android:layout_below="@+id/title_profile"
+            android:layout_below="@+id/profile_nom"
             android:padding="5dp"
 
             >
@@ -89,11 +213,13 @@
                     android:layout_centerVertical="true"/>
 
 
-
-
             </RelativeLayout>
 
+            <View
 
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
 
         </RelativeLayout>
 

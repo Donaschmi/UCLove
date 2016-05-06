@@ -5,10 +5,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 //import com.google.android.gms.appindexing.Action;
@@ -29,6 +31,8 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     private Button edit;
     private ImageButton back;
     private String username;
+    private ImageView imageView;
+    private Button changePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
                 j.putExtra("username", username);
                 startActivity(j);
                 break;
+            case R.id.button_Chg_Picture:
+                imageView.setImageResource(R.mipmap.ajout);
         }
     }
 
@@ -66,6 +72,12 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
 
         back = (ImageButton) findViewById(R.id.btn_back);
         back.setOnClickListener(this);
+
+        imageView = (ImageView) findViewById(R.id.img_profile);
+        imageView.setOnClickListener(this);
+
+        changePicture = (Button) findViewById(R.id.button_Chg_Picture);
+        changePicture.setOnClickListener(this);
     }
 
 
@@ -76,6 +88,10 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         DatabaseHandler db = new DatabaseHandler(this);
         User current = db.getUser(username);
         if (current != null) {
+            TextView usernam = (TextView) findViewById(R.id.username);
+            usernam.setText(username);
+            TextView nom = (TextView) findViewById(R.id.nom);
+            nom.setText(current.getNom());
             TextView genre = (TextView) findViewById(R.id.gender);
             genre.setText(current.getGenre());
             TextView age = (TextView) findViewById(R.id.age);

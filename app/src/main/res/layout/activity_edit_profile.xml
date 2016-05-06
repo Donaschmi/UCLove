@@ -28,10 +28,70 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/profile_gender"
+            android:id="@+id/profile_nom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_register"
+            android:padding="5dp">
+
+
+            <View
+                android:id="@+id/view_sepe"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/right_profile_nom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_sepe"
+                android:padding="@dimen/paddingLayout">
+
+                <EditText
+                    android:id="@+id/nom_field"
+                    style="@style/ChampsUneLigne"
+                    android:gravity="center_horizontal"
+                    android:hint="Nom"
+                    android:inputType="textVisiblePassword|textNoSuggestions" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/left_profile_nom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/right_profile_nom">
+
+                <TextView
+                    android:id="@+id/textView_nom"
+                    style="@style/SimpleTexte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Nom"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_nom"
 
             android:padding="5dp">
 
@@ -82,9 +142,8 @@
             <View
 
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
+                android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
-
 
         </RelativeLayout>
 
