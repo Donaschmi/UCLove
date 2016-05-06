@@ -37,7 +37,6 @@
                 android:id="@+id/img_menu_profile"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -64,7 +63,6 @@
                 android:id="@+id/img_menu_preferences"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -91,7 +89,6 @@
                 android:id="@+id/img_menu_people"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -118,7 +115,6 @@
                 android:id="@+id/img_menu_friends"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -145,7 +141,6 @@
                 android:id="@+id/img_menu_requests"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -172,7 +167,6 @@
                 android:id="@+id/img_menu_chat"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -198,7 +192,6 @@
                 android:id="@+id/img_menu_meet"
                 android:src="@mipmap/ic_launcher"
                 android:adjustViewBounds="true"
-                android:layout_below="@id/profile_picture"
                 />
             <Button
                 android:layout_width="match_parent"

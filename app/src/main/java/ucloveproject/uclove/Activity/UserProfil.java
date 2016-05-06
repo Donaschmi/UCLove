@@ -4,9 +4,14 @@ package ucloveproject.uclove.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,6 +21,11 @@ import android.widget.TextView;
 //import com.google.android.gms.appindexing.Action;
 //import com.google.android.gms.appindexing.AppIndex;
 //import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
 import ucloveproject.uclove.DB.User;
@@ -32,7 +42,11 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     private ImageButton back;
     private String username;
     private ImageView imageView;
-    private Button changePicture;
+    private Button changePic;
+    private Bitmap yourSelectedImage;
+
+    //YOU CAN EDIT THIS TO WHATEVER YOU WANT
+    private static final int SELECT_PICTURE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +72,38 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
                 j.putExtra("username", username);
                 startActivity(j);
                 break;
+            case R.id.btn_upload:
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,
+                        "Select Picture"), SELECT_PICTURE);
+
         }
+    }
+
+    //UPDATED
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                try {
+                    imageView.setImageBitmap(getBitmapFromUri(selectedImageUri));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+        return image;
     }
 
     /**
@@ -74,7 +119,8 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
         imageView = (ImageView) findViewById(R.id.img_profile);
         imageView.setOnClickListener(this);
 
-
+        changePic = (Button) findViewById(R.id.btn_upload);
+        changePic.setOnClickListener(this);
     }
 
 
@@ -103,5 +149,4 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
             orientation.setText(current.getOrientation());
         }
     }
-
 }

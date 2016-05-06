@@ -450,55 +450,71 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/profile_picture"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_inclination">
+            android:layout_below="@+id/profile_inclination"
+            android:id="@+id/edit_profile_picture"
+            android:layout_alignParentLeft="true"
 
-            <Button
-                android:id="@+id/button_Chg_Picture"
-                style="@style/BoutonCarre"
-                android:layout_width="wrap_content"
-                android:layout_height="48px"
-                android:layout_toLeftOf="@+id/textView_picture" />
+
+            >
 
             <TextView
-                android:id="@+id/textView_picture"
                 style="@style/SimpleTexte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_textView_picture"
+                android:text="Picture"
+                android:layout_toLeftOf="@+id/btn_valider_change"
+                />
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:id="@+id/edit_img_profile"
+                android:src="@mipmap/ic_launcher"
+                android:adjustViewBounds="true"
+                android:layout_toLeftOf="@+id/btn_valider_change"
+                android:layout_below="@id/edit_textView_picture"
                 android:layout_centerVertical="true"
-                android:text="Picture" />
-
+                android:layout_alignParentLeft="true" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@android:color/darker_gray"/>
+
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="335px"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:id="@+id/btn_valider_change"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                style="@style/GrosBouton"
+                android:layout_width="335px"
+                android:layout_height="wrap_content"
+                android:text="Change picture"
+                android:id="@+id/btn_edit_picture"
+                android:layout_below="@+id/btn_valider_change"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
 
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/img_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/profile_picture"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="true"
-            android:src="@mipmap/ic_launcher"
 
-            />
+        <View
+            android:layout_below="@+id/title_profile"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/darker_gray"/>
 
-        <Button
-            style="@style/GrosBouton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm"
-            android:id="@+id/btn_valider_change"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 

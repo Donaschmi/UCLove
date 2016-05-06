@@ -14,7 +14,7 @@ public class Photo {
     private Bitmap image;
 
     public Photo(int id, int idUser, byte[] image){
-        this.id = id;
+        this.id = id; //auto increment on 0
         this.idUser = idUser;
         this.image = BitmapFactory.decodeByteArray(image, 0, image.length);
     }
