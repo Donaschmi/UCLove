@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -318,7 +319,9 @@ public class User {
 
 
     public void addPhoto(Bitmap photo, DatabaseHandler db){
-        byte[] image = null;//BitmapFactory.decodeByteArray(photo, 0, image.length);//Non fonctionnel pour le moment, faire des recherches sur les images
+        //ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //photo.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        byte[] image = null;//stream.toByteArray();//BitmapFactory.decodeByteArray(photo, 0, image.length);//Non fonctionnel pour le moment, faire des recherches sur les images
         Photo toAdd = new Photo(0, this.getId(), image);
         db.ajouterPhoto(toAdd);
         this.photo.add(toAdd);

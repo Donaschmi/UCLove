@@ -19,6 +19,12 @@ public class Photo {
         this.image = BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
+    public Photo(int id, int idUser, Bitmap image){
+        this.id = id; //auto increment on 0
+        this.idUser = idUser;
+        this.image = image;
+    }
+
     public int getId(){
         return this.id;
     }

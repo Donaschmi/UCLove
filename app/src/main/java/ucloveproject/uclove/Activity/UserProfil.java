@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.Photo;
 import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
@@ -43,10 +44,10 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
     private String username;
     private ImageView imageView;
     private Button changePic;
-    private Bitmap yourSelectedImage;
+
 
     //YOU CAN EDIT THIS TO WHATEVER YOU WANT
-    private static final int SELECT_PICTURE = 2;
+    private static final int SELECT_PICTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,10 @@ public class UserProfil extends MyActivity implements View.OnClickListener {
                 Uri selectedImageUri = data.getData();
                 try {
                     imageView.setImageBitmap(getBitmapFromUri(selectedImageUri));
+                    DatabaseHandler db = new DatabaseHandler(this);
+                    User current = db.getUser(username);
+                    Photo picture = new Photo(0, current.getId(), getBitmapFromUri(selectedImageUri));
+                    db.ajouterPhoto(picture);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
