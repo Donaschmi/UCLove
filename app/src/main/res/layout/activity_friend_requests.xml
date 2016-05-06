@@ -8,14 +8,35 @@
     android:orientation="vertical">
 
 
-
-
-    <TextView
-        android:id="@+id/textView_title_profile"
-        style="@style/Titre"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:text="Requests" />
+        android:layout_height="wrap_content"
+        android:id="@+id/title_request"
+        android:paddingBottom="30px"
+        android:paddingTop="30px">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@mipmap/back"
+            android:background="@android:color/transparent"
+            />
+
+
+        <TextView
+            style="@style/Titre"
+            android:id="@+id/textView_title_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"/>
+
+    </RelativeLayout>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -43,6 +64,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></LinearLayout>
+    <View
+        android:layout_below="@+id/title_request"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@android:color/darker_gray"/>
 
 
 </LinearLayout>
