@@ -94,6 +94,19 @@
     <!--Textes friends-->
     <string name="btn_Favs">Show only favorites</string>
 
+    <!-- Textes profil-->
+    <string name="titre_profil">Your profile</string>
+    <string name="login">Login</string>
+    <string name="Name">Name</string>
+    <string name="edit_prof">Edit profile</string>
+    <string name="upload_pic">Upload picture</string>
+
+    <!-- Textes friendMenu-->
+    <string name="add_fav">Add to favorite</string>
+    <string name="chat">Chat</string>
+    <string name="rdv">Send rendez-vous</string>
+    <string name="delete_f">Delete this friend</string>
+
 
 
 </resources>

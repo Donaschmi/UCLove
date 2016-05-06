@@ -28,7 +28,7 @@
                 android:id="@+id/textView_title_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your profile"
+                android:text="@string/titre_profil"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:background="@android:color/transparent"/>
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_username"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Login"
+                    android:text="@string/login"
                     android:layout_centerVertical="true"/>
 
 
@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_nom"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Nom"
+                    android:text="@string/Name"
                     android:layout_centerVertical="true"/>
 
 
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_gender"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Gender"
+                    android:text="@string/genre"
                     android:layout_centerVertical="true"/>
 
 
@@ -274,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_age"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Age"
+                    android:text="@string/age"
                     android:layout_centerVertical="true"/>
 
 
@@ -339,7 +339,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_hair"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Hair"
+                    android:text="@string/hair"
                     android:layout_centerVertical="true"/>
 
 
@@ -405,7 +405,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_eyes"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Eyes"
+                    android:text="@string/eyes"
                     android:layout_centerVertical="true"/>
 
 
@@ -471,7 +471,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_location"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Location"
+                    android:text="@string/location"
                     android:layout_centerVertical="true"/>
 
 
@@ -537,7 +537,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_inclination"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Inclination"
+                    android:text="@string/inclinaison"
                     android:layout_centerVertical="true"/>
 
 
@@ -568,7 +568,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_picture"
-                android:text="Picture"
+                android:text="@string/edit_pic"
                 android:layout_toLeftOf="@+id/btn_edit"
                 />
 
@@ -592,7 +592,7 @@
                 style="@style/GrosBouton"
                 android:layout_width="325px"
                 android:layout_height="wrap_content"
-                android:text="Edit profile"
+                android:text="@string/edit_prof"
                 android:id="@+id/btn_edit"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -601,7 +601,7 @@
                 style="@style/GrosBouton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload picture"
+                android:text="@string/upload_pic"
                 android:id="@+id/btn_upload"
                 android:layout_below="@+id/btn_edit"
                 android:layout_alignParentRight="true"
