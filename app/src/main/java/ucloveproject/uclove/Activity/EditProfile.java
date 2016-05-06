@@ -95,7 +95,7 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+        //
     }
 
     /**

@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_username"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="username"
+                    android:text="Login"
                     android:layout_centerVertical="true"/>
 
 

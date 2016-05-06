@@ -161,29 +161,6 @@ public class User {
         //TODO : Supprimer la requete correspondante
     }
 
-    /**
-     * Update les infos d'un utilisateur
-     *
-     * @param infos contient MDP, nom, genre, age, styleCapillaire, couleurYeux, villeResidence,
-     *              orientationSexuelle, dans cette ordre
-     */
-    public void setInfos(String[] infos, DatabaseHandler db){
-        if(infos.length != 8){
-            //Un problème, le gérer
-        }
-        else{
-            this.setMdp(infos[0]);
-            this.setNom(infos[1]);
-            this.setGenre(infos[2]);
-            this.setAge(Integer.parseInt(infos[3]));
-            this.setCheveux(infos[4]);
-            this.setYeux(infos[5]);
-            this.setVille(infos[6]);
-            this.setOrientation(infos[7]);
-            db.modifierUser(this);
-        }
-    }
-
     public boolean connect(String mdp){
         if(mdp.equals(this.getMdp())){
             return true;
@@ -331,15 +308,12 @@ public class User {
     /**
      * Update les infos d'un utilisateur
      *
-     * @param pref contient age, styleCapillaire, couleurYeux dans cette ordre
+     * @param prefAge, prefCh, prefY
      */
-    public void setPreference(String[] pref, DatabaseHandler db){
-        if(pref.length != 3){
-            //Un problème, le gérer
-        }
-        else{
-            this.preference=pref;
-        }
+    public void setPreference(String prefAge, String prefCh, String prefY){
+        this.preference[0] = prefAge;
+        this.preference[1] = prefCh;
+        this.preference[2] = prefY;
     }
 
 

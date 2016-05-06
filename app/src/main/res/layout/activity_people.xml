@@ -90,15 +90,6 @@
 
         </RelativeLayout>
 
-        <ImageButton
-            android:id="@+id/button_filtre"
-            style="@style/BoutonCarre"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_below="@id/filtre"
-            android:background="@android:color/transparent"
-            android:src="@mipmap/reload" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -106,18 +97,18 @@
             android:background="@android:color/darker_gray" />
 
         <Button
-            android:id="@+id/button_random"
+            android:id="@+id/button_search"
             style="@style/GrosBouton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/filtre"
-            android:text="@string/texte_random" />
+            android:text="Search" />
 
         <RelativeLayout
             android:id="@+id/ajout_refus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_random"
+            android:layout_below="@+id/button_search"
             android:layout_marginTop="20dp">
 
             <TextView
@@ -159,22 +150,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/img_user"
-                android:src="@mipmap/arrow1"
-                android:background="@android:color/transparent"
-                android:id="@+id/img_prev"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/img_user"
-                android:src="@mipmap/arrow2"
-                android:id="@+id/img_next"
-                android:background="@android:color/transparent"/>
 
             <TextView
                 android:id="@+id/user_gender"
