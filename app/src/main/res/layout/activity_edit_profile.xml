@@ -503,6 +503,29 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
+            <TextView
+                android:layout_marginTop="5dp"
+                style="@style/SimpleTexte"
+                android:id="@+id/TextView_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_edit_picture"
+                android:layout_alignStart="@+id/btn_edit_picture"
+                android:layout_alignLeft="@+id/btn_edit_picture"
+                android:text="@string/set_private"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox_private"
+                android:paddingTop="0dp"
+                android:paddingLeft="0dp"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/btn_edit_picture"
+                android:layout_toRightOf="@+id/TextView_private"
+                android:layout_toEndOf="@+id/TextView_private" />
+
 
         </RelativeLayout>
 
