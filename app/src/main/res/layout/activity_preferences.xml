@@ -18,20 +18,24 @@
             android:paddingBottom="30px"
             android:paddingTop="30px">
 
-            <Button
+            <ImageButton
                 style="@style/GrosBouton"
                 android:id="@+id/btn_pref_back"
                 android:layout_alignParentTop="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/backb"
+                android:background="@android:color/transparent"/>
             <TextView
                 android:id="@+id/textView_title_preferences"
                 style="@style/Titre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/texte_preferences" />
+                android:text="@string/texte_preferences"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         <RelativeLayout
