@@ -23,15 +23,19 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentTop="true"
-                android:src="@mipmap/backb" />
+                android:src="@mipmap/backb"
+                android:background="@android:color/transparent"/>
 
             <TextView
                 android:id="@+id/textView_title_people"
                 style="@style/Titre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/btn_back"
-                android:text="@string/title_activity_people" />
+                android:text="@string/title_activity_people"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
         </RelativeLayout>
 
