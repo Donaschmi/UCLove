@@ -17,8 +17,6 @@ public class Menu extends MyActivity implements View.OnClickListener {
     private Button btnPeople;
     private Button btnFriends;
     private Button btnRequests;
-    private Button btnChat;
-    private Button btnMeet;
     private String username;
 
     @Override
@@ -45,12 +43,6 @@ public class Menu extends MyActivity implements View.OnClickListener {
 
         btnRequests= (Button) findViewById(R.id.btn_menu_requests);
         btnRequests.setOnClickListener(this);
-
-        btnChat = (Button) findViewById(R.id.btn_menu_chat);
-        btnChat.setOnClickListener(this);
-
-        btnMeet= (Button) findViewById(R.id.btn_menu_meet);
-        btnMeet.setOnClickListener(this);
     }
 
     @Override
@@ -80,16 +72,6 @@ public class Menu extends MyActivity implements View.OnClickListener {
                 Intent m = new Intent(this, FriendRequests.class);
                 m.putExtra("username", username);
                 startActivity(m);
-                break;
-            case R.id.btn_menu_chat:
-                //Intent n = new Intent(this, Chat.class);
-                //n.putExtra("username", username);
-                //startActivity(n);
-                break;
-            case R.id.btn_menu_meet:
-                //Intent o = new Intent(this,Meet.class);
-                //o.putExtra("username", username);
-                //startActivity(o);
                 break;
         }
     }

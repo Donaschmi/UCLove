@@ -46,7 +46,7 @@
     <string name="language_english">English</string>
     <string name="language_french">Français</string>
 
-    <string name="about_us">UCLove is a project made by six students from the University of Louvain-la-Neuve.</string>
+    <string name="about_us">UCLove is a project made by five students from the University of Louvain-la-Neuve.</string>
 
     <string-array name="language_array">
         <item>English</item>

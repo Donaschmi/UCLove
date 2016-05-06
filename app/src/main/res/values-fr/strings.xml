@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UCLove</string>
+    <string name="about_us">UCLove est un projet fait par cinq étudiants de l\'université de Louvain-La-Neuve</string>
+    <string name="btn_SInscrire">S\'inscrire</string>
+    <string name="btn_seConnecter">Se\'connecter</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_eyes">Yeux</string>
+    <string name="hint_hair">Cheveux</string>
+    <string name="hint_inclination">Orientation</string>
+    <string name="hint_location">Lieu d\'habitation</string>
+    <string name="hint_login">Nom d\'utilisateur</string>
+    <string name="hint_mdp">Mot de Passe</string>
+    <string name="hint_value">Valeur</string>
+    <string name="language_english">English</string>
+    <string name="language_french">Français</string>
+    <string name="texte_PasDeCompte">Pas encore enregistré ?</string>
+    <string name="texte_about">À propos</string>
+    <string name="texte_chat">Chat</string>
+    <string name="texte_connexion">Je suis déjà enregistré !</string>
+    <string name="texte_description">Description</string>
+    <string name="texte_filtre1">Filtrer par </string>
+    <string name="texte_filtre2">pour</string>
+    <string name="texte_friends">Amis</string>
+    <string name="texte_inscription">S\'inscrire</string>
+    <string name="texte_language">Langue</string>
+    <string name="texte_login">Nom d\'utilisateur</string>
+    <string name="texte_mdp">Mot de Passe</string>
+    <string name="texte_meet">Rencontrer</string>
+    <string name="texte_people">Personnes</string>
+    <string name="texte_preferences">Préférences</string>
+    <string name="texte_profile">Profile</string>
+    <string name="texte_random">Recherche aléatoire</string>
+    <string name="texte_requests">Requêtes</string>
+    <string name="title_activity_accueil">Accueil</string>
+    <string name="title_activity_edit_profil">Modifier profile</string>
+    <string name="title_activity_inscription">S\'enregistrer</string>
+    <string name="title_activity_login">Connexion</string>
+    <string name="title_activity_menu_p">Menu</string>
+    <string name="title_activity_people">Personnes</string>
+    <string name="title_activity_profil">Votre profil</string>
+    <string name="title_activity_profil_ami">Profil de l\'ami</string>
+</resources>
