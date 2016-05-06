@@ -156,9 +156,9 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
         // Spinner pour Eyes
         spinnerIncli = (Spinner) findViewById(R.id.spinner_inclinaison);
         List<String> categoriesI = new ArrayList<String>();
-        categoriesI.add("Heterosexual");
-        categoriesI.add("Homosexual");
-        categoriesI.add("Bisexual");
+        categoriesI.add("Hetero");
+        categoriesI.add("Homo");
+        categoriesI.add("Bi");
         ArrayAdapter<String> dataAdapterI = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categoriesI);
         dataAdapterI.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         int spinnerIPosition = dataAdapterI.getPosition(current.getOrientation());

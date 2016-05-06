@@ -170,7 +170,7 @@ public class User {
 
     public boolean match(User toMatch){//Faire une sélection qui évite les requêtes déjà acceptées ou refusées
         switch (this.getOrientation()){//Prendre en compte l'orientation sexuelle
-            case "Heterosexual" :
+            case "Hetero" :
                 switch (this.getGenre()){
                     case "Women" :
                         if(!toMatch.getGenre().equals("Men")){
@@ -184,7 +184,7 @@ public class User {
                         break;
                 }
                 break;
-            case "Homosexual" :
+            case "Homo" :
                 switch (this.getGenre()){
                     case "Women" :
                         if(toMatch.getGenre().equals("Men")){
