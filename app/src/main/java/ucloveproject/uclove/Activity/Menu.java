@@ -8,6 +8,7 @@ import android.content.Intent;
 import ucloveproject.uclove.R;
 
 /**
+ * Classe permettant de rediriger vers les différentes activités
  * Created by Donatien on 02/05/2016.
  */
 public class Menu extends MyActivity implements View.OnClickListener {

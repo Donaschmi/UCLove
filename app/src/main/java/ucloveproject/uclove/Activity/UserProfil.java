@@ -35,7 +35,7 @@ import ucloveproject.uclove.R;
 
 
 /**
- * Classe User, cette activité permet de montrer le profil d'un utilisateur
+ * Classe UserProfil, cette activité permet de montrer le profil d'un utilisateur
  * Created by Donatien on 25/04/2016.
  */
 public class UserProfil extends MyActivity implements View.OnClickListener {

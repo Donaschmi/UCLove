@@ -13,6 +13,7 @@ import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
+ * classe Login permettant de de se connecter et dans le cas où l'utilisateur n'aurait pas de compte, en créer un
  * Created by Donatien on 30/04/2016.
  */
 public class Login extends MyActivity implements View.OnClickListener {

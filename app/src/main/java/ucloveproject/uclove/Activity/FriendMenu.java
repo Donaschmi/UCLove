@@ -13,6 +13,7 @@ import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
+ *
  * Created by Céline on 06-05-16.
  */
 public class FriendMenu extends MyActivity implements View.OnClickListener {

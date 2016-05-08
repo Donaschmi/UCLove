@@ -23,6 +23,7 @@ import ucloveproject.uclove.DB.User;
 import ucloveproject.uclove.R;
 
 /**
+ * Classe montrant les personne ayant ajouté le User
  * Created by Céline on 05-05-16.
  */
 public class Match extends MyActivity implements View.OnClickListener {
