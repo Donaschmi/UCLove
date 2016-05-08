@@ -38,12 +38,10 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
     private Spinner spinnerHair;
     private Spinner spinnerEyes;
     private Spinner spinnerIncli;
-    private CheckBox set_private;
     private EditText age;
     private EditText ville;
     private EditText nom;
     private User current;
-    //TODO : mettre les infos actuelles en selectionne de base
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,8 +104,6 @@ public class EditProfile extends MyActivity implements View.OnClickListener, Ada
     public void addListener() {
         confirm = (Button) findViewById(R.id.btn_valider_change);
         confirm.setOnClickListener(this);
-
-        set_private=(CheckBox) findViewById(R.id.checkbox_private);
 
     }
 
