@@ -68,9 +68,10 @@ public class ChatWith extends MyActivity implements View.OnClickListener{
                 EditText contenuMsg = (EditText) findViewById(R.id.msg);
                 String contenu = contenuMsg.getText().toString();
                 String date = DateFormat.getDateTimeInstance().format(new Date());
-                    Message toSend = new Message(0, contenu, this.user.getId(), this.correspondant.getId(), date);
-                    db.ajouterMessage(toSend);
-                    contenuMsg.setText("");
+                Message toSend = new Message(0, contenu, this.user.getId(), this.correspondant.getId(), date);
+                db.ajouterMessage(toSend);
+                buildList();
+                contenuMsg.setText("");
                 break;
             case R.id.btn_back:
                 Intent j = new Intent(this, FriendMenu.class);//On ne devrait pas revenir au menu
