@@ -22,6 +22,7 @@ public class FriendMenu extends MyActivity implements View.OnClickListener {
     private Button btnChat;
     private Button btnMeet;
     private Button btnDelete;
+    private Button back;
     private String friend;
     private String username;
     private User current;
@@ -57,6 +58,9 @@ public class FriendMenu extends MyActivity implements View.OnClickListener {
 
         btnMeet= (Button) findViewById(R.id.btn_rdv);
         btnMeet.setOnClickListener(this);
+
+        back = (Button) findViewById(R.id.btn_back);
+        back.setOnClickListener(this);
         }
 
     @Override
