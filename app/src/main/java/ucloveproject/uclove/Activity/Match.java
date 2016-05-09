@@ -197,5 +197,6 @@ public class Match extends MyActivity implements View.OnClickListener {
         orientation.setText("");
         oui.setVisibility(View.INVISIBLE);
         non.setVisibility(View.INVISIBLE);
+        Photo.setVisibility(View.INVISIBLE);
     }
 }
