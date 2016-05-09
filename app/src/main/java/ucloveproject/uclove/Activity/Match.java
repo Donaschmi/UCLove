@@ -1,6 +1,7 @@
 package ucloveproject.uclove.Activity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -164,6 +166,7 @@ public class Match extends MyActivity implements View.OnClickListener {
         TextView age = (TextView) findViewById(R.id.user_age);
         TextView yeux = (TextView)findViewById(R.id.user_eyes);
         TextView orientation = (TextView) findViewById(R.id.user_inclination);
+        ImageView Photo = (ImageView) findViewById(R.id.img_user);
         while (iter.hasNext()){
                 User temp = iter.next();
                 if (current.match(temp)) {
@@ -175,6 +178,11 @@ public class Match extends MyActivity implements View.OnClickListener {
                     age.setText("Age : " + temp.getAge());
                     yeux.setText("Eyes : " + temp.getYeux());
                     orientation.setText("Inclinaison : " + temp.getOrientation());
+                    ArrayList<ucloveproject.uclove.DB.Photo> pics = db.getPhotoByUserId(temp.getId());
+                    if (pics.size()!=0) {
+                        Photo.setImageBitmap(db.getPhotoByUserId(temp.getId()).get(0).getImage());
+                        printToast("dans le if !");
+                    }
                     return;
                 } else {
                     users.remove(temp);

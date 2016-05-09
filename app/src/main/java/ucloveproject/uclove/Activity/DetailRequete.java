@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import ucloveproject.uclove.DB.DatabaseHandler;
+import ucloveproject.uclove.DB.Photo;
 import ucloveproject.uclove.DB.Relation;
 import ucloveproject.uclove.DB.Requete;
 import ucloveproject.uclove.DB.User;
@@ -100,6 +102,7 @@ public class DetailRequete extends MyActivity implements View.OnClickListener {
         TextView age = (TextView) findViewById(R.id.user_age);
         TextView yeux = (TextView) findViewById(R.id.user_eyes);
         TextView orientation = (TextView) findViewById(R.id.user_inclination);
+        ImageView Photo = (ImageView) findViewById(R.id.img_user);
         pseudo.setText(temp.getLogin());
         genre.setText("Genre : " + temp.getGenre());
         cheveux.setText("Hair : " + temp.getCheveux());
@@ -107,5 +110,10 @@ public class DetailRequete extends MyActivity implements View.OnClickListener {
         age.setText("Age : " + temp.getAge());
         yeux.setText("Eyes : " + temp.getYeux());
         orientation.setText("Inclinaison : " + temp.getOrientation());
+        ArrayList<ucloveproject.uclove.DB.Photo> pics = db.getPhotoByUserId(temp.getId());
+        if (pics.size()!=0) {
+            Photo.setImageBitmap(db.getPhotoByUserId(temp.getId()).get(0).getImage());
+            printToast("dans le if !");
+        }
     }
 }
