@@ -113,7 +113,6 @@ public class DetailRequete extends MyActivity implements View.OnClickListener {
         ArrayList<ucloveproject.uclove.DB.Photo> pics = db.getPhotoByUserId(temp.getId());
         if (pics.size()!=0) {
             Photo.setImageBitmap(db.getPhotoByUserId(temp.getId()).get(0).getImage());
-            printToast("dans le if !");
         }
     }
 }
