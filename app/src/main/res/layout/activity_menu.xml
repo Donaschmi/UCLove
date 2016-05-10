@@ -17,12 +17,28 @@
             android:paddingBottom="30px"
             android:paddingTop="30px">
 
+            <Button
+                style="@style/GrosBouton"
+                android:text="@string/btn_deco"
+                android:id="@+id/btn_logout"
+                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/backb" >
+
+            </Button>
+
+
             <TextView
                 android:id="@+id/textView_titre"
                 style="@style/Titre"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_activity_menu_p" />
+                android:text="@string/title_activity_menu_p"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
         <RelativeLayout

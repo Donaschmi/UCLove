@@ -39,6 +39,9 @@
     <string name="texte_friends">Friends</string>
     <string name="texte_requests">Requests</string>
     <string name="texte_dispo">Disponibilities</string>
+    <string name="btn_deco">Log out</string>
+
+
 
     <!-- Textes Preferences -->
 

@@ -19,6 +19,7 @@ public class Menu extends MyActivity implements View.OnClickListener {
     private Button btnFriends;
     private Button btnRequests;
     private Button btnDispo;
+    private Button btnLogout;
     private String username;
 
     @Override
@@ -48,6 +49,9 @@ public class Menu extends MyActivity implements View.OnClickListener {
 
         btnDispo= (Button) findViewById(R.id.btn_menu_dispo);
         btnDispo.setOnClickListener(this);
+
+        btnLogout=(Button) findViewById(R.id.btn_logout);
+        btnLogout.setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +87,10 @@ public class Menu extends MyActivity implements View.OnClickListener {
                 n.putExtra("username", username);
                 startActivity(n);
                 break;
+            case R.id.btn_logout:
+                Intent o = new Intent(this, Login.class);
+                o.putExtra("username", username);
+                startActivity(o);
         }
     }
 
