@@ -12,7 +12,7 @@
 %\usetheme{Berlin}
 %\usetheme{Boadilla}
 %\usetheme{boxes}
-\usetheme{CambridgeUS}
+%\usetheme{CambridgeUS}
 %\usetheme{Copenhagen}
 %\usetheme{Darmstadt}
 %\usetheme{default}
@@ -28,10 +28,14 @@
 %\usetheme{Montpellier}
 %\usetheme{PaloAlto}
 %\usetheme{Pittsburgh}
-%\usetheme{Rochester}
+\usetheme{Rochester}
 %\usetheme{Singapore}
 %\usetheme{Szeged}
 %\usetheme{Warsaw}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
 
 \title{LSINF1225 : Programmation orientée-objet et gestion de données}
 
@@ -83,7 +87,7 @@
 % the beginning of each subsection:
 \AtBeginSubsection[]
 {
-  \begin{frame}<beamer>{Outline}
+  \begin{frame}<beamer>{Sommaire}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
@@ -95,7 +99,7 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Outline}
+\begin{frame}{Sommaire}
   \tableofcontents
   % You might wish to add the option [pausesections]
 \end{frame}
@@ -109,13 +113,13 @@
 \begin{block}{Application de rencontres}
 	\begin{itemize}
 		\item{
-			accessibilit\'e (tablette/t\'el\'ephone Android)
+			accessibilité (tablette/téléphone Android)
 		}
 		\item{
-			efficacit\'e, rapidit\'e (public h\'et\'erogene ou recherche cibl\'ee)
+			efficacité, rapidité (public hétérogène ou recherche ciblée)
 		}
 		\item{
-			\'ethique, confidentialit\'e (visibilit\'e des informations personnelles)
+			éthique, confidentialité (visibilité des informations personnelles)
 		}
 	\end{itemize}
 \end{block}
@@ -125,14 +129,14 @@
 			recherche de personnes (filtres disponibles)
 		}
 		\item{
-			discussion instantan\'ee
+			discussion instantanée
 		}
 		\item{
-			[organisation d'une rencontre r\'eelle]
+			[organisation d'une rencontre réelle]
 		}
 	\end{itemize}
 \end{block}
-\begin{block}{Pr\'esentation des fonctionnalit\'es de base}
+\begin{block}{Présentation des fonctionnalités de base}
 \end{block}
 \end{frame}
 
@@ -146,9 +150,9 @@
 \end{frame}
 \section{Aperçu de l'application}
 
-\subsection{Page d'acceuil}
+\subsection*{Page d'accueil}
 
-\begin{frame}{First Slide Title}{Optional Subtitle}
+\begin{frame}{Page d'accueil}
   \begin{itemize}
   \item {
     Inscription
@@ -159,11 +163,10 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Menu principal}
+\subsection*{Menu principal}
 
-% You can reveal the parts of a slide one at a time
-% with the \pause command:
-\begin{frame}{Second Slide Title}
+
+\begin{frame}{Menu principal}
   \begin{itemize}
   \item {
 	Navigation
@@ -171,9 +174,9 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Profil}
+\subsection*{Profil}
 
-\begin{frame}
+\begin{frame}{Profil}
 
 	\begin{itemize}
 	
@@ -191,8 +194,8 @@
 
 \end{frame}
 
-\subsection{Rencontre}
-\begin{frame}
+\subsection*{Rencontre}
+\begin{frame}{Rencontre}
 	\begin{itemize}
 	\item{
 	Profil d'un utilisateur
@@ -206,8 +209,8 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Requetes}
-\begin{frame}
+\subsection*{Requêtes}
+\begin{frame}{Requêtes}
 	\begin{itemize}
 	\item{Demandes en attente}
 	\item{
@@ -219,8 +222,8 @@
 
 
 
-\subsection{Amis}
-\begin{frame}
+\subsection*{Amis}
+\begin{frame}{Amis}
 	\begin{itemize}
 	\item{
 	Liste d'utilisateurs ajoutés
@@ -231,17 +234,21 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Options}
-\begin{frame}
+\subsection*{Options}
+\begin{frame}{Options}
+\begin{block}{Utilitaire}
+
 \begin{itemize}
     \item{Choix de la langue}
-    \item{Deconnexion}
+    \item{Déconnexion}
     
 \end{itemize}
+
+\end{block}
 \end{frame}
 
-\subsection{Disponibilités}
-\begin{frame}
+\subsection*{Disponibilités}
+\begin{frame}{Disponibilités}
   \begin{itemize}
       \item{}
   \end{itemize}
@@ -259,7 +266,7 @@
 \end{frame}
 
 \subsection{Implémentation}
-\begin{frame}
+\begin{frame}{Implémentation}
   \begin{itemize}
       \item{}
   \end{itemize}
@@ -268,75 +275,37 @@
 \section{Conclusion}
 
 \subsection{Bilan}
-
-
+\begin{frame}{Bilan}
+\begin{block}{UCLove}
+    \begin{itemize}
+        \item{
+            Prototype
+        }
+        \item{
+            Priorité sur l'aspect fonctionnel de l'application
+        }
+    \end{itemize}
+\end{block}
+\end{frame}
 
 \subsection{Perspectives}
-\begin{frame}
-  \begin{itemize}
-      \item{Disponibiltés}
-      \item{Confidentialité}
-      \item{Interface graphique originale}
-      \item{Base de données sur un serveur distant}
-  \end{itemize}
-\end{frame}
-
-% Placing a * after \section means it will not show in the
-% outline or table of contents.
-\section*{Summary}
-
-\begin{frame}{Summary}
-  \begin{itemize}
-  \item
-    The \alert{first main message} of your talk in one or two lines.
-  \item
-    The \alert{second main message} of your talk in one or two lines.
-  \item
-    Perhaps a \alert{third message}, but not more than that.
-  \end{itemize}
-  
-  \begin{itemize}
-  \item
-    Outlook
-    \begin{itemize}
-    \item
-      Something you haven't solved.
-    \item
-      Something else you haven't solved.
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-
-% All of the following is optional and typically not needed. 
-\appendix
-\section<presentation>*{\appendixname}
-\subsection<presentation>*{For Further Reading}
-
-\begin{frame}[allowframebreaks]
-  \frametitle<presentation>{For Further Reading}
-    
-  \begin{thebibliography}{10}
-    
-  \beamertemplatebookbibitems
-  % Start with overview books.
-
-  \bibitem{Author1990}
-    A.~Author.
-    \newblock {\em Handbook of Everything}.
-    \newblock Some Press, 1990.
- 
-    
-  \beamertemplatearticlebibitems
-  % Followed by interesting articles. Keep the list short. 
-
-  \bibitem{Someone2000}
-    S.~Someone.
-    \newblock On this and that.
-    \newblock {\em Journal of This and That}, 2(1):50--100,
-    2000.
-  \end{thebibliography}
+\begin{frame}{Perspectives}
+\begin{block}{Perspectives}
+	\begin{itemize}
+		\item{
+			Disponibilités
+		}
+		\item{
+			Confidentialité
+		}
+		\item{
+			Interface graphique originale
+		}
+		\item{
+			Base de données sur un serveur distant
+		}
+	\end{itemize}
+\end{block}
 \end{frame}
 
 \end{document}
